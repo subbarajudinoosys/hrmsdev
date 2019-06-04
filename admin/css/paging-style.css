@@ -1,0 +1,101 @@
+﻿.pagination1 {
+    line-height: 25px;
+}
+
+    .pagination1 span {
+        padding-left: 9px;
+        padding-right: 9px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border: solid 1px #08c;
+        text-decoration: none;
+        white-space: nowrap;
+        background: #08c;
+    }
+
+    .pagination1 a,
+    .pagination1 a:visited {
+        text-decoration: none;
+        padding-left: 9px;
+        padding-right: 9px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        white-space: nowrap;
+    }
+
+        .pagination1 a:hover,
+        .pagination1 a:active {
+            padding-left: 9px;
+            padding-right: 9px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            text-decoration: none;
+            white-space: nowrap;
+            background: #08c;
+        }
+
+.gridstyle {
+    background-color: white;
+}
+
+.gridcolor {
+    background-color: white;
+}
+
+.droprecords {
+    border-radius: 5px;
+    width: 100%;
+}
+
+.searchDiv {
+    background: #ccc;
+    padding: 2px 8px;
+    float: right;
+    margin: 0px 0px 0px 20px;
+    color: #08376a;
+    width: 120px;
+    line-height: 28px;
+    border-radius: 5px;
+}
+
+.searchIcon {
+    height: 25px;
+    width: 25px;
+    border-width: 0px;
+    float: right;
+    margin: 2px 0px 0px 9px;
+}
+
+.Paneldiv {
+    background-color: #f9f9f9;
+    border: 1px solid #e2e2e2;
+}
+
+.divbtn {
+    margin: 10px 30px;
+}
+
+.paneldiv-border {
+    border: 1px solid #e2e2e2;
+}
+
+.search-img {
+    height: 30px;
+    margin-left: -30px;
+}
+
+
+.file-upload {
+    display: block;
+    width: 100%;
+    height: 22px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+

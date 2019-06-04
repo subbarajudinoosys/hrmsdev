@@ -1,0 +1,48 @@
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Visa Application Form
+</title></head>
+<body>
+    <form name="form1" method="post" action="./print.aspx?dest=MTk0&amp;vaid=MzEy" id="form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTM4NDQ5OTMwMQ8WBh4LUmVmZXJlbmNlTm8FBjEyMzQ1Nh4IRmlsZU5hbWUFW0M6XEluZXRwdWJcdmhvc3RzXGRpbm9vc3lzLmluXGh0dHBkb2NzXHN2c2luZFx0ZW1wXDgxMzE3M2EwLWNjZmMtNDE5Yi05ZmVmLTgzODVlZDc5NjI5ZS5wZGYeE1ZhbGlkYXRlUmVxdWVzdE1vZGUCARYCAgMPZBYCAgUPDxYCHgRUZXh0BStOTyBDT1VOVFJZIEZPVU5EIFRPIFBSSU5UIFZJU0EgQVBQTElDQVRJT04uZGRkG4LboLtLPd6KatwdP2qVioFihtPwlFnolGLsJ7w6Glo=" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="A1C307AE" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAIwIPDpWj210tEq8q8Pk1RrHJtCarqE/uPLjJ32rjM3nvDJajcEVYpljMXkastY5D3wiI7teVeJ96waDZ/MKyrA" />
+</div>
+    <span id="LabelError"></span>
+    <div style="text-align: center;">
+    
+        <a id="cmdDownload" href="javascript:__doPostBack(&#39;cmdDownload&#39;,&#39;&#39;)">Download Pdf File</a>
+        <span id="lblErrMsg">NO COUNTRY FOUND TO PRINT VISA APPLICATION.</span>
+    </div>
+    </form>
+</body>
+</html>

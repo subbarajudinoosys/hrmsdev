@@ -1,0 +1,26 @@
+.panel-info > .panel-heading {
+    color: #e8ebec !important;
+    background-color: #e80d15 !important;
+    border-color: #bce8f1 !important;
+}
+
+.panel-title {
+    font-weight: bold !important;
+}
+
+a {
+    color: #e80d15 !important;
+    text-decoration: none !important;
+}
+
+    a:focus, a:hover {
+        /*color: #337ab7 !important;*/
+        background-color: #e8ebec !important;
+    }
+
+
+    .pagination1 span
+    {
+        border : solid 1px #e94d50 !important;
+        background : #dc1c20 !important;
+    }

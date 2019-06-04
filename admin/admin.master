@@ -1,0 +1,234 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="admin.master.cs" Inherits="admin_admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Dinoosys Technologies Self Service Portal</title>
+    <link href="css/hrms.css" rel="stylesheet" />
+
+
+    <%--<script src="js/jquery-2.1.4.min.js"></script>--%>
+    <%--<script src="js/jquery-ui-1.8.19.custom.min.js"></script>--%>
+    <%--<script src="js/jquery-1.7.2.min.js"></script>--%>
+    <!-- Bootstrap Core CSS -->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.min.css" rel="stylesheet" />
+
+    <!-- Timeline CSS -->
+    <link href="css/timeline.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="css/startmin.css" rel="stylesheet" />
+
+    <!--gridview pagenation-->
+    <link href="css/paging-style.css" rel="stylesheet" />
+
+
+    <!-- Morris Charts CSS -->
+    <link href="css/morris.css" rel="stylesheet" />
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+
+      <script src="js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/> 
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <%--<a class="navbar-brand" href="#">Employee Self Service Portal</a>--%>
+                <img src="../images/logo-dinoosys.png" style="width: 35%;"/> 
+            </div>
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Top Navigation: Left Menu -->
+            <%--<ul class="nav navbar-nav navbar-left navbar-top-links">
+                <li><a href="#"><i class="fa fa-home fa-fw"></i>Website</a></li>
+            </ul>--%>
+
+            <!-- Top Navigation: Right Menu -->
+            <ul class="nav navbar-right navbar-top-links">
+                <li class="dropdown navbar-inverse">
+                    <%--<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i><b class="caret"></b>
+                    </a>--%>
+                    <%--<ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i>New Comment
+                               
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>--%>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>
+                        <asp:Label ID="lblusername" runat="server"></asp:Label>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="EmployeeDetails.aspx?Emp_ID=profile"><i class="fa fa-user fa-fw"></i>User Profile</a>
+                        </li>
+                        <%--<li><a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
+                        </li>--%>
+                        <li class="divider"></li>
+                        <li><a href="../login.aspx"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Sidebar -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <div id="sidebar" runat="server">
+                        <%--  <ul class="nav" id="side-menu">
+                            <li>
+                                <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-sitemap fa-group"></i>Employee Management<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="EmployeeList.aspx">List Employees</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="EmpDepartment.aspx">Add Department</a>
+                                    </li>
+                                    <li>
+                                        <a href="EmpDesignation.aspx">Add Designation</a>
+                                    </li>
+                                    <li>
+                                        <a href="LocationDetails.aspx">Add Location</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-sitemap fa-bank"></i>Payroll System<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="employeePaySlipList.aspx">Payslip</a>
+                                    </li>
+                                    <li>
+                                        <a href="EmployeePaymentVoucher.aspx">Payment Voucher</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-sitemap fa-bed"></i>Leave Management System<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="apply_leave.aspx">Apply Leave</a>
+                                    </li>
+                                    <li>
+                                        <a href="HolidayCalendar.aspx">Holiday Calender</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-briefcase"></i>Administration<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="#">Manage Employees</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Manage Leave Types</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Manage Holiday Calender</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Manage Payroll</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Manage Menu Access</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>--%>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <h4 class="page-header">
+                        <asp:Label ID="lblTitle" runat="server"></asp:Label>
+                       
+                    </h4>
+
+                </div>
+
+                <!-- ... Your content goes here ... -->
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+    <!-- jQuery -->
+  
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="js/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/startmin.js"></script>
+
+
+</body>
+</html>
