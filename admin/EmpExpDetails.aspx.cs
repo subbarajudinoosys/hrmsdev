@@ -14,7 +14,7 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
     EmpExperience objEmpExp = new EmpExperience();
     DALExperience objDAlExp = new DALExperience();
     DALExeperienceList objExpList = new DALExeperienceList();
-    int EmployeeId;
+    string EmployeeId;
     string Emp_id;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,7 +27,7 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
             if (Emp_id != null & Emp_firstnam != null)
             {
                 lblEmpIdName.Text = "ID-" + Emp_id + " ,  Name-" + Emp_firstnam;
-                EmployeeId = Convert.ToInt32(Request.QueryString["Emp_Id"]);
+                EmployeeId = Emp_id;
                 BindExperience(Emp_id);
             }
         }
