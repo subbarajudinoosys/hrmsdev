@@ -199,7 +199,7 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             
         try 
 	{	        
-		int PassLength = 8;
+		int PassLength = 6;
             string allowedChars = "";
 
             allowedChars = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,";
