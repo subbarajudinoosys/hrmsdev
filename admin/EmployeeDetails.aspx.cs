@@ -272,11 +272,11 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
 
             SmtpServer = "smtp.gmail.com";
             SmtpPort = 25;
-            // MailFrom = "testingformail12@gmail.com";
-            MailFrom = "anmishakalidindi2851995@gmail.com";
+             MailFrom = "testingformail12@gmail.com";
+           // MailFrom = "anmishakalidindi2851995@gmail.com";
             DisplayNameFrom = "Dinoosys Technologies";
-            // FromPassword = "testing123";
-            FromPassword = "anmisha143";
+             FromPassword = "testing123";
+            //FromPassword = "anmisha143";
             //MailTo = Session["Email"].ToString();
             MailTo = MailId;
             
