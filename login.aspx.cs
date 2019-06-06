@@ -9,6 +9,7 @@ using DataManager;
 
 public partial class login : System.Web.UI.Page
 {
+    DOUtility objDOUty = new DOUtility();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -26,20 +27,26 @@ public partial class login : System.Web.UI.Page
     {
         try
         {
+            //, txtPassword.Text
             DALCommon ojbDALLogin = new DALCommon();
-            DataSet ds = ojbDALLogin.UserLogIn(txtuserId.Text, txtPassword.Text);
+            DataSet ds = ojbDALLogin.UserLogIn(txtuserId.Text);
             if (ds.Tables[0].Rows.Count > 0)
             {
-                Session["userid"] = ds.Tables[0].Rows[0]["emp_id"].ToString();
-                Session["firstname"] = ds.Tables[0].Rows[0]["emp_firstname"].ToString();
-                Session["lastname"] = ds.Tables[0].Rows[0]["emp_lastname"].ToString();
-                Session["designation"] = ds.Tables[0].Rows[0]["Designation"].ToString();
-                Session["RoleId"] = ds.Tables[0].Rows[0]["RoleId"].ToString();
-                Session["Email"] = ds.Tables[0].Rows[0]["emp_email"].ToString();
-                 //Server.Execute("/admin/index.aspx");
 
-                Response.Redirect("/admin/index.aspx",false);
+                string password = objDOUty.Decrypts(ds.Tables[0].Rows[0]["emp_pwd"].ToString(), true);
+                 if (txtPassword.Text == password)
+                 {
 
+                     Session["userid"] = ds.Tables[0].Rows[0]["emp_id"].ToString();
+                     Session["firstname"] = ds.Tables[0].Rows[0]["emp_firstname"].ToString();
+                     Session["lastname"] = ds.Tables[0].Rows[0]["emp_lastname"].ToString();
+                     Session["designation"] = ds.Tables[0].Rows[0]["Designation"].ToString();
+                     Session["RoleId"] = ds.Tables[0].Rows[0]["RoleId"].ToString();
+                     Session["Email"] = ds.Tables[0].Rows[0]["emp_email"].ToString();
+                     //Server.Execute("/admin/index.aspx");
+
+                     Response.Redirect("/admin/index.aspx", false);
+                 }
             }
             else
             {

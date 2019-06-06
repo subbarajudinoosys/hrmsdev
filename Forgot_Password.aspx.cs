@@ -11,6 +11,7 @@ using System.Globalization;
 
 public partial class Forgot_Password : System.Web.UI.Page
 {
+    DOUtility objDOUty = new DOUtility();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -46,7 +47,7 @@ public partial class Forgot_Password : System.Web.UI.Page
                     string Subject = "HRMS";
                     string MailText;
                     string Attachment = "";
-
+                    string Password=ds.Tables[0].Rows[0][0].ToString().Trim();
                     MailCc = "";
 
                     MailText = "<table align='center' border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse; width: 100%; max-width: 600px;' class='content'>"
@@ -58,14 +59,14 @@ public partial class Forgot_Password : System.Web.UI.Page
                  + "</tr>"
                  + "<tr>"
                    + "  <td align='center' bgcolor='#a1c3da' style='padding: 25px 20px 25px 20px; color: #ffffff; back font-family: Arial, sans-serif; font-size: 36px; font-weight: bold;height:113px !important;'>"
-                      + "   <img src='http://hrms.dinoosystech.com//images/logo-dinoosys.png' alt='HRMS DINOOSYS' width='260' height='110' style='display:block;' />"
+                      + "   <img src='images/logo-dinoosys.png' alt='HRMS DINOOSYS' width='260' height='110' style='display:block;' />"
                     + " </td>"
                + "  </tr>"
                + "  <tr>"
                     + " <td align='center' bgcolor='#ffffff' style='padding: 75px 20px 40px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 20px; line-height: 30px; border-bottom: 1px solid #f6f6f6;'>"
                     + "     <b>You Credentials is </b><br/>"
                         //+ "    and One Of The Advisor We Will Contact To You."
-                     + "Your Login Id : " + ds.Tables[0].Rows[0][1].ToString().Trim() + "<br/>" + " Password: " + ds.Tables[0].Rows[0][0].ToString().ToString().Trim()
+                     + "Your Login Id : " + ds.Tables[0].Rows[0][1].ToString().Trim() + "<br/>" + " Password: " + objDOUty.Decrypts( Password,true)
 
                     + " </td>"
                  + "</tr>"
@@ -74,7 +75,7 @@ public partial class Forgot_Password : System.Web.UI.Page
                     + "     <table bgcolor='#1ABC9C' border='0' cellspacing='0' cellpadding='0' class='buttonwrapper'>"
                           + "   <tr>"
                             + "     <td align='center' height='50' style=' padding: 0 25px 0 25px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; background-color: #bd1f2d;' class='button'>"
-                                 + "  <a href='http://hrms.dinoosystech.com' style='color: #ffffff; text-align: center; text-decoration: none;'>HRMS DINOOSYS</a>"
+                                 + "  <a href='http://localhost:9519/login.aspx' style='color: #ffffff; text-align: center; text-decoration: none;'>HRMS DINOOSYS</a>"
                               + "   </td>"
                           + "   </tr>"
                        + "  </table>"
@@ -88,6 +89,8 @@ public partial class Forgot_Password : System.Web.UI.Page
             + " </table>";
 
                     SendMail(SmtpServer, SmtpPort, MailFrom, DisplayNameFrom, FromPassword, MailTo, DisplayNameTo, MailCc, "", "", "", DisplayNameCc, MailBcc, Subject, MailText, Attachment);
+
+                   ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Please check your mail ');", true);
 
                 }
                 else
