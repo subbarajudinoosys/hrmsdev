@@ -10,12 +10,12 @@ namespace DataManager
 {
     public class DALCommon:DataUtilities
     {
-        public DataSet UserLogIn(string UserId,string Pwd)
+        public DataSet UserLogIn(string UserId)
         {
             Hashtable hst=new Hashtable
                                {
                                    {"in_username",UserId},
-                                   {"in_password",Pwd}
+                                   //{"in_password",Pwd}
                                };
             return ExecuteDataSet("user_login", hst);
         }
