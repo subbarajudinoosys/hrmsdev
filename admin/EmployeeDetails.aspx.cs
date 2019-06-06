@@ -265,7 +265,7 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             //string name = Session["firstname"].ToString() + " " + Session["lastname"].ToString();
 
             // string leavedate = "Leave Date" + " : " + "From Date: " + fromdate + "&nbsp;&nbsp; To Date: " + todate;
-            string MailText = "URL: " + "http://localhost:1839/login.aspx " + "<br/>" + "LoginID:  " + EmpID + "<br/>" + "Password: " + Password;
+            string MailText = "URL: " + "http://hrmsdev.dinoosystech.com/login.aspx " + "<br/>" + "LoginID:  " + EmpID + "<br/>" + "Password: " + Password;
 
             // MailCc2 = "subbaraju.vetukuri@gmail.com";
             //MailCc3 = "budagavichandra@gmail.com";

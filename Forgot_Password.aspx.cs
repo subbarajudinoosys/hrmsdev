@@ -75,7 +75,7 @@ public partial class Forgot_Password : System.Web.UI.Page
                     + "     <table bgcolor='#1ABC9C' border='0' cellspacing='0' cellpadding='0' class='buttonwrapper'>"
                           + "   <tr>"
                             + "     <td align='center' height='50' style=' padding: 0 25px 0 25px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; background-color: #bd1f2d;' class='button'>"
-                                 + "  <a href='http://localhost:9519/login.aspx' style='color: #ffffff; text-align: center; text-decoration: none;'>HRMS DINOOSYS</a>"
+                                 + "  <a href='http://hrmsdev.dinoosystech.com/login.aspx' style='color: #ffffff; text-align: center; text-decoration: none;'>HRMS DINOOSYS</a>"
                               + "   </td>"
                           + "   </tr>"
                        + "  </table>"

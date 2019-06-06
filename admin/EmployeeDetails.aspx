@@ -42,6 +42,8 @@
                 dateFormat: 'yy-mm-dd',
                 changeMonth: true,
                 changeYear: true,
+                yearRange: "c-70:c+70",
+
             }).attr('readonly', 'readonly');
 
             $("#ContentPlaceHolder1_txtDateOfBirth").datepicker({
@@ -50,6 +52,7 @@
                 dateFormat: 'yy-mm-dd',
                 changeMonth: true,
                 changeYear: true,
+                yearRange: "c-70:c+70",
             }).attr('readonly', 'readonly');
 
             $("#ContentPlaceHolder1_txtExpiryDate").datepicker({
@@ -58,6 +61,7 @@
                 dateFormat: 'yy-mm-dd',
                 changeMonth: true,
                 changeYear: true,
+                yearRange: "c-70:c+70",
             }).attr('readonly', 'readonly');
         });
     </script>
