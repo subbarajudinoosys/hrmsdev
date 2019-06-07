@@ -18,6 +18,7 @@ namespace EntityManager
         public string FirstName { get; set; }
         public string Age { get; set; }
         public string Employmentstatus { get; set; }
+        public string IsActive { get; set; }
         public string OpName { get; set; }
     }
 }

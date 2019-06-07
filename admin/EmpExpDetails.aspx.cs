@@ -54,7 +54,7 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
 
         if (e.CommandName == "Delete Exp")
         {
-            DeleteEducationDetails(Convert.ToInt32(S_No));
+            DeleteEducationDetails(Convert.ToInt32(S_No), Emp_id);
             BindExperience(Emp_id);
         }
     }
@@ -88,6 +88,7 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
             objEmpExp.Designation = txtEmpDesignation.Text;
             objEmpExp.Technology = txtTechnology.Text;
             objEmpExp.ProjectTitles = txtProjectDetails.Text;
+            objEmpExp.IsActive = "Y";
 
             int result = objDAlExp.InsertEmpExperience(objEmpExp);
             if (result > 0)
@@ -177,11 +178,11 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
     }
 
 
-    private void DeleteEducationDetails(int S_No)
+    private void DeleteEducationDetails(int S_No, string Emp_id)
     {
         try
         {
-            int result = objDAlExp.DeleteEmpExp(S_No);
+            int result = objDAlExp.DeleteEmpExp(S_No, Emp_id);
         }
         catch (Exception ex)
         {

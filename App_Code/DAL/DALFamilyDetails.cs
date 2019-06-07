@@ -25,6 +25,7 @@ namespace DataManager
                                            {"inFirstName",objFamily.FirstName},
                                            {"inAge",objFamily.Age},
                                            {"inEmploymentstatus",objFamily.Employmentstatus},
+                                            {"inIsActive",objFamily.IsActive},
                                            {"in_OpName",objFamily.OpName},
 
 
@@ -36,13 +37,15 @@ namespace DataManager
         public int InsertFamilyDetails(EmpFamilyDetails objFamily)
        {
             Hashtable htparams=new Hashtable{
-                                           {"inS_No",objFamily.S_No},
+                                           //{"inS_No",objFamily.S_No},
                                            {"inEmp_id",objFamily.Emp_id},
                                            {"inRelationship",objFamily.Relationship},
                                            {"inLastName",objFamily.LastName},
                                            {"inFirstName",objFamily.FirstName},
                                            {"inAge",objFamily.Age},
                                            {"inEmploymentstatus",objFamily.Employmentstatus},
+                                           {"inIsActive",objFamily.IsActive},
+                                           
                                            {"in_OpName",objFamily.OpName},
                                             };
 

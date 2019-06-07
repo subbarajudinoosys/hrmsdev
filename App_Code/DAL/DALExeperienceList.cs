@@ -27,6 +27,7 @@ namespace DataManager
                                                       {"inDesignation",objEmpExeList.Designation},
                                                       {"inTechnology",objEmpExeList.Technology},
                                                       {"inProjectTitles",objEmpExeList.ProjectTitles},
+                                                       {"inIsActive",objEmpExe.IsActive},
                                                       {"in_OpName",objEmpExeList.OpName},
                                                    };
             return ExecuteDataSet("EmpExperience", htparams);

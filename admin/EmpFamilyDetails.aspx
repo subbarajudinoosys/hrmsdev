@@ -97,8 +97,8 @@
 
                                 <div class="col-sm-3">
                                     <asp:TextBox ID="txtEmpAge" CssClass="form-control" runat="server" placeholder="Age" />
-                                    <asp:RequiredFieldValidator ControlToValidate="txtEmpAge" runat="server" ID="rfvtxtEmpAge"
-                                        Display="Dynamic" ErrorMessage="Enter Age." Text="Enter Age." ValidationGroup="family" ForeColor="Red" />
+                                   <%-- <asp:RequiredFieldValidator ControlToValidate="txtEmpAge" runat="server" ID="rfvtxtEmpAge"
+                                        Display="Dynamic" ErrorMessage="Enter Age." Text="Enter Age." ValidationGroup="family" ForeColor="Red" />--%>
                                 </div>
 
                                 <div class="col-sm-3">

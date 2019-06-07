@@ -25,6 +25,7 @@ namespace DataManager
                                            {"inFirstName",objFamilyList.FirstName},
                                            {"inAge",objFamilyList.Age},
                                            {"inEmploymentstatus",objFamilyList.Employmentstatus},
+                                           {"inIsActive",objFamilyList.IsActive},
                                            {"in_OpName",objFamilyList.OpName},
            };
             return ExecuteDataSet("EmpFamilydetails", htparams);

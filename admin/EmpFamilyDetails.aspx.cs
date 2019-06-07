@@ -95,6 +95,7 @@ public partial class admin_EmpFamilyDetails : System.Web.UI.Page
             objEmpFam.FirstName = txtRelFirstName.Text;
             objEmpFam.Age = txtEmpAge.Text;
             objEmpFam.Employmentstatus = dropEmpStatus.SelectedValue;
+            objEmpFam.IsActive = "Y";
 
             int Result = objDALFam.InsertFamilyDetails(objEmpFam);
             if (Result > 0)

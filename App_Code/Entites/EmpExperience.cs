@@ -20,6 +20,7 @@ namespace EntityManager
         public string Designation { get; set; }
         public string Technology { get; set; }
         public string ProjectTitles { get; set; }
+        public string IsActive { get; set; }
         public string OpName { get; set; }
     }
 }
