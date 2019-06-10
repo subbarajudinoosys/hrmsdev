@@ -34,24 +34,25 @@ public partial class login : System.Web.UI.Page
             {
 
                 string password = objDOUty.Decrypts(ds.Tables[0].Rows[0]["emp_pwd"].ToString(), true);
-                 if (txtPassword.Text == password)
-                 {
+                if (txtPassword.Text == password)
+                {
 
-                     Session["userid"] = ds.Tables[0].Rows[0]["emp_id"].ToString();
-                     Session["firstname"] = ds.Tables[0].Rows[0]["emp_firstname"].ToString();
-                     Session["lastname"] = ds.Tables[0].Rows[0]["emp_lastname"].ToString();
-                     Session["designation"] = ds.Tables[0].Rows[0]["Designation"].ToString();
-                     Session["RoleId"] = ds.Tables[0].Rows[0]["RoleId"].ToString();
-                     Session["Email"] = ds.Tables[0].Rows[0]["emp_email"].ToString();
-                     //Server.Execute("/admin/index.aspx");
+                    Session["userid"] = ds.Tables[0].Rows[0]["emp_id"].ToString();
+                    Session["firstname"] = ds.Tables[0].Rows[0]["emp_firstname"].ToString();
+                    Session["lastname"] = ds.Tables[0].Rows[0]["emp_lastname"].ToString();
+                    Session["designation"] = ds.Tables[0].Rows[0]["Designation"].ToString();
+                    Session["RoleId"] = ds.Tables[0].Rows[0]["RoleId"].ToString();
+                    Session["Email"] = ds.Tables[0].Rows[0]["emp_email"].ToString();
+                    //Server.Execute("/admin/index.aspx");
 
-                     Response.Redirect("/admin/index.aspx", false);
-                 }
-            }
-            else
-            {
+                    Response.Redirect("/admin/index.aspx", false);
+                }
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Invalid User Credentials !!');", true);
+                else
+                {
+
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Invalid User Credentials !!');", true);
+                }
             }
         }
         catch (Exception ex)
@@ -59,6 +60,7 @@ public partial class login : System.Web.UI.Page
             Response.Redirect("login.aspx", false);
         }
     }
-    
+
+
    
 }
