@@ -226,11 +226,11 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
 
     //}
 
-    private void DeleteEduDetails(string Emp_id)
+    private void DeleteEduDetails(string emp_id)
     {
         try
         {
-            int result = objDALEdu.DeleteEmpEducation(Emp_id);
+            int result = objDALEdu.DeleteEmpEducation(emp_id);
         }
         catch (Exception ex)
         {
