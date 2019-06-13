@@ -191,6 +191,7 @@
                                                 Records per page</label>
                                         </div>
                                         <div class="col-sm-4">
+                                            <asp:Label ID="lblcnt" runat="server" ForeColor="Red"></asp:Label>
                                         </div>
                                         <div class="col-sm-1">
                                             <label class="control-label">Search</label>
@@ -207,7 +208,7 @@
                                 </div>
                             </div>
                    
-                    <asp:Label ID="lblcnt" runat="server" ForeColor="Red"></asp:Label>
+                    
 
                     <asp:GridView ID="gvEducation" runat="server" AllowPaging="true" Width="100%" PageSize="10"
                         AutoGenerateColumns="False" DataKeyNames="" CssClass="table table-striped table-bordered"
