@@ -207,6 +207,8 @@
                                 </div>
                             </div>
                    
+                    <asp:Label ID="lblcnt" runat="server" ForeColor="Red"></asp:Label>
+
                     <asp:GridView ID="gvEducation" runat="server" AllowPaging="true" Width="100%" PageSize="10"
                         AutoGenerateColumns="False" DataKeyNames="" CssClass="table table-striped table-bordered"
                         OnRowCommand="gvEducation_RowCommand" OnPageIndexChanging="gvEducation_PageIndexChanging" ShowHeaderWhenEmpty="true">
