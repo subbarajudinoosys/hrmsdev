@@ -146,12 +146,12 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
     #endregion Private Methods
     protected void gvEducation_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        string S_No = e.CommandArgument.ToString();
+        string emp_Id = e.CommandArgument.ToString();
         if (e.CommandName == "Edit Record")
         {
             btnSubmit.Text = "Update";
             //objEducation.SNo =
-            GetEduDetails(Convert.ToInt32(S_No));
+            GetEduDetails(Convert.ToInt32(emp_Id));
 
 
         }
