@@ -230,7 +230,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Education Type">
+                           <%-- <asp:TemplateField HeaderText="Education Type">
                                 <ItemTemplate>
                                     <%#Eval("Edu_Type")%>
                                 </ItemTemplate>
@@ -259,7 +259,7 @@
                                 <ItemTemplate>
                                     <%#Eval("EndDate")%>
                                 </ItemTemplate>
-                            </asp:TemplateField>
+                            </asp:TemplateField>--%>
 
 
                             <asp:TemplateField HeaderText="Actions">

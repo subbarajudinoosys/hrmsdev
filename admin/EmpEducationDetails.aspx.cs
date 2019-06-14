@@ -178,14 +178,14 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
             lblcnt.Text = ds.Tables[0].Rows.Count.ToString();
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
-                gvEducation.DataSource = ds;
+                gvEducation.DataSource = ds.Tables[0];
                 gvEducation.DataBind();
             }
-            else
-            {
-                gvEducation.DataSource = null;
-                gvEducation.DataBind();
-            }
+            //else
+            //{
+            //    gvEducation.DataSource = null;
+            //    gvEducation.DataBind();
+            //}
         }
         catch
         {
