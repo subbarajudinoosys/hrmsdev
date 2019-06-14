@@ -218,19 +218,19 @@
 
                         <%--  <RowStyle Height="20px" Font-Size="13px" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" />--%>
                         <Columns>
-                            <%--<asp:TemplateField HeaderText="SNo" Visible="false">
+                            <asp:TemplateField HeaderText="SNo" Visible="false">
                                 <ItemTemplate>
                                     <asp:Label ID="lblEmp_Sno" runat="server" Text='<%#Eval("S_No") %>' Visible="false"></asp:Label>
                                     <%#Container.DataItemIndex+1 %>
                                 </ItemTemplate>
-                            </asp:TemplateField>--%>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Employee Id">
                                 <ItemTemplate>                                   
                                     <asp:Label ID="lblEmp_Id" runat="server" Text='<%#Eval("emp_id")%>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <%-- <asp:TemplateField HeaderText="Education Type">
+                             <asp:TemplateField HeaderText="Education Type">
                                 <ItemTemplate>
                                     <%#Eval("Edu_Type")%>
                                 </ItemTemplate>
@@ -259,7 +259,7 @@
                                 <ItemTemplate>
                                     <%#Eval("EndDate")%>
                                 </ItemTemplate>
-                            </asp:TemplateField>--%>
+                            </asp:TemplateField>
 
 
                             <asp:TemplateField HeaderText="Actions">
