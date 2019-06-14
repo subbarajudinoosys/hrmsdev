@@ -22,19 +22,6 @@ public partial class admin_EmployeeList : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-        //    if (Session["status"].ToString() != null || Session["status"].ToString() != "")
-        //    {
-        //        string status = string.IsNullOrEmpty(Session["status"].ToString()) ? "" : Session["status"].ToString();
-        //        //string status=ViewState["issuccess"].ToString();
-        //        if (status == "True")
-        //        {
-        //            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Mail has sent successfully to Employee');", true);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Mail was not send');", true);
-        //    }
             BindEmployee();
         }
 
@@ -52,14 +39,10 @@ public partial class admin_EmployeeList : System.Web.UI.Page
 
         if (e.CommandName == "EditBankDetails")
         {
-
             string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
             string emp_id = commandArgs[0];
             string emp_firstnam = commandArgs[1];
             Response.Redirect(String.Format("EmpBankDetails.aspx?emp_id={0}&emp_firstnam={1}", emp_id, emp_firstnam));
-
-
-          //  Response.Redirect("EmpBankDetails.aspx?empbd_id=" + EmployeebdId);
 
         }
 
@@ -67,11 +50,8 @@ public partial class admin_EmployeeList : System.Web.UI.Page
          {
              string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
              string emp_id = commandArgs[0];
-             string emp_firstnam = commandArgs[1];
-             Response.Redirect(String.Format("EmpEducationDetails.aspx?emp_id={0}&emp_firstnam={1}", emp_id, emp_firstnam));
-
-           // Response.Redirect("EmpEducationDetails.aspx?Edu_Id=" + EmployeeEduId);
-
+             string emp_firstname = commandArgs[1];
+             Response.Redirect(String.Format("EmpEducationDetails.aspx?emp_id={0}&emp_firstname={1}", emp_id, emp_firstname));
         }
 
         if (e.CommandName == "EditExeDetails")
@@ -80,21 +60,15 @@ public partial class admin_EmployeeList : System.Web.UI.Page
             string emp_id = commandArgs[0];
             string emp_firstnam = commandArgs[1];
             Response.Redirect(String.Format("EmpExpDetails.aspx?emp_id={0}&emp_firstnam={1}", emp_id, emp_firstnam));
-          //  Response.Redirect("EmpExpDetails.aspx?Exp_id=" + EmployeeExeId);
         }
         if (e.CommandName == "EditFamilyDetails")
         {
-            //string Emp_Id = e.CommandArgument.ToString();
-           // string emp_firstnam =e.CommandArgument.ToString();
-            //Session["EmpID"]=ds.Tables[]
-          //  Response.Redirect("EmpFamilyDetails.aspx?Emp_id=" + Emp_Id);
-           // Response.Redirect(String.Format("EmpFamilyDetails.aspx?Emp_id={0}&emp_firstnam={1}", Emp_Id,emp_firstnam));
-
             string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
             string emp_id = commandArgs[0];
-            string emp_firstnam=commandArgs[1];
+            string emp_firstnam = commandArgs[1];
 
             Response.Redirect(String.Format("EmpFamilyDetails.aspx?emp_id={0}&emp_firstnam={1}", emp_id, emp_firstnam));
+
         }
     }
 
@@ -113,7 +87,7 @@ public partial class admin_EmployeeList : System.Web.UI.Page
             clsEmployee ObjEmpList = new clsEmployee();
             Employees _ObjEmpList = new Employees();
             ObjEmpList.OpName = "SELECTALL";
-             ds = _ObjEmpList.GetEmpList(ObjEmpList);
+            DataSet ds = _ObjEmpList.GetEmpList(ObjEmpList);
 
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {

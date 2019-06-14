@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
         .gridheader {
-            text-align: center;
+            text-align: center !important;
         }
-        
+
        
     </style>
 
@@ -55,75 +55,66 @@
                                 </div>
                             </div>
                             <asp:HiddenField ID="hf_emp_id" Value="0" runat="server" />
-                            <asp:GridView ID="gvEmployee" runat="server" AllowPaging="true" Width="100%" PageSize="10" HeaderStyle-CssClass="gridheader"
+                            <asp:GridView ID="gvEmployee" runat="server" AllowPaging="true" Width="100%" PageSize="10"
                                 AutoGenerateColumns="False" DataKeyNames="" CssClass="table table-striped table-bordered"
                                 OnRowCommand="gvEmployee_RowCommand" OnPageIndexChanging="gvEmployee_PageIndexChanging" ShowHeaderWhenEmpty="true">
                                 <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
                                 <%-- <RowStyle Height="20px" Font-Size="13px" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" />--%>
                                 <Columns>
                                     <asp:TemplateField HeaderText="Emp_ID" ItemStyle-HorizontalAlign="Center"  HeaderStyle-CssClass="gridheader">
-                                        
-                                        <ItemTemplate >
-                                          <%--  <%#Container.DataItemIndex+1 %>
-                                            <asp:Label ID="lbldbk_id" runat="server" CssClass="hidden" Text='<%#Eval("emp_id")%>'></asp:Label>--%>
-                                            <%#Eval("emp_id")%>
+                                        <ItemTemplate>
+                                          
+                                              <%#Eval("emp_id")%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="First Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="gridheader" >
+                                    <asp:TemplateField HeaderText="First Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="gridheader">
                                         <ItemTemplate>
                                             <%#Eval("emp_firstname")%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Last Name" ItemStyle-HorizontalAlign="Center"  HeaderStyle-CssClass="gridheader">
+                                    <asp:TemplateField HeaderText="Last Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="gridheader">
                                         <ItemTemplate>
                                             <%#Eval("emp_lastname")%>
                                         </ItemTemplate>
 
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Department" ItemStyle-HorizontalAlign="Center"  HeaderStyle-CssClass="gridheader">
+                                    <asp:TemplateField HeaderText="Department" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="gridheader">
                                         <ItemTemplate>
                                             <%#Eval("Department")%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Job Title" ItemStyle-HorizontalAlign="Center"  HeaderStyle-CssClass="gridheader">
+                                    <asp:TemplateField HeaderText="Job Title" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="gridheader">
                                         <ItemTemplate>
                                             <%#Eval("Designation")%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                   <%-- <asp:TemplateField HeaderText="Manager" ItemStyle-HorizontalAlign="Center"  HeaderStyle-CssClass="gridheader">
+                                    <%--<asp:TemplateField HeaderText="Manager" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="gridheader">
                                         <ItemTemplate>
                                             <%#Eval("emp_mgr")%>
                                         </ItemTemplate>
                                     </asp:TemplateField>--%>
-                                    <asp:TemplateField HeaderText="Actions" ItemStyle-HorizontalAlign="Center"  HeaderStyle-CssClass="gridheader">
+                                    <asp:TemplateField HeaderText="Actions" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="gridheader">
                                         <ItemTemplate>
                                             <table>
                                                 <tr>
                                                     <td>
                                                         <asp:ImageButton ID="imgEdit" ToolTip="Edit Record" runat="server" ImageUrl="~/Admin/Images/icons/icon-edit.png" Height="20" Width="20"
-                                                            CommandName="Edit" CommandArgument='<%#Eval("emp_id") %>' />
+                                                            CommandName="Edit" CommandArgument='<%#Eval("emp_id")  %>' />
 
                                                         <asp:ImageButton ID="ImageEduDetails" ToolTip="Education Details" runat="server" ImageUrl="~/Admin/Images/icons/icon-education.png" Height="20" Width="20"
-                                                            CommandName="EditEduDetails" CommandArgument='<%#Eval("emp_id")+ ","+Eval("emp_firstname") %>' />
+                                                            CommandName="EditEduDetails" CommandArgument='<%#Eval("emp_id") + ","+Eval("emp_firstname") %>' /> 
 
                                                         <asp:ImageButton ID="imgEditBankDetails" ToolTip="Bank Details" runat="server" ImageUrl="~/admin/Images/icons/icon-bank.png" Height="22" Width="22"
-                                                            CommandName="EditBankDetails" CommandArgument='<%#Eval("emp_id")+ ","+Eval("emp_firstname") %>' />
+                                                            CommandName="EditBankDetails" CommandArgument='<%#Eval("emp_id") + ","+Eval("emp_firstname") %>' />
 
                                                         <asp:ImageButton ID="ImageFamDetails" ToolTip="Family Details" runat="server" ImageUrl="~/admin/Images/icons/icon-family.jpg" Height="21" Width="21"
-                                                            CommandName="EditFamilyDetails" CommandArgument='<%#Eval("emp_id") + ","+Eval("emp_firstname") %>' />
-
-                                                        <%--<asp:ImageButton ID="ImageExeDetails" ToolTip="Exeperience Details" runat="server" ImageUrl="~/admin/Images/icons/icon-experience2.png" Height="20" Width="20"
-                                                            CommandName="EditExeDetails" CommandArgument='<%#Eval("emp_id") %>' />--%>
-
+                                                            CommandName="EditFamilyDetails" CommandArgument='<%#Eval("emp_id")  + ","+Eval("emp_firstname") %>' />
 
                                                         <asp:ImageButton ID="ImageExeDetails" ToolTip="Exeperience Details" runat="server" ImageUrl="~/admin/Images/icons/icon-experience2.png" Height="20" Width="20"
-                                                            CommandName="EditExeDetails" CommandArgument='<%#Eval("emp_id")+ ","+Eval("emp_firstname") %>'  />
-
-                                                       <%-- '<%# String.Format("{0} , {1}", Eval("emp_id"), Eval("emp_firstname")) %>'--%>
-
+                                                            CommandName="EditExeDetails" CommandArgument='<%#Eval("emp_id")  + ","+Eval("emp_firstname") %>' />
                                                     </td>
-                                                </tr>               
+                                                </tr>
                                             </table>
 
                                         </ItemTemplate>
