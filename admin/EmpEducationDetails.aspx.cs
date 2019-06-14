@@ -21,8 +21,8 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
         Emp_id = Request.QueryString["emp_id"];
         string Emp_firstname = Request.QueryString["Emp_firstname"];
        // emp_Id = Convert.ToInt32(Request.QueryString["emp_id"]);
-        if (!IsPostBack)
-        {
+        //if (!IsPostBack)
+        //{
             if (Emp_id=="" || Emp_id==null)
             {
                 Response.Redirect("/login.aspx");
@@ -44,7 +44,7 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
                 
             }
          
-        }
+        //}
 
 
     }
@@ -175,7 +175,6 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
         DataSet ds = objDALEduList.GetEmpEducationList(objEducation);
         try
         {
-
             lblcnt.Text = ds.Tables[0].Rows.Count.ToString();
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
