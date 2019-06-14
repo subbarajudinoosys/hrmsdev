@@ -27,18 +27,19 @@
         <div class="content-box-large">
             <div class="col-sm-12 panel-info">
                 <div class="content-box-header panel-heading">
-                    <div class="panel-title ">Education Details
-                        <asp:Label ID="lblEmpIdName" runat="server" ForeColor="White" CssClass="EmpIDLbl" ></asp:Label>
+                    <div class="panel-title ">
+                        Education Details
+                        <asp:Label ID="lblEmpIdName" runat="server" ForeColor="White" CssClass="EmpIDLbl"></asp:Label>
                     </div>
                 </div>
                 <div class="Paneldiv">
                     <div class="form-horizontal">
                         <div class="form-group"></div>
-                            <div class="col-sm-12">
-                                <asp:Label ID="labelError" runat="server" EnableViewState="false"></asp:Label>
+                        <div class="col-sm-12">
+                            <asp:Label ID="labelError" runat="server" EnableViewState="false"></asp:Label>
 
-                            </div>
-                         <asp:HiddenField ID="hf_Sno" Value="0" runat="server" />
+                        </div>
+                        <asp:HiddenField ID="hf_Sno" Value="0" runat="server" />
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <label style="margin-bottom: -10px !important;" class="col-sm-3">Education Type</label>
@@ -65,7 +66,7 @@
                                 <div class="col-sm-3">
 
                                     <asp:TextBox ID="txtSchoolOrCollegeName" runat="server" CssClass="form-control" placeholder="School/College Name"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ControlToValidate="txtSchoolOrCollegeName" ID="rfvtxtSchoolOrCollegeName" runat="server"  Text="Enter School/College Name." ValidationGroup="educ" ForeColor="Red" Display="Dynamic" />
+                                    <asp:RequiredFieldValidator ControlToValidate="txtSchoolOrCollegeName" ID="rfvtxtSchoolOrCollegeName" runat="server" Text="Enter School/College Name." ValidationGroup="educ" ForeColor="Red" Display="Dynamic" />
 
                                 </div>
                                 <div class="col-sm-3">
@@ -78,7 +79,7 @@
                                         <asp:ListItem Text="--Select Education Level--" Value="-1" Selected="True" />
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ControlToValidate="DropEducationLevel" runat="server" ID="rfvDropEducationLevel"
-                                        Display="Dynamic"  Text="Select Education Level." InitialValue="-1" ValidationGroup="educ" ForeColor="Red" />
+                                        Display="Dynamic" Text="Select Education Level." InitialValue="-1" ValidationGroup="educ" ForeColor="Red" />
                                 </div>
                             </div>
                         </div>
@@ -107,7 +108,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:TextBox ID="txtPercentage" runat="server" CssClass="form-control" placeholder="Percentage"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ControlToValidate="txtPercentage" ID="rfvtxtPercentage" runat="server"  Text="Enter Percentage." ValidationGroup="educ" ForeColor="Red" Display="Dynamic" />
+                                    <asp:RequiredFieldValidator ControlToValidate="txtPercentage" ID="rfvtxtPercentage" runat="server" Text="Enter Percentage." ValidationGroup="educ" ForeColor="Red" Display="Dynamic" />
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control">
@@ -118,36 +119,36 @@
 
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ControlToValidate="ddlCategory" runat="server" ID="rfvddlCategory"
-                                        Display="Dynamic"  Text="Select Category." InitialValue="-1" ValidationGroup="educ" ForeColor="Red" />
+                                        Display="Dynamic" Text="Select Category." InitialValue="-1" ValidationGroup="educ" ForeColor="Red" />
                                 </div>
 
                             </div>
                         </div>
 
-                     <div class="form-group">
+                        <div class="form-group">
                             <div class="col-sm-12">
                                 <label style="margin-bottom: -10px !important;" class="col-sm-3">Start Date</label>
-                                <label style="margin-bottom: -10px !important;" class="col-sm-3">End Date</label>                                 
+                                <label style="margin-bottom: -10px !important;" class="col-sm-3">End Date</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtStartDate" CssClass="form-control" runat="server" placeholder="From Date"  />
+                                    <asp:TextBox ID="txtStartDate" CssClass="form-control" runat="server" placeholder="From Date" />
                                     <span class="add-on"><i class="icon-calendar"></i></span>
-                                    <asp:RequiredFieldValidator ControlToValidate="txtStartDate" runat="server" ID="rfvtxtStartDate"  Display="Dynamic"  Text="Enter Start Date." ValidationGroup="educ" ForeColor="Red" />
+                                    <asp:RequiredFieldValidator ControlToValidate="txtStartDate" runat="server" ID="rfvtxtStartDate" Display="Dynamic" Text="Enter Start Date." ValidationGroup="educ" ForeColor="Red" />
                                 </div>
                                 <div class="col-sm-3">
-                                     <asp:TextBox ID="txtEndDate" CssClass="form-control" runat="server" placeholder="To Date"  />
+                                    <asp:TextBox ID="txtEndDate" CssClass="form-control" runat="server" placeholder="To Date" />
                                     <span class="add-on"><i class="icon-calendar"></i></span>
                                     <asp:RequiredFieldValidator ControlToValidate="txtEndDate" runat="server" ID="rfvtxtEndDate"
                                         Display="Dynamic" Text="Enter Completed On." ValidationGroup="exp" ForeColor="Red" />
                                     <asp:CompareValidator ID="cmptxtEndDate" runat="server" ControlToValidate="txtEndDate" ErrorMessage="Enter EndDate" ForeColor="Red" ValidationGroup="educ" Display="Dynamic"
-                                            ControlToCompare="txtStartDate" Operator="GreaterThanEqual" Type="Date"  />
+                                        ControlToCompare="txtStartDate" Operator="GreaterThanEqual" Type="Date" />
 
                                 </div>
-                             
+
                             </div>
                         </div>
 
@@ -174,63 +175,62 @@
                 </div>
                 <div class="form-horizontal">
                     <div class="paneldiv-border">
-                                <div class="form-group">
-                                    <div class="col-sm-12">&nbsp</div>
-                                    <div class="col-sm-12">
-                                        <div class="col-sm-2">
-                                            <asp:DropDownList ID="DropPage" runat="server" CssClass="form-control"
-                                                AutoPostBack="true">
-                                                <asp:ListItem Value="10" Selected="True">10</asp:ListItem>
-                                                <asp:ListItem Value="25">25</asp:ListItem>
-                                                <asp:ListItem Value="50">50</asp:ListItem>
-                                                <asp:ListItem Value="100">100</asp:ListItem>
-                                            </asp:DropDownList>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <label class="control-label">
-                                                Records per page</label>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <asp:Label ID="lblcnt" runat="server" ForeColor="Red"></asp:Label>
-                                        </div>
-                                        <div class="col-sm-1">
-                                            <label class="control-label">Search</label>
-                                        </div>
-                                     <div class="col-sm-3">
-                                            <div class="input-group">
-                                                <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" CssClass="form-control"> </asp:TextBox>
-                                                <span class="input-group-btn">
-                                                     <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" Height="30" />
-                                                </span>
-                                            </div>
-                                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">&nbsp</div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-2">
+                                    <asp:DropDownList ID="DropPage" runat="server" CssClass="form-control"
+                                        AutoPostBack="true">
+                                        <asp:ListItem Value="10" Selected="True">10</asp:ListItem>
+                                        <asp:ListItem Value="25">25</asp:ListItem>
+                                        <asp:ListItem Value="50">50</asp:ListItem>
+                                        <asp:ListItem Value="100">100</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="control-label">
+                                        Records per page</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:Label ID="lblcnt" runat="server" ForeColor="Red"></asp:Label>
+                                </div>
+                                <div class="col-sm-1">
+                                    <label class="control-label">Search</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="input-group">
+                                        <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" CssClass="form-control"> </asp:TextBox>
+                                        <span class="input-group-btn">
+                                            <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" Height="30" />
+                                        </span>
                                     </div>
                                 </div>
                             </div>
-                   
-                    
+                        </div>
+                    </div>
+
+
 
                     <asp:GridView ID="gvEducation" runat="server" AllowPaging="true" Width="100%" PageSize="10"
-                        AutoGenerateColumns="False" DataKeyNames="" CssClass="table table-striped table-bordered"
+                        AutoGenerateColumns="False" CssClass="table table-striped table-bordered"
                         OnRowCommand="gvEducation_RowCommand" OnPageIndexChanging="gvEducation_PageIndexChanging" ShowHeaderWhenEmpty="true">
                         <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
 
                         <%--  <RowStyle Height="20px" Font-Size="13px" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" />--%>
                         <Columns>
-                            <asp:TemplateField HeaderText="SNo" Visible="false">
+                            <%--<asp:TemplateField HeaderText="SNo" Visible="false">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblEmp_Sno" runat="server" Text='<%#Eval("S_No") %>'  Visible="false"></asp:Label>
-                                     <%#Container.DataItemIndex+1 %>
+                                    <asp:Label ID="lblEmp_Sno" runat="server" Text='<%#Eval("S_No") %>' Visible="false"></asp:Label>
+                                    <%#Container.DataItemIndex+1 %>
                                 </ItemTemplate>
-                            </asp:TemplateField>
+                            </asp:TemplateField>--%>
                             <asp:TemplateField HeaderText="Employee Id">
-                                <ItemTemplate>
-                             <%--       <%#Container.DataItemIndex+1 %>--%>
-                                    <asp:Label ID="lblEmp_Id" runat="server"  Text='<%#Eval("emp_id")%>' ></asp:Label>
+                                <ItemTemplate>                                   
+                                    <asp:Label ID="lblEmp_Id" runat="server" Text='<%#Eval("emp_id")%>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                           <%-- <asp:TemplateField HeaderText="Education Type">
+                            <%-- <asp:TemplateField HeaderText="Education Type">
                                 <ItemTemplate>
                                     <%#Eval("Edu_Type")%>
                                 </ItemTemplate>
@@ -265,13 +265,14 @@
                             <asp:TemplateField HeaderText="Actions">
                                 <ItemTemplate>
                                     <table>
-                                        <tr></tr>
-                                        <td>
-                                            <asp:ImageButton ID="imgEdit" ToolTip="Edit Record" runat="server" ImageUrl="~/Admin/Images/icons/icon-edit.png" Height="20" Width="20"
-                                                CommandName="Edit Record" CommandArgument='<%#Eval("S_No") %>' />
-                                            <asp:ImageButton ID="imgDelete" ToolTip="Delete Record" runat="server" ImageUrl="~/Admin/Images/icons/icon-delete.png" Height="20" Width="20"
-                                                CommandName="Delete Record" CommandArgument='<%#Eval("emp_id") %>' OnClientClick="javascript:return confirm('Are You Sure To Delete Details')" />
-                                        </td>
+                                        <tr>
+                                            <td>
+                                                <asp:ImageButton ID="imgEdit" ToolTip="Edit Record" runat="server" ImageUrl="~/Admin/Images/icons/icon-edit.png" Height="20" Width="20"
+                                                    CommandName="Edit Record" CommandArgument='<%#Eval("S_No") %>' />
+                                                <asp:ImageButton ID="imgDelete" ToolTip="Delete Record" runat="server" ImageUrl="~/Admin/Images/icons/icon-delete.png" Height="20" Width="20"
+                                                    CommandName="Delete Record" CommandArgument='<%#Eval("emp_id") %>' OnClientClick="javascript:return confirm('Are You Sure To Delete Details')" />
+                                            </td>
+                                        </tr>
                                     </table>
                                 </ItemTemplate>
                             </asp:TemplateField>
