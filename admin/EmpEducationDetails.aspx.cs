@@ -175,7 +175,7 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
         DataSet ds = objDALEduList.GetEmpEducationList(objEducation);
         try
         {
-            lblcnt.Text = ds.Tables[0].Rows.Count.ToString();
+            //lblcnt.Text = ds.Tables[0].Rows.Count.ToString();
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 gvEducation.DataSource = ds.Tables[0];

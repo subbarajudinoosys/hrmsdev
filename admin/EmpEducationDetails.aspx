@@ -192,7 +192,7 @@
                                         Records per page</label>
                                 </div>
                                 <div class="col-sm-4">
-                                    <asp:Label ID="lblcnt" runat="server" ForeColor="Red"></asp:Label>
+                                    <%--<asp:Label ID="lblcnt" runat="server" ForeColor="Red"></asp:Label>--%>
                                 </div>
                                 <div class="col-sm-1">
                                     <label class="control-label">Search</label>
