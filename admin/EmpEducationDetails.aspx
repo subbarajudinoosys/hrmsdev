@@ -230,34 +230,36 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                             <asp:TemplateField HeaderText="Education Type">
+                             <asp:TemplateField HeaderText="Education Type"> 
                                 <ItemTemplate>
-                                    <%#Eval("Edu_Type")%>
+                                    
+                                    <asp:Label ID="lblEdu_type" runat="server" Text='<%#Eval("Edu_Type")%>'></asp:Label>
+ 
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Education Courses">
+                            <asp:TemplateField HeaderText="Education Courses"> 
                                 <ItemTemplate>
-                                    <%#Eval("Edu_Level")%>
+                                    <asp:Label ID="lblEdu_course" runat="server" Text='<%#Eval("Edu_Level")%>'></asp:Label>
                                 </ItemTemplate>
 
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Specialization">
+                            <asp:TemplateField HeaderText="Specialization"> 
                                 <ItemTemplate>
-                                    <%#Eval("Specialization")%>
+                                    <asp:Label ID="lblspecialization" runat="server" Text='<%#Eval("Specialization")%>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                               <asp:TemplateField HeaderText="StartDate">
+                               <asp:TemplateField HeaderText="StartDate"> 
                                 <ItemTemplate>
-                                    <%#Eval("StartDate")%>
+                                   <asp:Label ID="lblstartdate" runat="server" Text='<%#Eval("StartDate")%>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                               <asp:TemplateField HeaderText="EndDate">
+                               <asp:TemplateField HeaderText="EndDate">  
                                 <ItemTemplate>
-                                    <%#Eval("EndDate")%>
+                                   <asp:Label ID="lblendate" runat="server" Text='<%#Eval("EndDate")%>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
