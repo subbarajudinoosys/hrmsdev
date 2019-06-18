@@ -235,8 +235,13 @@
                                     <%#Eval("Edu_Type")%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
                             <asp:TemplateField HeaderText="Education Courses">
+                                <ItemTemplate>
+                                    <%#Eval("EducName")%>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Education Courses" Visible="false">
                                 <ItemTemplate>
                                     <%#Eval("Edu_Level")%>
                                 </ItemTemplate>

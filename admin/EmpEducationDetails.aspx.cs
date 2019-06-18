@@ -10,6 +10,7 @@ using System.Data;
 
 public partial class admin_EmpEducationDetails : System.Web.UI.Page
 {
+    
     EmpEducation objEducation = new EmpEducation();
     DALEducation objDALEdu = new DALEducation();
     DALEducationList objDALEduList = new DALEducationList();
@@ -21,8 +22,8 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
         Emp_id = Request.QueryString["emp_id"];
         string Emp_firstname = Request.QueryString["Emp_firstname"];
        // emp_Id = Convert.ToInt32(Request.QueryString["emp_id"]);
-        //if (!IsPostBack)
-        //{
+        if (!IsPostBack)
+        {
             if (Emp_id=="" || Emp_id==null)
             {
                 Response.Redirect("/login.aspx");
@@ -44,7 +45,7 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
                 
             }
          
-        //}
+        }
 
 
     }
@@ -77,10 +78,10 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
             }
                 
                 objEducation.S_No = Convert.ToInt32(hf_Sno.Value);
-                //objEducation.Emp_Id = Request.QueryString["Emp_Id"];
+               // objEducation.emp_id = Request.QueryString["emp_id"];
                 objEducation.emp_id = Emp_id;
                 objEducation.Edu_Type = DropEducationType.SelectedItem.ToString();
-                objEducation.Edu_Level = DropEducationLevel.SelectedItem.ToString();
+                objEducation.Edu_Level = DropEducationLevel.SelectedValue;
                 objEducation.SchoolName = txtSchoolOrCollegeName.Text;
                 objEducation.BoardName = txtBoardOrUniversityName.Text;
                 objEducation.Specialization = txtSpecialization.Text;
@@ -125,7 +126,7 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
             {
                 hf_Sno.Value = ds.Tables[0].Rows[0]["S_No"].ToString();
                 DropEducationType.SelectedIndex = DropEducationType.Items.IndexOf(DropEducationType.Items.FindByText(ds.Tables[0].Rows[0]["Edu_Type"].ToString()));
-                DropEducationLevel.SelectedIndex = DropEducationLevel.Items.IndexOf(DropEducationLevel.Items.FindByText(ds.Tables[0].Rows[0]["Edu_Level"].ToString()));
+                DropEducationLevel.SelectedValue= ds.Tables[0].Rows[0]["Edu_Level"].ToString();
                 txtSchoolOrCollegeName.Text = ds.Tables[0].Rows[0]["SchoolName"].ToString();
                 txtBoardOrUniversityName.Text = ds.Tables[0].Rows[0]["BoardName"].ToString();
                 txtSpecialization.Text = ds.Tables[0].Rows[0]["Specialization"].ToString();
@@ -146,18 +147,24 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
     #endregion Private Methods
     protected void gvEducation_RowCommand(object sender, GridViewCommandEventArgs e)
     {
+        GridViewRow row = (GridViewRow)(((ImageButton)e.CommandSource).NamingContainer);
+        int RowIndex = row.RowIndex;
+        //ViewState["S_No"] = ((Label)row.FindControl("lblsno")).Text;
+        int S_No = Convert.ToInt32(((Label)row.FindControl("lblEmp_Sno")).Text);
         string emp_Id = e.CommandArgument.ToString();
         if (e.CommandName == "Edit Record")
         {
             btnSubmit.Text = "Update";
             //objEducation.SNo =
-            GetEduDetails(Convert.ToInt32(emp_Id));
+            GetEduDetails(S_No);
+            
 
 
         }
         else if (e.CommandName == "Delete Record")
         {
-            DeleteEduDetails(Emp_id);
+            //int srno = objEducation.S_No;
+            DeleteEduDetails(S_No);
             BindEducationDetails(Emp_id);
         }
     }
@@ -228,11 +235,11 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
 
     //}
 
-    private void DeleteEduDetails(string emp_id)
+    private void DeleteEduDetails(int  S_No)
     {
         try
         {
-            int result = objDALEdu.DeleteEmpEducation(emp_id);
+            int result = objDALEdu.DeleteEmpEducation(S_No);
         }
         catch (Exception ex)
         {
