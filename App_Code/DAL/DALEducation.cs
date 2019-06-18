@@ -72,11 +72,11 @@ namespace DataManager
                                                   };
             return ExecuteDataSet("get_education",htparams);
         }
-        public int DeleteEmpEducation(string emp_id)
+        public int DeleteEmpEducation(int S_No)
         {
             Hashtable htParams = new Hashtable
                                      {
-                                         {"@inemp_id",emp_id},
+                                         {"@inS_No",S_No},
                                      };
             return ExecuteNonQuery("EmpEducation_Delete", htParams);
         }
