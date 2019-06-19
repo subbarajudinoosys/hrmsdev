@@ -19,7 +19,6 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
     DALPrimaryAccount objacc = new DALPrimaryAccount();
 
     string Emp_id = string.Empty;
-      
     protected void Page_Load(object sender, EventArgs e)
     {
         Emp_id = Request.QueryString["emp_id"];
@@ -48,7 +47,7 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
     {
         //int EmployeebdId = Convert.ToInt32(Request.QueryString["S_No"]);
 
-        InsertUpdateEmpBD(Emp_id);
+        InsertUpdateEmpBD();
         BindBankDetailsList(Emp_id);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
@@ -57,11 +56,11 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
     }
 
     #region private Methods
-    private void InsertUpdateEmpBD(string Emp_id)
+    private void InsertUpdateEmpBD()
     {
         try
         {
-            if (Convert.ToInt32(hf_emp_id.Value) > 0)
+            if (Convert.ToInt32(hf_emp_ID.Value) > 0)
             {
                 objclsBank.OpName = "UPDATE";
             }
@@ -69,7 +68,7 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
             {
                 objclsBank.OpName = "INSERT";
             }
-           
+            objclsBank.S_No = Convert.ToInt32(hf_emp_ID.Value);
             objclsBank.empbankname = txtBankName.Text;
             objclsBank.empaccno = txtAccountNo.Text;
             objclsBank.empacctype = ddlAccountType.SelectedItem.ToString();
@@ -79,16 +78,21 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
             objclsBank.emppfaccno = txtPFAccountNo.Text;
             objclsBank.empUAN = txtUAN.Text;
             objclsBank.createdby = 0;
-            objclsBank.empid = hf_emp_id.Value;
+            objclsBank.empid = Emp_id;
             int Result = objBankDetails.EmpBD_InsertUpdate(objclsBank);
             if (Result > 0)
             {
-                labelError.Text = CommanClass.ShowMessage("success", "Success", "Bank Details Created successfully !!");
-                Response.Redirect("EmployeeList.aspx", false);
+                if (btnSubmit.Text == "Update")
+                    labelError.Text = CommanClass.ShowMessage("success", "Success", "Bank Details Updated Successfully");
+                else
+                    labelError.Text = CommanClass.ShowMessage("success", "Success", "Bank Details Created Successfully");
+
+                clearcontrols();
             }
             else
             {
                 labelError.Text = CommanClass.ShowMessage("info", "Info", "Bank Details not created please try again!!");
+               
             }
         }
         catch (Exception ex)
@@ -97,17 +101,17 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
         }
     }
 
-    private void GetBankDetails(int EmployeebdId)
+    private void GetBankDetails(int srno)
     {
         try
         {
-            objclsBank.OpName = "SELECT";
-            objclsBank.S_No = EmployeebdId;
-            objclsBank.empid = EmployeebdId.ToString();
+            objclsBank.OpName = "SELECT1";
+            objclsBank.S_No = srno;
+            objclsBank.empid = srno.ToString();
             DataSet Objds = objBankDetails.GetEmpBD(objclsBank);
             if (Objds.Tables[0].Rows.Count > 0)
             {
-                hf_emp_id.Value = Objds.Tables[0].Rows[0]["emp_id"].ToString();
+                hf_emp_ID.Value = Objds.Tables[0].Rows[0]["S_No"].ToString();
                 txtBankName.Text = Objds.Tables[0].Rows[0]["emp_bankname"].ToString();
                 txtAccountNo.Text = Objds.Tables[0].Rows[0]["emp_accno"].ToString();
                 ddlAccountType.SelectedIndex = ddlAccountType.Items.IndexOf(ddlAccountType.Items.FindByText(Objds.Tables[0].Rows[0]["emp_acctype"].ToString()));
@@ -116,6 +120,7 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
                 txtBankCity.Text = Objds.Tables[0].Rows[0]["emp_bankcity"].ToString();
                 txtPFAccountNo.Text = Objds.Tables[0].Rows[0]["emp_pfaccno"].ToString();
                 txtUAN.Text = Objds.Tables[0].Rows[0]["emp_UAN"].ToString();
+
             }
         }
         catch (Exception e)
@@ -130,17 +135,24 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
 
     protected void gvbank_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        int S_No = Convert.ToInt32( e.CommandArgument.ToString());
-        if(e.CommandName== "Edit")
+        GridViewRow row = (GridViewRow)(((ImageButton)e.CommandSource).NamingContainer);
+        int RowIndex = row.RowIndex;
+        int S_No = Convert.ToInt32(((Label)row.FindControl("lblS_No")).Text);
+        //int S_No = Convert.ToInt32( e.CommandArgument.ToString());
+        if (e.CommandName == "EditB")
         {
             btnSubmit.Text = "Update";
-            GetBankDetails(Convert.ToInt32("S_No"));
+            //GetBankDetails(Convert.ToInt32("S_No"));
+            GetBankDetails(S_No);
         }
        
              else if (e.CommandName == "Delete Record")
         {
-            GetBankDetails(Convert.ToInt32(S_No));
+            //GetBankDetails(Convert.ToInt32(S_No));
            //BindBankDetailsList(Convert.ToInt32(Request.QueryString["empbd_id"]));
+            //GetBankDetails(S_No);  
+             DeleteBankDetails(S_No);
+             BindBankDetailsList(Emp_id);
         }
     }
     protected void gvbank_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -150,6 +162,8 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
     }
     private void BindBankDetailsList(string Emp_id)
     {
+        objclsBank.OpName = "SELECTALL";
+        objclsBank.empid = Emp_id;
         DataSet ds = objBankDList.GetBankDetailsList(objclsBank);
         try
         {
@@ -158,15 +172,26 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
                 gvbankdetailsList.DataSource = ds;
                 gvbankdetailsList.DataBind();
             }
-            //else
-            //{
-            //    gvbankdetailsList.DataSource = null;
-            //    gvbankdetailsList.DataBind();
-            //}
+            else
+            {
+                gvbankdetailsList.DataSource = null;
+                gvbankdetailsList.DataBind();
+            }
         }
         catch
         {
 
+        }
+    }
+    private void DeleteBankDetails(int S_No)
+    {
+        try
+        {
+            int result = objBankDetails.DeleteBankDetails(S_No);
+        }
+        catch (Exception ex)
+        {
+            labelError.Text = CommanClass.ShowMessage("danger", "Danger", ex.Message);
         }
     }
 
@@ -193,12 +218,37 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
 
         if (((RadioButton)row.FindControl("rbBank")).Checked == true)
         {
-            Label lblid = (Label)row.FindControl("lblbankid");
+            Label lblid = (Label)row.FindControl("lblS_No");
             int BankID = Convert.ToInt32(lblid.Text);
-            objacc.UpdatePrimaryAccount(BankID);
+
+
+            int result = objacc.UpdatePrimaryAccount(BankID, Emp_id);
+            if(result>0)
+            {
+                BindBankDetailsList(Emp_id);
+            }
+   
         }
        
     }
+    void clearcontrols()
+    {
+        try
+        {
+            btnSubmit.Text = "Save";
+            hf_emp_ID.Value = "0";
+            ddlAccountType.SelectedIndex = -1;
+            txtAccountNo.Text = "";
+            txtBankCity.Text = "";
+            txtBankName.Text = "";
+            txtBranchName.Text = "";
+            txtIFSCCode.Text = "";
+            txtPFAccountNo.Text = "";
+            txtUAN.Text = "";
+        }
+        catch { }
+    }
+
     
 }
     
