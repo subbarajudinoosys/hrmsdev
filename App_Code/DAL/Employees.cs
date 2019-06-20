@@ -100,7 +100,7 @@ namespace DataManager
         {
             Hashtable htparams = new Hashtable
                                                    {
-                                                        {"@in_S_No",objclsemp.S_No},                                                      
+                                                        {"@in_emp_id",objclsemp.EmpID},                                                      
                                                         {"@in_emp_firstname",objclsemp.empFtName},                                                      
                                                         {"@in_emp_lastname",objclsemp.empLName},
                                                    };
