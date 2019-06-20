@@ -11,13 +11,13 @@ namespace DataManager
     /// <summary>
     /// Summary description for DALBankDetails
     /// </summary>
-    public class DALBankDetails : DataUtilities
+    public class DALBankDetails:DataUtilities
     {
         #region Database Methods
         public DataSet GetEmpBD(clsBankDetails objclsBD)
         {
             Hashtable htparams = new Hashtable {
-                                               {"in_empbd_id",objclsBD.empbdid},
+                                               {"in_S_No",objclsBD.S_No},
                                                {"in_emp_bankname",objclsBD.empbankname},
                                                {"in_emp_accno",objclsBD.empaccno},
                                                {"in_emp_acctype",objclsBD.empacctype},
@@ -36,7 +36,7 @@ namespace DataManager
         public int EmpBD_InsertUpdate(clsBankDetails objclsBD)
         {
             Hashtable htparams = new Hashtable {
-                                               {"in_empbd_id",objclsBD.empbdid},
+                                               {"in_S_No",objclsBD.S_No},
                                                {"in_emp_bankname",objclsBD.empbankname},
                                                {"in_emp_accno",objclsBD.empaccno},
                                                {"in_emp_acctype",objclsBD.empacctype},
@@ -51,6 +51,13 @@ namespace DataManager
                                           };
             return ExecuteNonQuery("EmpBankDetails", htparams);
 
+        }
+        public int DeleteBankDetails(int S_No)
+        {
+            Hashtable hst = new Hashtable{
+                {"@inS_No",S_No}
+            };
+            return ExecuteNonQuery("EmpBankDetails_Delete", hst);
         }
 
         #endregion Database Methods

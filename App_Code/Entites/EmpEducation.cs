@@ -12,8 +12,8 @@ namespace EntityManager
     public class EmpEducation
     {
 
-            public int Edu_Id { get; set; }
-            public string Emp_Id { get; set; }
+            public int S_No { get; set; }
+            public string emp_id { get; set; }
             public string Edu_Type { get; set; }
             public string Edu_Level { get; set; }
             public string Specialization { get; set; }
@@ -28,9 +28,11 @@ namespace EntityManager
             public int EduLevelId { get; set; }
             public string EduLevelName { get; set; }
             public string EduLevelDesc { get; set; }
+            public int EduType_Id { get; set; }
+            public string EduType_Name { get; set; }
 
             public string StartDate { get; set; }
-            public string CompletedOn { get; set; }
+            public string EndDate { get; set; }
         }
     }
 

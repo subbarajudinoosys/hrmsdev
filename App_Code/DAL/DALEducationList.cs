@@ -17,19 +17,19 @@ namespace DataManager
         {
             Hashtable htparams = new Hashtable
                                                    {
-                                                        {"inEdu_Id",objEmpEduList.Edu_Id},
-                                                        {"inEmp_Id",objEmpEduList.Emp_Id},
-                                                        {"inEdu_Type",objEmpEduList.Edu_Type},
-                                                        {"inEdu_Level",objEmpEduList.Edu_Level},
-                                                        {"inSpecialization",objEmpEduList.Specialization},
-                                                        {"inYearOfPassing",objEmpEduList.YearOfPassing},
-                                                        {"inPercentage",objEmpEduList.Percentage},
-                                                        {"inCategory",objEmpEduList.Category},
-                                                        {"inSchoolName",objEmpEduList.SchoolName},
-                                                        {"inBoardName",objEmpEduList.BoardName},
-                                                        {"inStartDate",objEmpEduList.StartDate},
-                                                        {"inCompletedOn",objEmpEduList.CompletedOn},
-                                                        {"in_OpName",objEmpEduList.OpName},
+                                                        {"@inS_No",objEmpEduList.S_No},
+                                                        {"@inemp_id",objEmpEduList.emp_id},
+                                                        {"@inEdu_Type",objEmpEduList.Edu_Type},
+                                                        {"@inEdu_Level",objEmpEduList.Edu_Level},
+                                                        {"@inSpecialization",objEmpEduList.Specialization},
+                                                        {"@inYearOfPassing",objEmpEduList.YearOfPassing},
+                                                        {"@inPercentage",objEmpEduList.Percentage},
+                                                        {"@inCategory",objEmpEduList.Category},
+                                                        {"@inSchoolName",objEmpEduList.SchoolName},
+                                                        {"@inBoardName",objEmpEduList.BoardName},
+                                                        {"@inStartDate",objEmpEduList.StartDate},
+                                                        {"@inEndDate",objEmpEduList.EndDate},
+                                                        {"@in_OpName",objEmpEduList.OpName},
                                                         
                                                         
                                                         

@@ -19,19 +19,19 @@ namespace DataManager
         {
             Hashtable htparams = new Hashtable
                                                    {
-                                                        {"inEdu_Id",objEmpEdu.Edu_Id},
-                                                        {"inEmp_Id",objEmpEdu.Emp_Id},
-                                                        {"inEdu_Type",objEmpEdu.Edu_Type},
-                                                        {"inEdu_Level",objEmpEdu.Edu_Level},
-                                                        {"inSpecialization",objEmpEdu.Specialization},
-                                                        {"inYearOfPassing",objEmpEdu.YearOfPassing},
-                                                        {"inPercentage",objEmpEdu.Percentage},
-                                                        {"inCategory",objEmpEdu.Category},
-                                                        {"inSchoolName",objEmpEdu.SchoolName},
-                                                        {"inBoardName",objEmpEdu.BoardName},
-                                                        {"inStartDate",objEmpEdu.StartDate},
-                                                        {"inCompletedOn",objEmpEdu.CompletedOn},
-                                                        {"in_OpName",objEmpEdu.OpName},
+                                                        {"@inS_No",objEmpEdu.S_No},
+                                                        {"@inemp_id",objEmpEdu.emp_id},
+                                                        {"@inEdu_Type",objEmpEdu.Edu_Type},
+                                                        {"@inEdu_Level",objEmpEdu.Edu_Level},
+                                                        {"@inSpecialization",objEmpEdu.Specialization},
+                                                        {"@inYearOfPassing",objEmpEdu.YearOfPassing},
+                                                        {"@inPercentage",objEmpEdu.Percentage},
+                                                        {"@inCategory",objEmpEdu.Category},
+                                                        {"@inSchoolName",objEmpEdu.SchoolName},
+                                                        {"@inBoardName",objEmpEdu.BoardName},
+                                                        {"@inStartDate",objEmpEdu.StartDate},
+                                                        {"@inEndDate",objEmpEdu.EndDate},
+                                                        {"@in_OpName",objEmpEdu.OpName},
                                                         
                                                         
                                                         
@@ -43,19 +43,19 @@ namespace DataManager
        {
            Hashtable htparams = new Hashtable
                                                    {
-                                                        {"inEdu_Id",objEmpEdu.Edu_Id},
-                                                        {"inEmp_Id",objEmpEdu.Emp_Id},
-                                                        {"inEdu_Type",objEmpEdu.Edu_Type},
-                                                        {"inEdu_Level",objEmpEdu.Edu_Level},
-                                                        {"inSpecialization",objEmpEdu.Specialization},
-                                                        {"inYearOfPassing",objEmpEdu.YearOfPassing},
-                                                        {"inPercentage",objEmpEdu.Percentage},
-                                                        {"inCategory",objEmpEdu.Category},
-                                                        {"inSchoolName",objEmpEdu.SchoolName},
-                                                        {"inBoardName",objEmpEdu.BoardName},
-                                                        {"inStartDate",objEmpEdu.StartDate},
-                                                        {"inCompletedOn",objEmpEdu.CompletedOn},
-                                                        {"in_OpName",objEmpEdu.OpName},                                                       
+                                                        {"@inS_No",objEmpEdu.S_No},
+                                                        {"@inemp_id",objEmpEdu.emp_id},
+                                                        {"@inEdu_Type",objEmpEdu.Edu_Type},
+                                                        {"@inEdu_Level",objEmpEdu.Edu_Level},
+                                                        {"@inSpecialization",objEmpEdu.Specialization},
+                                                        {"@inYearOfPassing",objEmpEdu.YearOfPassing},
+                                                        {"@inPercentage",objEmpEdu.Percentage},
+                                                        {"@inCategory",objEmpEdu.Category},
+                                                        {"@inSchoolName",objEmpEdu.SchoolName},
+                                                        {"@inBoardName",objEmpEdu.BoardName},
+                                                        {"@inStartDate",objEmpEdu.StartDate},
+                                                        {"@inEndDate",objEmpEdu.EndDate},
+                                                        {"@in_OpName",objEmpEdu.OpName},                                                       
                                                                                                                 
                                                    };
            return ExecuteNonQuery("EmpEducation", htparams);
@@ -65,20 +65,30 @@ namespace DataManager
         {
             Hashtable htparams = new Hashtable()
                                                   {
-                                                      {"inEduLevel_Id",objEmpEdu.EduLevelId},
-                                                      {"inEduLevel_Name",objEmpEdu.EduLevelName},
-                                                      {"inEduLevel_Desc",objEmpEdu.EduLevelDesc},
+                                                      {"@inEduLevel_Id",objEmpEdu.EduLevelId},
+                                                      {"@inEduLevel_Name",objEmpEdu.EduLevelName},
+                                                      {"@inEduType_Id",objEmpEdu.EduType_Id},
                                                      
                                                   };
             return ExecuteDataSet("get_education",htparams);
         }
-        public int DeleteEmpEducation(int Edu_Id)
+        public int DeleteEmpEducation(int S_No)
         {
             Hashtable htParams = new Hashtable
                                      {
-                                         {"inEdu_Id",Edu_Id},
+                                         {"@inS_No",S_No},
                                      };
             return ExecuteNonQuery("EmpEducation_Delete", htParams);
         }
+        //public DataSet GetLevelType(EmpEducation objEmpEdu)
+        //{
+        //    Hashtable htparams = new Hashtable
+        //    {
+        //                                     {"@inEduLevel_Id",objEmpEdu.EduLevelId},
+        //    //                                          {"@inEduLevel_Name",objEmpEdu.EduLevelName},
+        //    //                                          {"@inEduType_Id",objEmpEdu.EduType_Id},
+        //    };
+        //    return ExecuteDataSet("Education_Levelbytype", htparams);
+        //}
     }
 }
