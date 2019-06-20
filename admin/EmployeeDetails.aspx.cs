@@ -9,12 +9,11 @@ using EntityManager;
 using DataManager;
 using System.Data;
 using System.IO;
-using System.Net.Mail;
-using System.Net;
+
 public partial class admin_EmployeeDetails : System.Web.UI.Page
 {
-    DOUtility objDOUti = new DOUtility();
     Employees _objEmp = new Employees();
+    DOUtility objDOUti = new DOUtility();
     clsEmployee objclsEmployee = new clsEmployee();
     DALDesignation objDALDesg = new DALDesignation();
     EmpDesignation objEmDesg = new EmpDesignation();
@@ -26,6 +25,8 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
     public string ImageFileName = string.Empty;
     string AutoPassword = null;
     bool issuccess;
+
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -39,11 +40,11 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
                 string EmployeeId = Request.QueryString["emp_id"].ToString();
                 if (EmployeeId == "profile")
                 {
-                    GetEmployeeDetails(Session["userid"].ToString());
+                    GetEmployeeDetails(Convert.ToString(Session["userid"].ToString()));
                 }
                 else
                 {
-                    GetEmployeeDetails(EmployeeId);
+                    GetEmployeeDetails(Convert.ToString(EmployeeId));
                 }
                 btnSubmit.Text = "Update";
             }
@@ -82,7 +83,6 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
     {
         try
         {
-            //string loginid=null;
             string filepath = string.Empty;
             string Imagepath = string.Empty;
             if (Convert.ToInt32(hf_S_No.Value) > 0)
@@ -101,38 +101,34 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
                     Imagepath = GetImage(fuImageFile);
             }
             else
-            {
                 objclsEmployee.empPWD = Password();
-                objclsEmployee.OpName = "INSERT";
-            }
-            
+            objclsEmployee.OpName = "INSERT";
             if (fuResumeImage.HasFile)
                 lblResume.Text = fuResumeImage.FileName;
             else
                 filepath = GetFile(fuResumeImage);
 
-            
+
             if (fuImageFile.HasFile)
                 lblImage.Text = fuImageFile.FileName;
             else
-                Imagepath = GetImage(fuImageFile);              
+                Imagepath = GetImage(fuImageFile);
 
 
-            //objclsEmployee.EmpId = Convert.ToInt32(hf_emp_id.Value);
-            objclsEmployee.EmpID = txtEmployeeID.Text;
-            
+            objclsEmployee.emp_id= txtEmployeeID.Text;
+
             objclsEmployee.empFtName = txtFirstName.Text;
             objclsEmployee.empMName = txtMiddleName.Text;
             objclsEmployee.empLName = txtLastName.Text;
-            objclsEmployee.empJOD =txtDateOfJoining.Text;
+            objclsEmployee.empJOD = txtDateOfJoining.Text;
             objclsEmployee.empDOB = txtDateOfBirth.Text;
             objclsEmployee.empDepartment = ddlDepartment.SelectedValue;
             objclsEmployee.empDesignation = ddlDesignation.SelectedValue;
             objclsEmployee.LoginId = txtEmployeeID.Text;
 
-            
 
-           
+
+
             objclsEmployee.empMobile = txtMobileNo.Text;
             objclsEmployee.empEmail = txtEmailId.Text;
             //objclsEmployee.empManager = txtManager.Text;
@@ -154,31 +150,16 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             int Result = _objEmp.Employee_InsertUpdate(objclsEmployee);
             if (Result == 1)
             {
-
                 bool status = MailSending(txtEmployeeID.Text, AutoPassword, txtEmailId.Text);
-                labelError.Text = CommanClass.ShowMessage("success", "Success", "Employee created Successfully ");
+                labelError.Text = CommanClass.ShowMessage("success", "Success", "Employee created Successfully");
                 clearcontrols();
-                //ViewState["Status"] = issuccess;
-               Response.Redirect("EmployeeList.aspx", true);
+                Response.Redirect("EmployeeList.aspx", true);
                 Session["status"] = status;
-               
-
-            //    if(status==true)
-            //    {
-            //        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Mail send successfully to ');" + txtEmailId.Text, true);
-            //    }
-            //    else
-            //    {
-            //        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Mail was not send to ');" + txtEmailId.Text, true);
-            //    }
-            //}
-            //else
-            //{
-            //    labelError.Text = CommanClass.ShowMessage("info", "Info", "Employee Details was not created plase try again");
-            //}
-        }
+            }
             else
             {
+                //labelError.Text = CommanClass.ShowMessage("info", "Info", "Employee Details was not created plase try again");
+
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Employee already exists ');", true);
             }
         }
@@ -189,17 +170,12 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
         }
 
     }
-    
-    
-
-
-
     private string Password()
     {
-            
-        try 
-	{	        
-		int PassLength = 6;
+
+        try
+        {
+            int PassLength = 6;
             string allowedChars = "";
 
             allowedChars = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,";
@@ -230,20 +206,20 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             string EncryptedPass = objDOUti.Encrypts(passwordString, true);
             return EncryptedPass;
 
-	    }
-	      catch (Exception)
-	       {
-		
-		            throw;
-	       }
-
         }
-       
+        catch (Exception)
+        {
+
+            throw;
+        }
+
+    }
 
 
-    private bool MailSending(string EmpID, string Password,string MailId)
+
+    private bool MailSending(string EmpID, string Password, string MailId)
     {
-        
+
         try
         {
             string SmtpServer;
@@ -272,14 +248,14 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
 
             SmtpServer = "smtp.gmail.com";
             SmtpPort = 25;
-             MailFrom = "testingformail12@gmail.com";
-           // MailFrom = "anmishakalidindi2851995@gmail.com";
+            MailFrom = "testingformail12@gmail.com";
+            // MailFrom = "anmishakalidindi2851995@gmail.com";
             DisplayNameFrom = "Dinoosys Technologies";
-             FromPassword = "testing123";
+            FromPassword = "testing123";
             //FromPassword = "anmisha143";
             //MailTo = Session["Email"].ToString();
             MailTo = MailId;
-            
+
 
             DisplayNameTo = "";
 
@@ -287,36 +263,34 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             if (CommanClass.SendEmail(SmtpServer, SmtpPort, MailFrom, DisplayNameFrom, FromPassword, MailTo, DisplayNameTo, MailCc, MailCc2, MailCc3, DisplayNameCc, MailBcc, Subject, MailText, Attachment))
             {
                 //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Mail send successfully !!');", true);
-               // ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alertMessage('Mail send successfully !!');", true);
+                // ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alertMessage('Mail send successfully !!');", true);
                 issuccess = true;
             }
 
 
-               
+
             //ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "alertMessage();", true);  
 
 
             else
             {
                 issuccess = false;
-               // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Mail was not send please contact your admin!!');", true);
+                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Mail was not send please contact your admin!!');", true);
             }
             return issuccess;
         }
         catch (Exception)
         {
-            
+
             throw;
         }
     }
-    
 
     private void GetEmployeeDetails(string EmployeeId)
     {
         try
         {
-            objclsEmployee.OpName = "SELECT1";
-            objclsEmployee.EmpID = EmployeeId;
+            objclsEmployee.emp_id = EmployeeId;
             DataSet Objds = _objEmp.GetEmployeeDetails(objclsEmployee);
 
             if (Objds.Tables[0].Rows.Count > 0)
@@ -335,7 +309,7 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
                 get_Depart_Desig(ddlDepartment, ddlDesignation);
                 ddlDesignation.SelectedIndex = ddlDesignation.Items.IndexOf(ddlDesignation.Items.FindByValue(Objds.Tables[0].Rows[0]["emp_design"].ToString()));
 
-               // ddlDepartment.SelectedIndex = ddlDepartment.Items.IndexOf(ddlDepartment.Items.FindByValue(Objds.Tables[0].Rows[0]["emp_design"].ToString()));
+                // ddlDepartment.SelectedIndex = ddlDepartment.Items.IndexOf(ddlDepartment.Items.FindByValue(Objds.Tables[0].Rows[0]["emp_design"].ToString()));
 
                 //txtLoginId.Text = Objds.Tables[0].Rows[0]["emp_login"].ToString();
                 //txtPassword.Text = Objds.Tables[0].Rows[0]["emp_pwd"].ToString();
@@ -359,9 +333,9 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
                 pdfView.Attributes["href"] = "ResumeDoc/" + ResumeFileName;
 
 
-               hf_ImageFile.Value = Objds.Tables[0].Rows[0]["ImageFilePath"].ToString();
-               ImageFileName = Objds.Tables[0].Rows[0]["ImageFilePath"].ToString();
-               lblImage.Text = Objds.Tables[0].Rows[0]["ImageUpload"].ToString();
+                hf_ImageFile.Value = Objds.Tables[0].Rows[0]["ImageFilePath"].ToString();
+                ImageFileName = Objds.Tables[0].Rows[0]["ImageFilePath"].ToString();
+                lblImage.Text = Objds.Tables[0].Rows[0]["ImageUpload"].ToString();
 
             }
         }
@@ -425,7 +399,7 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             ddlDesignation.DataBind();
         }
 
-     
+
     }
 
     private void BindDepratment()
