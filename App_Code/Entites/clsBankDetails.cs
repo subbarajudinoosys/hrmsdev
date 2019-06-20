@@ -10,7 +10,7 @@ namespace EntityManager
     /// </summary>
     public class clsBankDetails
     {
-        public int empbdid { get; set; }
+        public int S_No { get; set; }
         public string empbankname { get; set; }
         public string empaccno { get; set; }
         public string empacctype { get; set; }
@@ -19,7 +19,7 @@ namespace EntityManager
         public string empbankcity { get; set; }
         public string OpName { get; set; }
         public int createdby { get; set; }
-        public int empid { get; set; }
+        public string empid { get; set; }
         public string emppfaccno { get; set; }
         public string empUAN { get; set; }
     }
