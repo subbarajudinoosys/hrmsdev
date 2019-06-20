@@ -25,7 +25,7 @@ public class EmployeeList : DataUtilities
             Hashtable htparams = new Hashtable
                                                    {
                                                         {"in_S_No",ObjEmpList.S_No},
-                                                        {"in_emp_id",ObjEmpList.EmpID},
+                                                        {"in_emp_id",ObjEmpList.emp_id},
                                                         {"in_emp_firstname",ObjEmpList.empFtName},
                                                         {"in_emp_middlename",ObjEmpList.empMName},
                                                         {"in_emp_lastname",ObjEmpList.empLName},

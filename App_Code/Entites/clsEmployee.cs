@@ -11,12 +11,12 @@ namespace EntityManager
     public class clsEmployee
     {
         public int S_No { get; set; }
-        public string EmpID { get; set; }
+        public string emp_id { get; set; }
         public string empFtName { get; set; }
         public string empMName { get; set; }
         public string empLName { get; set; }
-        public string empDOB { get; set;  }
-        public string empJOD { get; set;  }
+        public string empDOB { get; set; }
+        public string empJOD { get; set; }
         public string empMobile { get; set; }
         public string empEmail { get; set; }
         public string empManager { get; set; }
@@ -37,5 +37,6 @@ namespace EntityManager
         public string emplocation { get; set; }
         public string ImageUpload { get; set; }
         public string ImageFilePath { get; set; }
+
     }
 }
