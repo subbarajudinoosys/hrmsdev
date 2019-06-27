@@ -165,14 +165,14 @@
                         </asp:TemplateField>
                          <asp:TemplateField HeaderText="SNo">
                             <ItemTemplate>
-                                       <asp:Label ID="lblS_No" runat="server" Text='<%#Eval("S_No")%>' ></asp:Label>
-
+                                       <asp:Label ID="lblS_No" runat="server" Text='<%#Eval("S_No")%>' Visible="false" ></asp:Label>
+                                   <%#Container.DataItemIndex+1 %>
                             </ItemTemplate>
                         </asp:TemplateField>
                        <asp:TemplateField HeaderText="Primary Account">
                            <ItemTemplate>
                                
-                               <asp:RadioButton ID="rbBank" runat="server" Checked='<%#Eval("IsPrimary").ToString().Equals("1") %>' AutoPostBack="true" OnCheckedChanged="rb1_CheckedChanged1"   />            
+                               <asp:RadioButton ID="rbBank" runat="server" Checked='<%#Eval("IsPrimary").ToString().Equals("1") %>' AutoPostBack="true" OnCheckedChanged="rb1_CheckedChanged1" />            
                                <asp:HiddenField ID="hf_emp_id" runat="server" Value='<%#Eval("S_No")%>' Visible="false" /> 
                            </ItemTemplate>
                        </asp:TemplateField>
