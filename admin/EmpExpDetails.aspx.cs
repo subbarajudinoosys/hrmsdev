@@ -70,6 +70,7 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
     {
         gvEmpExp.PageIndex = e.NewPageIndex;
         BindExperience(Emp_id);
+        SearchItemfromExpList(txtSearch.Text.Trim());
     }
 
     #endregion
@@ -159,6 +160,7 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 gvEmpExp.DataSource = ds;
+                Session["dt"] = ds.Tables[0];
                 gvEmpExp.DataBind();
             }
             else
@@ -201,5 +203,32 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
     #endregion PrivateMethods
 
 
-   
+
+    protected void imgsearch_Click(object sender, ImageClickEventArgs e)
+    {
+        SearchItemfromExpList(txtSearch.Text.Trim());
+    }
+    void SearchItemfromExpList(string searchtext)
+    {
+        try
+        {
+            if (Session["dt"] != null)
+            {
+                DataTable dt = (DataTable)Session["dt"];
+                DataRow[] dr=dt.Select("CompanyName LIKE '%" + searchtext + "%'");
+                //DataRow[] dr = dt.Select("CompanyName LIKE '%" + searchtext + "'%"
+                //   );
+                if (dr.Count() > 0)
+                {
+                    gvEmpExp.DataSource = dr.CopyToDataTable();
+                    gvEmpExp.DataBind();
+                }
+            }
+        }
+        catch (Exception)
+        {
+
+        }
+
+    }
 }
