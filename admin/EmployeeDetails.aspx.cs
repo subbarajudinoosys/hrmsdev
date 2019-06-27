@@ -291,6 +291,7 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
         try
         {
             objclsEmployee.emp_id = EmployeeId;
+            objclsEmployee.OpName = "SELECT1";
             DataSet Objds = _objEmp.GetEmployeeDetails(objclsEmployee);
 
             if (Objds.Tables[0].Rows.Count > 0)

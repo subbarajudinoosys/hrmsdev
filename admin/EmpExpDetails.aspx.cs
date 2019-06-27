@@ -14,21 +14,29 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
     EmpExperience objEmpExp = new EmpExperience();
     DALExperience objDAlExp = new DALExperience();
     DALExeperienceList objExpList = new DALExeperienceList();
-    string EmployeeId;
-    string Emp_id;
+    //string EmployeeId;
+    //string Emp_id;
+    string Emp_id = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         Emp_id = Request.QueryString["emp_id"];
+        string Emp_firstname = Request.QueryString["emp_firstnam"];
         if (!IsPostBack)
         {
-            Emp_id = Request.QueryString["emp_id"];
-            string Emp_firstnam = Request.QueryString["Emp_firstnam"];
-
-            if (Emp_id != null & Emp_firstnam != null)
+            if (!string.IsNullOrEmpty(Request.QueryString["S_No"]))
             {
-                lblEmpIdName.Text = "ID-" + Emp_id + " ,  Name-" + Emp_firstnam;
-                EmployeeId = Emp_id;
+                int EmployeeExeId = Convert.ToInt32(Request.QueryString["S_No"]);
+
+            }
+            else
+            {
                 BindExperience(Emp_id);
+                ViewState["ps"] = 10;
+            }
+            if (Emp_id != null & Emp_firstname != null)
+            {
+                lblEmpIdName.Text = "ID-" + Emp_id + " ,  Name-" + Emp_firstname;
+                string EmployeeExpId = Request.QueryString["Emp_id"];
             }
         }
     }
@@ -113,13 +121,13 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
 
     }
 
-    private void GetExperience(int Expid)
+    private void GetExperience(int SNo)
     {
         try
         {
 
             objEmpExp.OpName = "SELECT1";
-            objEmpExp.S_No = Expid;
+            objEmpExp.S_No = SNo;
             DataSet objds = objDAlExp.GetEmpExperience(objEmpExp);
             if (objds.Tables.Count > 0)
             {

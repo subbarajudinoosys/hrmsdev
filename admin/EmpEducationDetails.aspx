@@ -3,16 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
+    
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css" />
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <link href="css/paging-style.css" rel="stylesheet" />
-    <script type="text/javascript">
+     <script type="text/javascript">
         $(document).ready(function () {
-
-
             $("#ContentPlaceHolder1_txtYearOfPassing").datepicker({
-
                 dateFormat: 'yy',
                 changeYear: true,
                 yearRange: "-50:-0",
@@ -20,9 +17,49 @@
 
 
         });
+
+        $(document).ready(function () {
+
+
+            $("#ContentPlaceHolder1_txtStartDate").datepicker({
+
+                numberOfMonths: 1,
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "c-70:c+70",
+            }).attr('readonly', 'readonly');
+
+
+            $("#ContentPlaceHolder1_txtEndDate").datepicker({
+
+                numberOfMonths: 1,
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "c-70:c+70",
+            }).attr('readonly', 'readonly');
+        });
     </script>
+    
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <style>
+         .EmpIDLbl
+    {
+             margin-left:600px;
+             font-size:13px;
+                 
+    }
+         .ValidationColor
+         {
+             color:red;
+         }
+          .gridheader {
+            text-align: center;
+        }
+    </style>
     <div class="row">
         <div class="content-box-large">
             <div class="col-sm-12 panel-info">
@@ -75,7 +112,7 @@
                                 </div>
                                 <div class="col-sm-3">
 
-                                    <asp:DropDownList ID="DropEducationLevel" runat="server" CssClass="form-control" AppendDataBoundItems="true">
+                                    <asp:DropDownList ID="DropEducationLevel" runat="server" CssClass="form-control" AppendDataBoundItems="true" >
                                         <asp:ListItem Text="--Select Education Level--" Value="-1" Selected="True" />
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ControlToValidate="DropEducationLevel" runat="server" ID="rfvDropEducationLevel"
@@ -199,10 +236,18 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="input-group">
-                                        <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" CssClass="form-control"> </asp:TextBox>
-                                        <span class="input-group-btn">
-                                            <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" Height="30" />
+                                        <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" CssClass="form-control" BorderStyle="Ridge" Font-Italic="true" AutoPostBack="true"> </asp:TextBox>
+                                              
+                                         <span class="input-group-btn">
+                                            <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" Height="30" OnClick="imgsearch_Click" />
                                         </span>
+                                       
+        <%--<div>  
+            <asp:GridView ID="searchGridView" runat="server" Style="width: 80%; margin-left: 100px" ForeColor="Black" BackColor="#CCCCFF" BorderColor="#00FFCC" BorderStyle="Solid" Font-Names="Arial">  
+                <AlternatingRowStyle BackColor="#FFCC99" BorderColor="#00FFCC" />  
+            </asp:GridView>  
+        </div>  --%>
+  
                                     </div>
                                 </div>
                             </div>

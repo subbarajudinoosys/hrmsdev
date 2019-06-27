@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Collections;
 using System.Data;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 namespace DataManager
 {

@@ -30,10 +30,10 @@
                                         <div class="col-sm-2">
                                             <asp:DropDownList ID="DropPage" runat="server" CssClass="form-control" OnSelectedIndexChanged="DropPage_SelectedIndexChanged"
                                                 AutoPostBack="true">
-                                                <asp:ListItem Value="10" Selected="True">10</asp:ListItem>
+                                                <asp:ListItem Value="5" Selected="True">5</asp:ListItem>
+                                                <asp:ListItem Value="15">15</asp:ListItem>
                                                 <asp:ListItem Value="25">25</asp:ListItem>
                                                 <asp:ListItem Value="50">50</asp:ListItem>
-                                                <asp:ListItem Value="100">100</asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-sm-2">
@@ -49,14 +49,14 @@
                                             <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" CssClass="form-control"> </asp:TextBox>
                                         </div>
                                         <div class="col-sm-1">
-                                            <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" CssClass="search-img" />
+                                            <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" CssClass="search-img" OnClick="imgsearch_Click" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <asp:HiddenField ID="hf_emp_id" Value="0" runat="server" />
-                            <asp:GridView ID="gvEmployee" runat="server" AllowPaging="true" Width="100%" PageSize="10"
-                                AutoGenerateColumns="False" DataKeyNames="" CssClass="table table-striped table-bordered"
+                            <asp:GridView ID="gvEmployee" runat="server" AllowPaging="true" Width="100%" PageSize="5"
+                                AutoGenerateColumns="False" CssClass="table table-striped table-bordered"
                                 OnRowCommand="gvEmployee_RowCommand" OnPageIndexChanging="gvEmployee_PageIndexChanging" ShowHeaderWhenEmpty="true">
                                 <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
                                 <%-- <RowStyle Height="20px" Font-Size="13px" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" />--%>

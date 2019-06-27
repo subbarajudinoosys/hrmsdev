@@ -22,6 +22,7 @@ public partial class admin_EmployeeList : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            ViewState["ps"] = 5;
             BindEmployee();
         }
 
@@ -47,11 +48,11 @@ public partial class admin_EmployeeList : System.Web.UI.Page
         }
 
         if (e.CommandName == "EditEduDetails")
-         {
-             string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
-             string emp_id = commandArgs[0];
-             string emp_firstname = commandArgs[1];
-             Response.Redirect(String.Format("EmpEducationDetails.aspx?emp_id={0}&emp_firstname={1}", emp_id, emp_firstname));
+        {
+            string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
+            string emp_id = commandArgs[0];
+            string emp_firstname = commandArgs[1];
+            Response.Redirect(String.Format("EmpEducationDetails.aspx?emp_id={0}&emp_firstname={1}", emp_id, emp_firstname));
         }
 
         if (e.CommandName == "EditExeDetails")
@@ -76,6 +77,7 @@ public partial class admin_EmployeeList : System.Web.UI.Page
 
     protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
+        SearchEmplyItemfromList(txtSearch.Text.Trim());
         gvEmployee.PageIndex = e.NewPageIndex;
         BindEmployee();
     }
@@ -92,23 +94,52 @@ public partial class admin_EmployeeList : System.Web.UI.Page
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 gvEmployee.DataSource = ds;
-               
+                Session["dt"] = ds.Tables[0];
+
             }
             else
             {
                 gvEmployee.DataSource = null;
-               
+
             }
             gvEmployee.PageSize = Convert.ToInt32(DropPage.SelectedValue);
             gvEmployee.DataBind();
         }
         catch
         {
-           
+
         }
     }
     protected void DropPage_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindEmployee();
+    }
+
+    protected void imgsearch_Click(object sender, ImageClickEventArgs e)
+    {
+        SearchEmplyItemfromList(txtSearch.Text.Trim());
+    }
+    void SearchEmplyItemfromList(string searchtext)
+    {
+        try
+        {
+            if (Session["dt"] != null)
+            {
+                DataTable dt = (DataTable)Session["dt"];
+                DataRow[] dr = dt.Select("emp_firstname LIKE '%" + searchtext +
+                   "' OR emp_lastname LIKE '%" + searchtext +
+                   "%' OR emp_dept LIKE '%" + searchtext +
+                   "%'");
+                if (dr.Count() > 0)
+                {
+                    gvEmployee.DataSource = dr.CopyToDataTable();
+                    gvEmployee.DataBind();
+                }
+            }
+        }
+        catch (Exception)
+        {
+
+        }
     }
 }

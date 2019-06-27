@@ -17,19 +17,19 @@ public partial class admin_EmployeePaySlip : System.Web.UI.Page
         {
             if (Request.QueryString.Count > 0)
             {
-                if (Request.QueryString.Count>0)
+                if (Request.QueryString.Count > 0)
                 {
-                   int EmployeeId =  Convert.ToInt32(Request.QueryString["esm_emp_id"]);
+                    int EmployeeId = Convert.ToInt32(Request.QueryString["esm_emp_id"]);
 
-                   GetEmployeePayslipDetails(EmployeeId);
-                   btnSubmit.Text = "Update";
-                       
-                   
+                    GetEmployeePayslipDetails(EmployeeId.ToString());
+                    btnSubmit.Text = "Update";
+
+
                 }
 
             }
-            
-         }
+
+        }
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
@@ -113,11 +113,11 @@ public partial class admin_EmployeePaySlip : System.Web.UI.Page
 
         if (!string.IsNullOrEmpty(txtId.Text))
         {
-            objemp_payslip.empid = Convert.ToInt32(txtId.Text);
+            objemp_payslip.empid = txtId.Text;
         }
-        if (!string.IsNullOrEmpty(txtId.Text))
+        if (!string.IsNullOrEmpty(txthra.Text))
         {
-            objemp_payslip.hra = Convert.ToInt32(txtId.Text);
+            objemp_payslip.hra = Convert.ToDouble(txthra.Text);
         }
         objemp_payslip.apryr = txtAppraisalYear.Text.Trim();
         if (!string.IsNullOrEmpty(dropBand.SelectedValue))
@@ -173,7 +173,7 @@ public partial class admin_EmployeePaySlip : System.Web.UI.Page
         if (res > 0)
         {
             if (btnSubmit.Text == "Save")
-            lblMsg.Text = CommanClass.ShowMessage("success", "Success", "Employee PaySlip Details Created Successfully !!");
+                lblMsg.Text = CommanClass.ShowMessage("success", "Success", "Employee PaySlip Details Created Successfully !!");
             else
                 lblMsg.Text = CommanClass.ShowMessage("success", "Success", "Employee PaySlip Details Updated Successfully !!");
             ClearText();
@@ -187,9 +187,10 @@ public partial class admin_EmployeePaySlip : System.Web.UI.Page
 
     }
 
-    public void GetEmployeePayslipDetails(int esm_emp_id)
+    public void GetEmployeePayslipDetails(string esm_emp_id)
     {
         EmployeePaySlip obj_emp_payslip = new EmployeePaySlip();
+        //DataSet ds = obj_emp_payslip.GetEmployeePayslipDetails(esm_emp_id);
         DataSet ds = obj_emp_payslip.GetEmployeePayslipDetails(esm_emp_id);
         try
         {

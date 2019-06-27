@@ -10,7 +10,7 @@ using System.Data;
 
 public partial class admin_EmpEducationDetails : System.Web.UI.Page
 {
-    
+
     EmpEducation objEducation = new EmpEducation();
     DALEducation objDALEdu = new DALEducation();
     DALEducationList objDALEduList = new DALEducationList();
@@ -21,30 +21,30 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
     {
         Emp_id = Request.QueryString["emp_id"];
         string Emp_firstname = Request.QueryString["Emp_firstname"];
-       // emp_Id = Convert.ToInt32(Request.QueryString["emp_id"]);
+        // emp_Id = Convert.ToInt32(Request.QueryString["emp_id"]);
         if (!IsPostBack)
         {
-            if (Emp_id=="" || Emp_id==null)
+            if (Emp_id == "" || Emp_id == null)
             {
                 Response.Redirect("/login.aspx");
             }
-                else
-                {
-                    
-                    BindEducationDetails(Emp_id);
-                   // BindEducationLevelDetails();
-           
-
-            CommanClass.Get_year(DropYear);
-            if (Emp_id != null & Emp_firstname != null)
+            else
             {
-                lblEmpIdName.Text = "ID-" + Emp_id + " ,  Name-" + Emp_firstname;
-                string EmployeeEduId = Request.QueryString["Emp_id"];
+                ViewState["ps"] = 10;
+                BindEducationDetails(Emp_id);
+                // BindEducationLevelDetails();
+
+
+                CommanClass.Get_year(DropYear);
+                if (Emp_id != null & Emp_firstname != null)
+                {
+                    lblEmpIdName.Text = "ID-" + Emp_id + " ,  Name-" + Emp_firstname;
+                    string EmployeeEduId = Request.QueryString["Emp_id"];
+
+                }
 
             }
-                
-            }
-         
+
         }
 
 
@@ -68,7 +68,7 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
             if (Convert.ToInt32(hf_Sno.Value) > 0)
             {
                 objEducation.OpName = "UPDATE";
-                
+
             }
 
             else
@@ -76,21 +76,21 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
                 objEducation.OpName = "INSERT";
 
             }
-                
-                objEducation.S_No = Convert.ToInt32(hf_Sno.Value);
-               // objEducation.emp_id = Request.QueryString["emp_id"];
-                objEducation.emp_id = Emp_id;
-                objEducation.Edu_Type = DropEducationType.SelectedItem.ToString();
-                objEducation.Edu_Level = DropEducationLevel.SelectedValue;
-                objEducation.SchoolName = txtSchoolOrCollegeName.Text;
-                objEducation.BoardName = txtBoardOrUniversityName.Text;
-                objEducation.Specialization = txtSpecialization.Text;
-                objEducation.YearOfPassing = DropYear.SelectedValue;
-                objEducation.Percentage = txtPercentage.Text;
-                objEducation.Category = ddlCategory.SelectedItem.ToString();
-                objEducation.StartDate = txtStartDate.Text;
-                objEducation.EndDate = txtEndDate.Text;
-            
+
+            objEducation.S_No = Convert.ToInt32(hf_Sno.Value);
+            // objEducation.emp_id = Request.QueryString["emp_id"];
+            objEducation.emp_id = Emp_id;
+            objEducation.Edu_Type = DropEducationType.SelectedItem.ToString();
+            objEducation.Edu_Level = DropEducationLevel.SelectedValue;
+            objEducation.SchoolName = txtSchoolOrCollegeName.Text;
+            objEducation.BoardName = txtBoardOrUniversityName.Text;
+            objEducation.Specialization = txtSpecialization.Text;
+            objEducation.YearOfPassing = DropYear.SelectedValue;
+            objEducation.Percentage = txtPercentage.Text;
+            objEducation.Category = ddlCategory.SelectedItem.ToString();
+            objEducation.StartDate = txtStartDate.Text;
+            objEducation.EndDate = txtEndDate.Text;
+
 
             int result = objDALEdu.InsertEmpEducation(objEducation);
             if (result > 0)
@@ -126,7 +126,7 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
             {
                 hf_Sno.Value = ds.Tables[0].Rows[0]["S_No"].ToString();
                 DropEducationType.SelectedIndex = DropEducationType.Items.IndexOf(DropEducationType.Items.FindByText(ds.Tables[0].Rows[0]["Edu_Type"].ToString()));
-                DropEducationLevel.SelectedValue= ds.Tables[0].Rows[0]["Edu_Level"].ToString();
+                DropEducationLevel.SelectedValue = ds.Tables[0].Rows[0]["Edu_Level"].ToString();
                 txtSchoolOrCollegeName.Text = ds.Tables[0].Rows[0]["SchoolName"].ToString();
                 txtBoardOrUniversityName.Text = ds.Tables[0].Rows[0]["BoardName"].ToString();
                 txtSpecialization.Text = ds.Tables[0].Rows[0]["Specialization"].ToString();
@@ -147,6 +147,8 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
     #endregion Private Methods
     protected void gvEducation_RowCommand(object sender, GridViewCommandEventArgs e)
     {
+         if (e.CommandName != "Page")
+         { 
         GridViewRow row = (GridViewRow)(((ImageButton)e.CommandSource).NamingContainer);
         int RowIndex = row.RowIndex;
         //ViewState["S_No"] = ((Label)row.FindControl("lblsno")).Text;
@@ -157,7 +159,7 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
             btnSubmit.Text = "Update";
             //objEducation.SNo =
             GetEduDetails(S_No);
-            
+
 
 
         }
@@ -168,10 +170,12 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
             BindEducationDetails(Emp_id);
         }
     }
+    }
 
     protected void gvEducation_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvEducation.PageIndex = e.NewPageIndex;
+        SearchItemfromList(txtSearch.Text.Trim());
         BindEducationDetails(hf_Sno.Value);
     }
 
@@ -186,7 +190,9 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 gvEducation.DataSource = ds.Tables[0];
+                Session["dt"] = ds.Tables[0];
                 gvEducation.DataBind();
+
             }
             //else
             //{
@@ -235,7 +241,7 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
 
     //}
 
-    private void DeleteEduDetails(int  S_No)
+    private void DeleteEduDetails(int S_No)
     {
         try
         {
@@ -278,7 +284,7 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
     protected void DropEducationType_SelectedIndexChanged(object sender, EventArgs e)
     {
         int id = int.Parse(DropEducationType.SelectedItem.Value);
-        if(id>0)
+        if (id > 0)
         {
             DropEducationLevel.Enabled = true;
         }
@@ -298,4 +304,34 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
             DropEducationLevel.DataBind();
         }
     }
+    protected void imgsearch_Click(object sender, ImageClickEventArgs e)
+    {
+        SearchItemfromList(txtSearch.Text.Trim());
+    }
+    void SearchItemfromList(string searchtext)
+    {
+        try
+        {
+            if (Session["dt"] != null)
+            {
+                DataTable dt = (DataTable)Session["dt"];
+                DataRow[] dr = dt.Select("emp_id LIKE '%" + searchtext +
+                    "' OR Edu_Type LIKE '%" + searchtext +
+                   "' OR EducName LIKE '%" + searchtext +
+                   "%' OR Specialization LIKE '%" + searchtext +
+                   "%'");
+                if (dr.Count() > 0)
+                {
+                    gvEducation.DataSource = dr.CopyToDataTable();
+                    gvEducation.DataBind();
+                }
+            }
+        }
+        catch (Exception)
+        {
+
+        }
+
+    }
+
 }

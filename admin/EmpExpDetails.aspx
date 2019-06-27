@@ -119,8 +119,8 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:TextBox ID="txtTechnology" CssClass="form-control" runat="server" placeholder="Technology" />
-                                    <asp:RequiredFieldValidator ControlToValidate="txtTechnology" runat="server" ID="rfvtxtTechnology"
-                                        Display="Dynamic" ErrorMessage="Enter Technology." Text="Enter Technology." ValidationGroup="exp" ForeColor="Red" />
+                                    <%--<asp:RequiredFieldValidator ControlToValidate="txtTechnology" runat="server" ID="rfvtxtTechnology"
+                                        Display="Dynamic" ErrorMessage="Enter Technology." Text="Enter Technology." ValidationGroup="exp" ForeColor="Red" />--%>
                                 </div>
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-2">
@@ -128,8 +128,8 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:TextBox ID="txtProjectDetails" CssClass="form-control" runat="server" placeholder="Project Details" TextMode="MultiLine" />
-                                    <asp:RequiredFieldValidator ControlToValidate="txtProjectDetails" runat="server" ID="rfvtxtProjectDetails"
-                                        Display="Dynamic" ErrorMessage="Enter Project Details." Text="Enter Project Details." ValidationGroup="exp" ForeColor="Red" />
+                                   <%-- <asp:RequiredFieldValidator ControlToValidate="txtProjectDetails" runat="server" ID="rfvtxtProjectDetails"
+                                        Display="Dynamic" ErrorMessage="Enter Project Details." Text="Enter Project Details." ValidationGroup="exp" ForeColor="Red" />--%>
                                 </div>
                             </div>
                         </div>
@@ -199,7 +199,7 @@
                         OnRowCommand="gvEmpExp_RowCommand" OnPageIndexChanging="gvEmpExp_PageIndexChanging" ShowHeaderWhenEmpty="true">
                         <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
                         <Columns>
-                            <asp:TemplateField HeaderText="S.No" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="gridheader">
+                            <asp:TemplateField HeaderText="SNo" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="gridheader">
                                 <ItemTemplate>
                                     <%#Container.DataItemIndex+1 %>
                                     <asp:Label ID="lblS_No" runat="server" CssClass="hidden" Text='<%#Eval("S_No")%>'></asp:Label>

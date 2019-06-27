@@ -3,13 +3,30 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <style>
+         .EmpIDLbl
+    {
+             margin-left:600px;
+             font-size:13px;
+                 
+    }
+         .ValidationColor
+         {
+             color:red;
+         }
+          .gridheader {
+            text-align: center;
+        }
+    </style>
 
     <div class="row">
         <div class="content-box-large">
              <div class="col-md-12 panel-info">
             <div class="panel-info">
                 <div class="content-box-header panel-heading">
-                    <div class="panel-title ">Bank Details </div>
+                    <div class="panel-title ">Bank Details
+                         <asp:Label ID="lblempIdName" runat="server" ForeColor="White" CssClass="EmpIDLbl"></asp:Label>
+                    </div>
                 </div>
                 <div class="Paneldiv">
                     <div class="form-horizontal">

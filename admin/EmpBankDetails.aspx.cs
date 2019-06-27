@@ -22,11 +22,17 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Emp_id = Request.QueryString["emp_id"];
-        string Emp_firstname = Request.QueryString["Emp_firstname"];
+        string Emp_firstname = Request.QueryString["Emp_firstnam"];
         if (!IsPostBack)
         {
             BindBankDetailsList(Emp_id);
             ViewState["ps"] = 5;
+        }
+        if (Emp_id != null & Emp_firstname != null)
+        {
+            lblempIdName.Text = "ID-" + Emp_id + " ,  Name-" + Emp_firstname;
+            string EmployeeEduId = Request.QueryString["Emp_id"];
+
         }
             
          
@@ -219,10 +225,10 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
         if (((RadioButton)row.FindControl("rbBank")).Checked == true)
         {
             Label lblid = (Label)row.FindControl("lblS_No");
-            int BankID = Convert.ToInt32(lblid.Text);
+            int ID = Convert.ToInt32(lblid.Text);
 
 
-            int result = objacc.UpdatePrimaryAccount(BankID, Emp_id);
+            int result = objacc.UpdatePrimaryAccount(ID, Emp_id);
             if(result>0)
             {
                 BindBankDetailsList(Emp_id);
