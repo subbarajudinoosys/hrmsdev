@@ -23,6 +23,7 @@
                 dateFormat: 'yy-mm-dd',
                 changeMonth: true,
                 changeYear: true,
+                yearRange: "c-70:c+70",
             }).attr('readonly', 'readonly');
 
             $("#ContentPlaceHolder1_txtToDate").datepicker({
@@ -31,6 +32,7 @@
                 dateFormat: 'yy-mm-dd',
                 changeMonth: true,
                 changeYear: true,
+                yearRange: "c-70:c+70",
             }).attr('readonly', 'readonly');
         });
     </script>
@@ -68,15 +70,15 @@
                                         <label class="control-label">From Date </label>
                                     </div>
                                     <div class="col-sm-3">
-                                        <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control" />
+                                        <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control" Text="--From Date--"  />
                                         <asp:RequiredFieldValidator ControlToValidate="txtFromDate" runat="server" ID="rfvtxtFromDate"
-                                            ValidationGroup="hol" ErrorMessage="Enter From Date." Text="Enter From Date." ForeColor="red"
+                                            ValidationGroup="hol" Text="Enter From Date." ForeColor="red"
                                             Display="Dynamic" />
                                     </div>
                                     <div class="col-sm-1"></div>
                                     <label class="col-sm-2">To Date </label>
                                     <div class="col-sm-3">
-                                        <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control" MaxLength="50"  />
+                                        <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control" MaxLength="50" Text="--To Date--"  />
                                         <asp:RequiredFieldValidator ControlToValidate="txtToDate" runat="server" ID="rfvtxtToDate" Display="Dynamic"
                                             ValidationGroup="hol" ErrorMessage="Enter Holiday Date." Text="Enter Holiday Date." ForeColor="Red" />
                                         <asp:CompareValidator ID="cmptodate" runat="server" ControlToValidate="txtToDate" ForeColor="Red" ValidationGroup="hol" Display="Dynamic"
@@ -137,7 +139,7 @@
                         AutoGenerateColumns="False" CssClass="table table-striped table-bordered" Width="100%">
                         <AlternatingRowStyle CssClass="gridcolor" />
                         <Columns>
-                            <asp:TemplateField HeaderText="SN" HeaderStyle-CssClass="panel-heading" ItemStyle-CssClass="gradeC">
+                            <asp:TemplateField HeaderText="SNo" HeaderStyle-CssClass="panel-heading" ItemStyle-CssClass="gradeC">
                                 <ItemTemplate>
                                     <%# Container.DataItemIndex+1 %>
                                 </ItemTemplate>
@@ -205,7 +207,7 @@
                                             <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" CssClass="form-control"> </asp:TextBox>
                                         </div>
                                          <div class="col-sm-1">
-                                            <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" CssClass="search-img" />
+                                            <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" CssClass="search-img" OnClick="imgsearch_Click" />
                                         </div>
 
                                     </div>
@@ -214,11 +216,11 @@
 
                             <asp:GridView ID="gvLeaveList" runat="server" AllowPaging="true" EmptyDataText="No records found"
                                 AutoGenerateColumns="False" CssClass="table table-striped table-bordered" OnPageIndexChanging="gvLeaveList_PageIndexChanging"
-                                Width="100%" PageSize="10" UseCustomPager="true">
+                                Width="100%" PageSize="5" UseCustomPager="true">
                                 <PagerSettings Mode="Numeric" />
                                 <PagerStyle CssClass="pagination1" HorizontalAlign="Left" />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="SN" SortExpression="SN">
+                                    <asp:TemplateField HeaderText="SNo" SortExpression="SNo">
                                         <ItemTemplate>
                                             <%# Container.DataItemIndex+1 %>
                                         </ItemTemplate>

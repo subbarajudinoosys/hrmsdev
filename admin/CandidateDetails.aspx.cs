@@ -188,6 +188,7 @@ public partial class admin_CandidateDetails : System.Web.UI.Page
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 gvCandidateList.DataSource = ds;
+                Session["dt"] = ds.Tables[0];
                 gvCandidateList.DataBind();
             }
             else
@@ -236,5 +237,33 @@ public partial class admin_CandidateDetails : System.Web.UI.Page
     protected void DropPage_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindCandidateDetails();
+    }
+    protected void imgsearch_Click(object sender, ImageClickEventArgs e)
+    {
+        SearchFromList(txtSearch.Text.Trim());
+    }
+    void SearchFromList(string Search)
+    {
+        try
+        {
+        if (Session["dt"] != null)
+            {
+                DataTable dt = (DataTable)Session["dt"];
+                DataRow[] dr = dt.Select("FirstName LIKE '%" + Search +
+                    "' OR LastName LIKE '%" + Search +
+                   "' OR EmailID LIKE '%" + Search +
+                   "%'");
+
+                if (dr.Count() > 0)
+                {
+                    gvCandidateList.DataSource = dr.CopyToDataTable();
+                    gvCandidateList.DataBind();
+                }
+            }
+        }
+        catch
+        {
+
+        }
     }
 }

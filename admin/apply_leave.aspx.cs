@@ -14,6 +14,8 @@ public partial class admin_holiday_list : System.Web.UI.Page
     DALApplyLeave objDal = new DALApplyLeave();
     ClsLeaveType objLeave = new ClsLeaveType();
     DALLeaveTypes objDALLeaveType = new DALLeaveTypes();
+    string Emp_id = string.Empty;
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -29,6 +31,7 @@ public partial class admin_holiday_list : System.Web.UI.Page
                 else
                 {
                     int Emp_Id = Convert.ToInt32(Session["userid"].ToString());
+                    ViewState["ps"] = 5;
                     Bing_Leaves(Emp_Id);
                     hf_Emp_id.Value = Emp_Id.ToString();
                 }
@@ -52,6 +55,7 @@ public partial class admin_holiday_list : System.Web.UI.Page
             if (ds.Tables[0].Rows.Count > 0)
             {
                 gvRemainingLeaves.DataSource = ds.Tables[0];
+               
                 gvRemainingLeaves.DataBind();
             }
             else
@@ -63,13 +67,16 @@ public partial class admin_holiday_list : System.Web.UI.Page
             if (ds.Tables[1].Rows.Count > 0)
             {
                 gvLeaveList.DataSource = ds.Tables[1];
+                Session["dt"] = ds.Tables[1];
+                gvLeaveList.DataBind();
             }
             else
             {
                 gvLeaveList.DataSource = null;
+                gvLeaveList.DataBind();
             }
             gvLeaveList.PageSize = Convert.ToInt32(DropPage.SelectedValue);
-            gvLeaveList.DataBind();
+            
         }
         catch
         {
@@ -105,6 +112,7 @@ public partial class admin_holiday_list : System.Web.UI.Page
             {
                 leave_id = Convert.ToInt32(hf_id.Value.ToString()),
                 emp_id = Convert.ToInt32(hf_Emp_id.Value.ToString()),
+                //emp_id = Emp_id, 
                 to_date = txtToDate.Text.Trim(),
                 from_date = txtFromDate.Text.Trim(),
                 calender_year = txtCalYear.Text.Trim(),
@@ -151,6 +159,7 @@ public partial class admin_holiday_list : System.Web.UI.Page
     {
         gvLeaveList.PageIndex = e.NewPageIndex;
         Bing_Leaves(Convert.ToInt32(hf_Emp_id.Value.ToString()));
+
     }
 
 
@@ -186,14 +195,14 @@ public partial class admin_holiday_list : System.Web.UI.Page
         //MailCc3 = "budagavichandra@gmail.com";
 
         SmtpServer = "smtp.gmail.com";
-        SmtpPort = 25;
+        SmtpPort = 587;
        // MailFrom = "testingformail12@gmail.com";
-        MailFrom = "anmishakalidindi2851995@gmail.com";
+        MailFrom = "tejuindukuri@gmail.com";
         DisplayNameFrom = "Dinoosys Technologies";
        // FromPassword = "testing123";
-        FromPassword = "anmisha143";
+        FromPassword = "btechcompleted";
         //MailTo = Session["Email"].ToString();
-        MailTo = "mounikadandu35@gmail.com";
+        MailTo = "sriprathyusha1997@gmail.com";
 
         DisplayNameTo = name;
 
@@ -205,7 +214,7 @@ public partial class admin_holiday_list : System.Web.UI.Page
 
         else
         {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Mail mwas not send please contact your admin!!');", true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Mail was not send please contact your admin!!');", true);
         }
 
     }
@@ -237,4 +246,32 @@ public partial class admin_holiday_list : System.Web.UI.Page
     }
 
 
+    protected void imgsearch_Click(object sender, ImageClickEventArgs e)
+    {
+        SearchItemfromList(txtSearch.Text.Trim());
+    }
+    void SearchItemfromList(string searchtext)
+    {
+        try
+        {
+            if (Session["dt"] != null)
+            {
+                DataTable dt = (DataTable)Session["dt"];
+                DataRow[] dr = dt.Select("LeaveType LIKE '%" + searchtext +
+                    "' OR reason LIKE '%" + searchtext +
+                   
+                   "%'");
+                if (dr.Count() > 0)
+                {
+                    gvLeaveList.DataSource = dr.CopyToDataTable();
+                    gvLeaveList.DataBind();
+                }
+            }
+        }
+        catch (Exception)
+        {
+
+        }
+
+    }
 }

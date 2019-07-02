@@ -34,14 +34,14 @@
                                         <asp:ListItem Text="--Select--" Value="-1" Selected="True"></asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ControlToValidate="ddlJobTitle" runat="server" ID="rfvddlJobTitle"
-                                        Display="Dynamic" ErrorMessage="Select Job Title." Text="Select Job Title." ValidationGroup="vac" InitialValue="-1" ForeColor="Red" />
+                                        Display="Dynamic" Text="Select Job Title." ValidationGroup="vac" InitialValue="-1" ForeColor="Red" />
                                 </div>
                                 <div class="col-sm-1"></div>
                                 <label class="col-sm-2">Vacancy Name</label>
                                 <div class="col-sm-3">
                                     <asp:TextBox ID="txtVacancyName" CssClass="form-control" runat="server" placeholder="Vacancy Name" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtVacancyName" runat="server" ID="rfvtxtVacancyName"
-                                        Display="Dynamic" ErrorMessage="Enter Vacancy Name." Text="Enter Vacancy Name." ValidationGroup="vac" ForeColor="Red" />
+                                        Display="Dynamic" Text="Enter Vacancy Name." ValidationGroup="vac" ForeColor="Red" />
                                 </div>
                             </div>
                         </div>
@@ -54,14 +54,14 @@
                                         <asp:ListItem Text="--Select--" Value="-1" Selected="True"></asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ControlToValidate="dropHiringManager" runat="server" ID="dropdropHiringManager"
-                                        Display="Dynamic" ErrorMessage="Select Hiring Manager." Text="Select Hiring Manager." ValidationGroup="vac" InitialValue="-1" ForeColor="Red" />
+                                        Display="Dynamic"  Text="Select Hiring Manager." ValidationGroup="vac" InitialValue="-1" ForeColor="Red" />
                                 </div>
                                 <div class="col-sm-1"></div>
                                 <label class="col-sm-2">No Of Positions</label>
                                 <div class="col-sm-3">
                                     <asp:TextBox ID="txtPositions" CssClass="form-control" runat="server" placeholder="No Of Positions" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtPositions" runat="server" ID="rfvtxtPositions"
-                                        Display="Dynamic" ErrorMessage="Enter No Of Positions." Text="Enter No Of Positions." ValidationGroup="vac" ForeColor="Red" />
+                                        Display="Dynamic"  Text="Enter No Of Positions." ValidationGroup="vac" ForeColor="Red" />
 
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                 <div class="col-sm-3">
                                     <asp:TextBox ID="txtDescription" CssClass="form-control" runat="server" placeholder="Description" TextMode="MultiLine" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtDescription" runat="server" ID="rfvtxtDescription"
-                                        Display="Dynamic" ErrorMessage="Enter Description." Text="Enter Description." ValidationGroup="vac" ForeColor="Red" />
+                                        Display="Dynamic"  Text="Enter Description." ValidationGroup="vac" ForeColor="Red" />
 
                                 </div>
                                 <div class="col-sm-1"></div>
@@ -178,7 +178,7 @@
                                             <div class="input-group">
                                                 <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" CssClass="form-control"> </asp:TextBox>
                                                 <span class="input-group-btn">
-                                                     <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" Height="30" />
+                                                     <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" Height="30" OnClick="imgsearch_Click" />
                                                 </span>
                                             </div>
                                         </div>
@@ -197,7 +197,7 @@
                                    <asp:Label ID="lblvacancyId" runat="server" CssClass="hidden" Text='<%#Eval("vacancyId") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Job Tittle">
+                            <asp:TemplateField HeaderText="Job Title">
                                 <ItemTemplate>
                                     <%#Eval("Designation") %>
                                 </ItemTemplate>

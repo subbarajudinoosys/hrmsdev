@@ -126,8 +126,12 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
             dropHiringManager.SelectedIndex = dropHiringManager.Items.IndexOf(dropHiringManager.Items.FindByValue(ds.Tables[0].Rows[0]["HiringManager"].ToString()));
             txtPositions.Text = ds.Tables[0].Rows[0]["NoOfPositions"].ToString();
             txtDescription.Text = ds.Tables[0].Rows[0]["Description"].ToString();
+           
 
-            if (bool.Parse(ds.Tables[0].Rows[0]["Active"].ToString()))
+            //string str = ds.Tables[0].Rows[0]["Active"].ToString();
+
+            if (ds.Tables[0].Rows[0]["Active"].ToString() =="1")
+                
             {
                 chkActive.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["Active"]);
                 txtActivText.Enabled = false;
@@ -138,7 +142,8 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
                 txtActivText.Text = ds.Tables[0].Rows[0]["ActiveText"].ToString().Trim();
             }
 
-            if (bool.Parse(ds.Tables[0].Rows[0]["UserDefinedFlag"].ToString()))
+            //if (bool.Parse(ds.Tables[0].Rows[0]["UserDefinedFlag"].ToString()))
+            if (ds.Tables[0].Rows[0]["UserDefinedFlag"].ToString()=="1")
             {
                 chkUserDefined1.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["UserDefinedFlag"]);
                 txtUserDefined1.Enabled = false;
@@ -149,7 +154,8 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
                 txtUserDefined1.Text = ds.Tables[0].Rows[0]["UserDefinedText"].ToString().Trim();
             }
 
-            if (bool.Parse(ds.Tables[0].Rows[0]["UserDefinedFlag1"].ToString()))
+            //if (bool.Parse(ds.Tables[0].Rows[0]["UserDefinedFlag1"].ToString()))
+            if (ds.Tables[0].Rows[0]["UserDefinedFlag1"].ToString() == "1")
             {
                 chkUserDefined2.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["UserDefinedFlag1"]);
                 txtUserDefined2.Enabled = false;
@@ -160,7 +166,8 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
                 txtUserDefined2.Text = ds.Tables[0].Rows[0]["UserDefinedText1"].ToString().Trim();
             }
 
-            if (bool.Parse(ds.Tables[0].Rows[0]["UserDefinedFlag2"].ToString()))
+            //if (bool.Parse(ds.Tables[0].Rows[0]["UserDefinedFlag2"].ToString()))
+            if (ds.Tables[0].Rows[0]["UserDefinedFlag2"].ToString() == "1")
             {
                 chkUserDefined3.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["UserDefinedFlag2"]);
                 txtUserDefined3.Enabled = false;
@@ -171,7 +178,8 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
                 txtUserDefined3.Text = ds.Tables[0].Rows[0]["UserDefinedText2"].ToString().Trim();
             }
 
-            if (bool.Parse(ds.Tables[0].Rows[0]["UserDefinedFlag3"].ToString()))
+            //if (bool.Parse(ds.Tables[0].Rows[0]["UserDefinedFlag3"].ToString()))
+            if (ds.Tables[0].Rows[0]["UserDefinedFlag3"].ToString() == "1")
             {
                 chkUserDefined4.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["UserDefinedFlag3"]);
                 txtUserDefined4.Enabled = false;
@@ -347,6 +355,7 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
     {
         gvVacancy.PageIndex = e.NewPageIndex;
         BindVacancyDetails();
+        searchfromlist(txtSearch.Text.Trim());
     }
 
     private void BindVacancyDetails()
@@ -360,6 +369,7 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 gvVacancy.DataSource = ds;
+                Session["dt"] = ds.Tables[0];
                 gvVacancy.DataBind();
             }
             else
@@ -377,5 +387,33 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
     protected void DropPage_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindVacancyDetails();
+    }
+    protected void imgsearch_Click(object sender, ImageClickEventArgs e)
+    {
+        searchfromlist(txtSearch.Text.Trim());
+    }
+    void searchfromlist(string search)
+    {
+        try
+        {
+            if (Session["dt"] != null)
+            {
+                DataTable dt = (DataTable)Session["dt"];
+                DataRow[] dr = dt.Select("JobTitle LIKE '%" + search +
+                    "' OR VacancyName LIKE '%" + search +
+                   "' OR HiringManager LIKE '%" + search +
+                   "%'");
+
+                if (dr.Count() > 0)
+                {
+                    gvVacancy.DataSource = dr.CopyToDataTable();
+                    gvVacancy.DataBind();
+                }
+            }
+        }
+        catch (Exception)
+        {
+
+        }
     }
 }

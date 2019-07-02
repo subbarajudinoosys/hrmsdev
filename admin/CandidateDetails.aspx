@@ -142,8 +142,8 @@
                                     <%-- <asp:Label ID="lblResume" runat="server" <a href="ResumeDoc/20170504064344647.pdf" onclick="return redirectMe(this);">A</a>> </asp:Label> --%>
                                    <asp:Label ID="lblResume" runat="server"></asp:Label>
                                     
-                                    <asp:RegularExpressionValidator ID="revfuResumeImage" runat="server" ErrorMessage="Only PDF files are allowed!" ValidationExpression="^.*\.(pdf|PDF)$"
-                                        ControlToValidate="fuResumeImage" ValidationGroup="emp" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="revfuResumeImage" runat="server" ErrorMessage="Only PDF files are allowed!" ValidationExpression="([a-zA-Z0-9\s_\\.\-:])+(.doc|.docx|.pdf)$"
+                                        ControlToValidate="fuResumeImage" ValidationGroup="cand" ForeColor="Red"></asp:RegularExpressionValidator>
                                 </div>
                             </div>
                         </div>
@@ -204,7 +204,7 @@
                                             <div class="input-group">
                                                 <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" CssClass="form-control"> </asp:TextBox>
                                                 <span class="input-group-btn">
-                                                     <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" Height="30" />
+                                                     <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" Height="30" OnClick="imgsearch_Click" />
                                                 </span>
                                             </div>
                                         </div>
