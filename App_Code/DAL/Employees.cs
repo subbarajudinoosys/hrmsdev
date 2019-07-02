@@ -11,7 +11,7 @@ using EntityManager;
 /// </summary>
 namespace DataManager
 {
-    public class Employees :DataUtilities
+    public class Employees : DataUtilities
     {
 
         #region Local Variables
@@ -27,7 +27,7 @@ namespace DataManager
             Hashtable htparams = new Hashtable
                                                    {
                                                         {"in_S_No",objclsemp.S_No},
-                                                        {"in_emp_id",objclsemp.emp_id},
+                                                        {"in_emp_id",objclsemp.EmpID},
                                                         {"in_emp_firstname",objclsemp.empFtName},
                                                         {"in_emp_middlename",objclsemp.empMName},
                                                         {"in_emp_lastname",objclsemp.empLName},
@@ -94,7 +94,7 @@ namespace DataManager
 
 
 
-      
+
 
         public DataSet GetHiringManager(clsEmployee objclsemp)
         {
@@ -112,7 +112,7 @@ namespace DataManager
         {
             Hashtable htparams = new Hashtable
                                                    {
-                                                        {"in_S_No",objclsemp.S_No},                                                      
+                                                        {"@in_emp_id",objclsemp.emp_id},                                                      
                                                         {"in_emp_firstname",objclsemp.empFtName},                                                       
                                                         {"in_emp_lastname",objclsemp.empLName},
                                                         
