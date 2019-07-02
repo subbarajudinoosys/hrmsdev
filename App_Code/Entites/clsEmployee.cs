@@ -12,6 +12,7 @@ namespace EntityManager
     {
         public int S_No { get; set; }
         public string emp_id { get; set; }
+		public string EmpID {get; set;}
         public string empFtName { get; set; }
         public string empMName { get; set; }
         public string empLName { get; set; }

@@ -14,7 +14,11 @@ namespace EntityManager
 
         public int esmid { get; set; }
 
-        public int empid { get; set; }
+        public string empid { get; set; }
+		
+		public string esm_emp_id {get; set;}
+		
+		
 
         public string apryr { get; set; }
 
@@ -31,25 +35,25 @@ namespace EntityManager
         public double conalw { get; set; }
 
         public double specialpay { get; set; }
-        
+
         public double ptax { get; set; }
-        
+
         public double deductions { get; set; }
 
         public double other_earnings { get; set; }
-        
+
         public double loans { get; set; }
 
         public double totalpayable { get; set; }
-        
+
         public string date { set; get; }
-       
+
         public int createdby { set; get; }
-        
+
         public double foodCoupons { get; set; }
 
         public double pf { get; set; }
-        
+
         public double epf { get; set; }
 
 

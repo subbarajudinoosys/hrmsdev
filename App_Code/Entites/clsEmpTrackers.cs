@@ -14,7 +14,7 @@ namespace EntityManager
         public int TrackerId { get; set; }
         public string TrackerName { get; set; }
         public string EmployeeName { get; set; }
-        public int EmpId { get; set; }
+        public string EmpId { get; set; }
         public string AssignedReviewers { get; set; }
         public string AvailableReviewers { get; set; }
         public string OpName { get; set; }
