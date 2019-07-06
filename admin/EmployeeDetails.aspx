@@ -161,7 +161,7 @@
                                 <div class="col-sm-1"></div>
                                 <label class="col-sm-2" for="txtEmailId">Email Id<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtEmailId" CssClass="form-control" runat="server" placeholder="Email Id" ClientIDMode="Static" />
+                                    <asp:TextBox ID="txtEmailId" CssClass="form-control" runat="server" OnTextChanged="txtEmailId_TextChanged" placeholder="Email Id" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtEmailId" runat="server" ID="rfvtxtEmailId"
                                         Display="Dynamic" ErrorMessage="Enter Email Id." Text="Enter Email Id." ValidationGroup="emp" CssClass="ValidationColor" />
                                     <asp:RegularExpressionValidator ControlToValidate="txtEmailId" runat="server"
@@ -308,7 +308,7 @@
                                         ControlToValidate="fuResumeImage" ValidationGroup="emp" CssClass="ValidationColor"></asp:RegularExpressionValidator>
                                 </div>
                                 <div class="col-sm-1"></div>
-                                <label class="col-sm-2">Select Image</label>
+                                <label class="col-sm-2">Photo</label>
 
                                 <div class="col-sm-3">
                                     <asp:FileUpload ID="fuImageFile" runat="server" />
@@ -317,7 +317,7 @@
                                   
                                     <asp:Label ID="lblImage" runat="server"></asp:Label>
                                     
-                                    <asp:RegularExpressionValidator ID="revfuImageFile" runat="server" ErrorMessage="Only JPEG,PNG Files are allowed!" ValidationExpression="^.*\.(jpeg|JPEG|gif|GIF|png|PNG)$"
+                                    <asp:RegularExpressionValidator ID="revfuImageFile" runat="server" ErrorMessage="Only JPEG,PNG Files are allowed!" ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG)$"
                                         ControlToValidate="fuImageFile" ValidationGroup="emp" CssClass="ValidationColor"></asp:RegularExpressionValidator>
                                 </div>
                                 <div class="col-sm-1"></div>

@@ -12,6 +12,9 @@ using System.IO;
 
 public partial class admin_EmployeeDetails : System.Web.UI.Page
 {
+    DALCommon objcommon = new DALCommon();
+    
+    
     Employees _objEmp = new Employees();
     DOUtility objDOUti = new DOUtility();
     clsEmployee objclsEmployee = new clsEmployee();
@@ -88,7 +91,7 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             if (Convert.ToInt32(hf_S_No.Value) > 0)
             {
                 objclsEmployee.OpName = "UPDATE";
-                objclsEmployee.empPWD = null;
+                objclsEmployee.empPWD = string.Empty;
                 if (fuResumeImage.HasFile)
                     lblResume.Text = fuResumeImage.FileName;
                 else
@@ -101,8 +104,11 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
                     Imagepath = GetImage(fuImageFile);
             }
             else
+            {
                 objclsEmployee.empPWD = Password();
-            objclsEmployee.OpName = "INSERT";
+                objclsEmployee.OpName = "INSERT";
+            }
+               
             if (fuResumeImage.HasFile)
                 lblResume.Text = fuResumeImage.FileName;
             else
@@ -115,8 +121,7 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
                 Imagepath = GetImage(fuImageFile);
 
 
-            objclsEmployee.emp_id= txtEmployeeID.Text;
-
+            objclsEmployee.EmpID= txtEmployeeID.Text;
             objclsEmployee.empFtName = txtFirstName.Text;
             objclsEmployee.empMName = txtMiddleName.Text;
             objclsEmployee.empLName = txtLastName.Text;
@@ -125,10 +130,6 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             objclsEmployee.empDepartment = ddlDepartment.SelectedValue;
             objclsEmployee.empDesignation = ddlDesignation.SelectedValue;
             objclsEmployee.LoginId = txtEmployeeID.Text;
-
-
-
-
             objclsEmployee.empMobile = txtMobileNo.Text;
             objclsEmployee.empEmail = txtEmailId.Text;
             //objclsEmployee.empManager = txtManager.Text;
@@ -146,7 +147,7 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             objclsEmployee.ImageFilePath = GetImage(fuImageFile);
 
             objclsEmployee.CreatedBy = 0;
-
+            
             int Result = _objEmp.Employee_InsertUpdate(objclsEmployee);
             if (Result == 1)
             {
@@ -290,7 +291,7 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
     {
         try
         {
-            objclsEmployee.emp_id = EmployeeId;
+            objclsEmployee.EmpID = EmployeeId;
             objclsEmployee.OpName = "SELECT1";
             DataSet Objds = _objEmp.GetEmployeeDetails(objclsEmployee);
 
@@ -476,4 +477,21 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
         return fileName;
     }
 
+    protected void txtEmailId_TextChanged(object sender, EventArgs e)
+    {
+        //int result = objcommon.ValidMail(txtEmailId.Text);
+        //if (result > 0)
+        //{
+        //    labelError.Text = objDOUti.ShowMessage("danger", "Danger", "Mail Already exixts");
+        //}
+        DataSet ds = objcommon.ValidMail(txtEmailId.Text);
+        if(ds.Tables[0].Rows.Count>0)
+        {
+            labelError.Text = objDOUti.ShowMessage("danger", "Danger", "Mail Already exists");
+        }
+        else
+        {
+
+        }
+    }
 }
