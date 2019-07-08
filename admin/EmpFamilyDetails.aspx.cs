@@ -31,7 +31,7 @@ public partial class admin_EmpFamilyDetails : System.Web.UI.Page
 
            
             {
-                lblEmpIdName.Text = "ID-" + Emp_id + " ,  Name-" + Emp_firstnam;
+                lblEmpIdName.Text = "EmpId-" + Emp_id + " ,  Name-" + Emp_firstnam;
 
                 BindFamilyDetails(Emp_id);
 
@@ -156,6 +156,7 @@ public partial class admin_EmpFamilyDetails : System.Web.UI.Page
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 gvFamilyDetails.DataSource = ds;
+                Session["dt"] = ds.Tables[0];
                 gvFamilyDetails.DataBind();
             }
             else
@@ -200,5 +201,39 @@ public partial class admin_EmpFamilyDetails : System.Web.UI.Page
     }
     #endregion PrivateMethods
 
+   
+    protected void imgsearch_Click(object sender, ImageClickEventArgs e)
+    {
+        SearchItemfromList(txtSearch.Text.Trim());
+    }
+    void SearchItemfromList(string searchtext)
+    {
+        try
+        {
+            if (Session["dt"] != null)
+            {
+                DataTable dt = (DataTable)Session["dt"];
+                DataRow[] dr = dt.Select("Relationship LIKE '%" + searchtext +
+                    "%' OR FirstName LIKE '%" + searchtext +
+                   "%' OR LastName LIKE '%" + searchtext +
+                   
+                   "%'");
+                if (dr.Count() > 0)
+                {
+                    gvFamilyDetails.DataSource = dr.CopyToDataTable();
+                    gvFamilyDetails.DataBind();
+                }
+                else
+                {
+                    gvFamilyDetails.DataSource =null;
+                    gvFamilyDetails.DataBind();
+                }
+            }
+        }
+        catch (Exception)
+        {
 
+        }
+
+    }
 }

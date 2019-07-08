@@ -27,7 +27,7 @@
 
     <div class="row">
         <div class="content-box-large">
-            <div class="col-sm-12 panel-info">
+            <div class="col-md-12 panel-info">
                 <div class="content-box-header panel-heading">
 
                     
@@ -45,7 +45,7 @@
                         
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label style="margin-bottom: -10px" class="col-sm-3">RelationShip<span class="ValidationColor">*</span> </label>
+                                <label style="margin-bottom: -10px" class="col-sm-3">Relation<span class="ValidationColor">*</span> </label>
                                 <label style="margin-bottom: -10px" class="col-sm-3">First Name<span class="ValidationColor">*</span></label>
                                 <label style="margin-bottom: -10px" class="col-sm-3">Last Name<span class="ValidationColor">*</span></label>
                              
@@ -134,8 +134,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+       </div>
         <div class="col-sm-12">&nbsp</div>
+   <%-- <div class="row">--%>
+        <div class="row">
+    <div class="col-md-15 panel-info">
         <div class="content-box-large">
             <div class="col-sm-12 panel-info">
                 <div class="content-box-header panel-heading">
@@ -170,7 +173,7 @@
                                             <div class="input-group">
                                                 <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" CssClass="form-control"> </asp:TextBox>
                                                 <span class="input-group-btn">
-                                                     <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" Height="30" />
+                                                     <asp:ImageButton ID="imgsearch" runat="server" ImageUrl="~/admin/Images/icons/icon-search.png" Height="30" OnClick="imgsearch_Click" />
                                                 </span>
                                             </div>
                                         </div>
@@ -183,7 +186,7 @@
 
                     <asp:GridView ID="gvFamilyDetails" runat="server" AllowPaging="true" Width="100%" PageSize="2" HeaderStyle-CssClass="gridheader"
                         AutoGenerateColumns="False" DataKeyNames="S_No" CssClass="table table-striped table-bordered"
-                        OnRowCommand="gvFamilyDetails_RowCommand" OnPageIndexChanging="gvFamilyDetails_PageIndexChanging" ShowHeaderWhenEmpty="true">
+                        OnRowCommand="gvFamilyDetails_RowCommand" OnPageIndexChanging="gvFamilyDetails_PageIndexChanging" ShowHeaderWhenEmpty="true" EmptyDataText="No records found">
                         <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
                       
                       
@@ -195,7 +198,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Relationship" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="gridheader">
+                            <asp:TemplateField HeaderText="Relation" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="gridheader">
                                 <ItemTemplate>
                                     <%#Eval("Relationship")%>
                                 </ItemTemplate>
@@ -231,7 +234,8 @@
                 </div>
             </div>
         </div>
-
+        </div>
+        </div>
     </div>
 </asp:Content>
 

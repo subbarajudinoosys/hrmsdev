@@ -9,6 +9,7 @@ using EntityManager;
 using DataManager;
 using System.Data;
 using System.IO;
+using System.Drawing;
 
 public partial class admin_VacancyDetails : System.Web.UI.Page
 {
@@ -60,7 +61,7 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
             if (chkActive.Checked)
                 objVacancy.Active = Convert.ToInt32(chkActive.Checked);
             else
-                objVacancy.ActiveText = txtActivText.Text.Trim();
+            //    objVacancy.ActiveText = txtActivText.Text.Trim();
 
 
             if (chkUserDefined1.Checked)
@@ -134,12 +135,12 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
                 
             {
                 chkActive.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["Active"]);
-                txtActivText.Enabled = false;
+                //txtActivText.Enabled = false;
                 
             }
             else
             {
-                txtActivText.Text = ds.Tables[0].Rows[0]["ActiveText"].ToString().Trim();
+                //txtActivText.Text = ds.Tables[0].Rows[0]["ActiveText"].ToString().Trim();
             }
 
             //if (bool.Parse(ds.Tables[0].Rows[0]["UserDefinedFlag"].ToString()))
@@ -262,8 +263,8 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
         txtUserDefined2.Enabled = true;
         txtUserDefined3.Enabled = true;
         txtUserDefined4.Enabled = true;
-        txtActivText.Enabled = true;
-        txtActivText.Text = "";
+        //txtActivText.Enabled = true;
+        //txtActivText.Text = "";
         txtUserDefined1.Text = "";
         txtUserDefined2.Text = "";
         txtUserDefined3.Text = "";
@@ -273,13 +274,13 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
     {
         if (chkActive.Checked)
         {
-            txtActivText.Enabled = false;
-            txtActivText.Text = string.Empty;
+            //txtActivText.Enabled = false;
+            //txtActivText.Text = string.Empty;
             
         }
         else
         {
-            txtActivText.Enabled = true;
+            //txtActivText.Enabled = true;
             
         }
 
@@ -344,11 +345,23 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
     }
     protected void gvVacancy_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        string VacancyId = e.CommandArgument.ToString();
-        if(e.CommandName=="Edit Record")
+        if (e.CommandName != "Page")
         {
-            btnSubmit.Text = "Update";
-            GetVacancy(Convert.ToInt32(VacancyId));
+            GridViewRow row = (GridViewRow)(((ImageButton)e.CommandSource).NamingContainer);
+            int RowIndex = row.RowIndex;
+            //string VacancyId = e.CommandArgument.ToString();
+            int VacancyId = Convert.ToInt32(((Label)row.FindControl("lblvacancyId")).Text);
+            if (e.CommandName == "Edit Record")
+            {
+                btnSubmit.Text = "Update";
+                GetVacancy(Convert.ToInt32(VacancyId));
+            }
+            else if (e.CommandName == "Delete Record")
+            {
+                //int srno = objEducation.S_No;
+                DeleteVacancyDetails(VacancyId);
+                BindVacancyDetails();
+            }
         }
     }
     protected void gvVacancy_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -399,8 +412,8 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
             if (Session["dt"] != null)
             {
                 DataTable dt = (DataTable)Session["dt"];
-                DataRow[] dr = dt.Select("JobTitle LIKE '%" + search +
-                    "' OR VacancyName LIKE '%" + search +
+                DataRow[] dr = dt.Select("Designation LIKE '%" + search +
+                    "%' OR VacancyName LIKE '%" + search +
                    "' OR HiringManager LIKE '%" + search +
                    "%'");
 
@@ -415,5 +428,52 @@ public partial class admin_VacancyDetails : System.Web.UI.Page
         {
 
         }
+    }
+    protected void gvVacancy_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //Find the TextBox control.
+                Label IsActive = (e.Row.FindControl("lblActive") as Label);
+                if(IsActive.Text == "1")
+                {
+                    IsActive.Text = "Active";
+                    IsActive.ForeColor = Color.Green;
+                }
+                else
+                {
+                    IsActive.Text = "InActive";
+                    IsActive.ForeColor = Color.Red;
+                }
+                
+            }
+        }
+        catch(Exception ex)
+        {
+
+        }
+
+    }
+    private void DeleteVacancyDetails(int vacancyId)
+    {
+        try
+        {
+            int result = objDALVacancy.DeleteVacancyDetails(vacancyId);
+            if(result==1)
+            {
+                labelError.Text = CommanClass.ShowMessage("success", "Success", "Successfully Deleted");
+            }
+            else
+            {
+                labelError.Text = CommanClass.ShowMessage("danger", "Danger", "Vacancy details not deleted,Please try again");
+            }
+        }
+        catch (Exception ex)
+        {
+            labelError.Text = CommanClass.ShowMessage("danger", "Danger", ex.Message);
+        }
+        
     }
 }

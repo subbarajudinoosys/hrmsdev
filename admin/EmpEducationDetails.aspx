@@ -79,10 +79,10 @@
                         <asp:HiddenField ID="hf_Sno" Value="0" runat="server" />
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label style="margin-bottom: -10px !important;" class="col-sm-3">Education Type</label>
-                                <label style="margin-bottom: -10px !important;" class="col-sm-3">School/College Name</label>
-                                <label style="margin-bottom: -10px !important;" class="col-sm-3">Board/University Name</label>
-                                <label style="margin-bottom: -10px !important;" class="col-sm-3">Education Level</label>
+                                <label style="margin-bottom: -10px !important;" class="col-sm-3" >Education Type<span class="ValidationColor">*</span></label>
+                                <label for="txtSchoolOrCollegeName" style="margin-bottom: -10px !important;" class="col-sm-3" >School/College Name<span class="ValidationColor">*</span></label>
+                                <label for="txtBoardOrUniversityName" style="margin-bottom: -10px !important;" class="col-sm-3">Board/University Name<span class="ValidationColor">*</span></label>
+                                <label style="margin-bottom: -10px !important;" class="col-sm-3">Education Level<span class="ValidationColor">*</span></label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -102,12 +102,12 @@
                                 </div>
                                 <div class="col-sm-3">
 
-                                    <asp:TextBox ID="txtSchoolOrCollegeName" runat="server" CssClass="form-control" placeholder="School/College Name"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ControlToValidate="txtSchoolOrCollegeName" ID="rfvtxtSchoolOrCollegeName" runat="server" Text="Enter School/College Name." ValidationGroup="educ" ForeColor="Red" Display="Dynamic" />
+                                    <asp:TextBox ID="txtSchoolOrCollegeName" runat="server" CssClass="form-control" placeholder="School/College Name" ClientIDMode="Static" ></asp:TextBox>
+                                    <asp:RequiredFieldValidator ControlToValidate="txtSchoolOrCollegeName" ID="rfvtxtSchoolOrCollegeName" runat="server" Text="Enter School/College Name." ValidationGroup="educ" ForeColor="Red" Display="Dynamic" CssClass="ValidationColor" />
 
                                 </div>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtBoardOrUniversityName" runat="server" CssClass="form-control" placeholder="Board/University Name"></asp:TextBox>
+                                    <asp:TextBox ID="txtBoardOrUniversityName" runat="server" CssClass="form-control" placeholder="Board/University Name" ClientIDMode="Static"></asp:TextBox>
                                     <asp:RequiredFieldValidator ControlToValidate="txtBoardOrUniversityName" ID="rfvtxtBoardOrUniversityName" runat="server" Text="Enter Board/University Name." ValidationGroup="educ" ForeColor="Red" Display="Dynamic" />
                                 </div>
                                 <div class="col-sm-3">
@@ -123,16 +123,16 @@
 
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label style="margin-bottom: -10px !important;" class="col-sm-3">Specialization</label>
-                                <label style="margin-bottom: -10px !important;" class="col-sm-3">Year Of Passing</label>
-                                <label style="margin-bottom: -10px !important;" class="col-sm-3">Percentage</label>
-                                <label style="margin-bottom: -10px !important;" class="col-sm-3">Category</label>
+                                <label for="txtSpecialization" style="margin-bottom: -10px !important;" class="col-sm-3">Specialization<span class="ValidationColor">*</span></label>
+                                <label style="margin-bottom: -10px !important;" class="col-sm-3">Year Of Passing<span class="ValidationColor">*</span></label>
+                                <label for="txtPercentage" style="margin-bottom: -10px !important;" class="col-sm-3">Percentage<span class="ValidationColor">*</span></label>
+                                <label style="margin-bottom: -10px !important;" class="col-sm-3">Category<span class="ValidationColor">*</span></label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtSpecialization" runat="server" CssClass="form-control" placeholder="Specialization"></asp:TextBox>
+                                    <asp:TextBox ID="txtSpecialization" runat="server" CssClass="form-control" placeholder="Specialization" ClientIDMode="Static"></asp:TextBox>
                                     <asp:RequiredFieldValidator ControlToValidate="txtSpecialization" ID="rfvtxtSpecialization" runat="server" Text="Enter Specialization." ValidationGroup="educ" ForeColor="Red" Display="Dynamic" />
                                 </div>
                                 <div class="col-sm-3">
@@ -144,7 +144,7 @@
 
                                 </div>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtPercentage" runat="server" CssClass="form-control" placeholder="Percentage"></asp:TextBox>
+                                    <asp:TextBox ID="txtPercentage" runat="server" CssClass="form-control" placeholder="Percentage" ClientIDMode="Static"></asp:TextBox>
                                     <asp:RequiredFieldValidator ControlToValidate="txtPercentage" ID="rfvtxtPercentage" runat="server" Text="Enter Percentage." ValidationGroup="educ" ForeColor="Red" Display="Dynamic" />
                                 </div>
                                 <div class="col-sm-3">
@@ -164,7 +164,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label style="margin-bottom: -10px !important;" class="col-sm-3">Start Date</label>
+                                <label style="margin-bottom: -10px !important;" class="col-sm-3">Start Date<span class="ValidationColor">*</span></label>
                                 <label style="margin-bottom: -10px !important;" class="col-sm-3">End Date</label>
                             </div>
                         </div>
@@ -320,7 +320,7 @@
                                                 <asp:ImageButton ID="imgEdit" ToolTip="Edit Record" runat="server" ImageUrl="~/Admin/Images/icons/icon-edit.png" Height="20" Width="20"
                                                     CommandName="Edit Record" CommandArgument='<%#Eval("emp_id") %>' />
                                                 <asp:ImageButton ID="imgDelete" ToolTip="Delete Record" runat="server" ImageUrl="~/Admin/Images/icons/icon-delete.png" Height="20" Width="20"
-                                                    CommandName="Delete Record" CommandArgument='<%#Eval("emp_id") %>' OnClientClick="javascript:return confirm('Are You Sure To Delete Details')" />
+                                                    CommandName="Delete Record" CommandArgument='<%#Eval("emp_id") %>' OnClientClick="javascript:return confirm('Are you sure to delete Education Details?')" />
                                             </td>
                                         </tr>
                                     </table>

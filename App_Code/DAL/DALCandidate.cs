@@ -56,5 +56,12 @@ namespace DataManager
                                                    };
                 return ExecuteNonQuery("candidate_insert_update", htparams);
             }
+        public int DeleteCandidate(int Can_Id)
+            {
+                Hashtable hst = new Hashtable{
+                {"@CandidateId",Can_Id}
+            };
+                return ExecuteNonQuery("Delete_Candidate", hst);
+            }
     }
 }

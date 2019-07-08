@@ -18,6 +18,7 @@ public partial class admin_EmpTrackers : System.Web.UI.Page
     DALEmpTrackers objDALTracker = new DALEmpTrackers();
     Employees _objEmp = new Employees();
     clsEmployee objclsEmployee = new clsEmployee();
+    string Emp_id = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -44,7 +45,8 @@ public partial class admin_EmpTrackers : System.Web.UI.Page
             objempTracker.TrackerId = Convert.ToInt32(hf_track_id.Value);
             objempTracker.TrackerName = txtTrackerName.Text;
             objempTracker.EmployeeName = dropEmployeeName.SelectedItem.Text;
-            objempTracker.EmpId = Convert.ToInt32(dropEmployeeName.SelectedValue);
+            objempTracker.EmpId = dropEmployeeName.SelectedValue;
+            //objempTracker.EmpId = Emp_id;
             objempTracker.AvailableReviewers = listAvailableReview.SelectedValue;
             objempTracker.AssignedReviewers = listAvailableReview.SelectedValue;
 
@@ -104,7 +106,7 @@ public partial class admin_EmpTrackers : System.Web.UI.Page
                 listAssignedReview.DataBind();
             }
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
 
         }
@@ -206,7 +208,7 @@ public partial class admin_EmpTrackers : System.Web.UI.Page
         {
             objempTracker.OpName = "SELECT1";
 
-            objempTracker.EmpId = Convert.ToInt32(dropEmployeeName.SelectedValue);
+            objempTracker.EmpId = Emp_id;
             objempTracker.TrackerName = txtTrackerName.Text;
             DataSet ds = objDALTracker.GetEmpTracker(objempTracker);
             if (ds.Tables[0].Rows.Count > 0)

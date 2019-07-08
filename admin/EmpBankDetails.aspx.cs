@@ -173,16 +173,23 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
         DataSet ds = objBankDList.GetBankDetailsList(objclsBank);
         try
         {
-            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            if (ds.Tables[0].Rows.Count == 1)
+            {
+                int ID = Convert.ToInt32(ds.Tables[0].Rows[0]["S_No"].ToString());
+                int result = objacc.UpdatePrimaryAccount(ID, Emp_id);
+                DataSet ds1 = objBankDList.GetBankDetailsList(objclsBank);
+                gvbankdetailsList.DataSource = ds1;
+                
+            }
+            else if (ds.Tables[0].Rows.Count > 0)
             {
                 gvbankdetailsList.DataSource = ds;
-                gvbankdetailsList.DataBind();
             }
             else
             {
                 gvbankdetailsList.DataSource = null;
-                gvbankdetailsList.DataBind();
             }
+            gvbankdetailsList.DataBind();
         }
         catch
         {

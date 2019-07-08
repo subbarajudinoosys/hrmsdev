@@ -20,11 +20,11 @@ public partial class admin_CandidateDetails : System.Web.UI.Page
     DALCandidateList objDALCanList = new DALCandidateList();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
+        if (!IsPostBack)
         {
             BindVacancy();
             int CandidateId = Convert.ToInt32(Request.QueryString["CandidateId"]);
-            BindCandidateDetails();          
+            BindCandidateDetails();
         }
     }
 
@@ -58,7 +58,7 @@ public partial class admin_CandidateDetails : System.Web.UI.Page
             {
 
                 objclCandidate.OpName = "UPDATE";
-               
+
                 if (fuResumeImage.HasFile)
                     lblResume.Text = fuResumeImage.FileName;
                 else
@@ -68,12 +68,12 @@ public partial class admin_CandidateDetails : System.Web.UI.Page
             else
 
                 objclCandidate.OpName = "INSERT";
-                filepath = GetFile(fuResumeImage);
+            filepath = GetFile(fuResumeImage);
 
-                if (fuResumeImage.HasFile)
-                    lblResume.Text = fuResumeImage.FileName;
-                else
-                    filepath = hfResumeFileName.Value;
+            if (fuResumeImage.HasFile)
+                lblResume.Text = fuResumeImage.FileName;
+            else
+                filepath = hfResumeFileName.Value;
 
             objclCandidate.CandidateId = Convert.ToInt32(hf_can_id.Value);
             objclCandidate.FirstName = txtFirstName.Text;
@@ -95,11 +95,11 @@ public partial class admin_CandidateDetails : System.Web.UI.Page
 
                 if (btnSubmit.Text == "Save")
                 {
-                    labelError.Text = CommanClass.ShowMessage("success", "Success", "Candidate created Successfully");
+                    labelError.Text = CommanClass.ShowMessage("success", "Success", "Candidate Details created Successfully");
                 }
                 else
                 {
-                    labelError.Text = CommanClass.ShowMessage("success", "Success", "Candidate Updated Successfully");
+                    labelError.Text = CommanClass.ShowMessage("success", "Success", "Candidate Details Updated Successfully");
                 }
                 BindCandidateDetails();
 
@@ -111,7 +111,7 @@ public partial class admin_CandidateDetails : System.Web.UI.Page
                 labelError.Text = CommanClass.ShowMessage("info", "Info", "Candidate was not created plase try again");
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
 
         }
@@ -222,11 +222,24 @@ public partial class admin_CandidateDetails : System.Web.UI.Page
     }
     protected void gvCandidateList_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        string CandId = e.CommandArgument.ToString();
-        if (e.CommandName == "Edit Candidate")
+        //string CandId = e.CommandArgument.ToString();
+        if (e.CommandName != "Page")
         {
-            btnSubmit.Text = "Update";
-            GetCandidate(Convert.ToInt32(CandId));
+            GridViewRow row = (GridViewRow)(((ImageButton)e.CommandSource).NamingContainer);
+            int RowIndex = row.RowIndex;
+
+            int CandId = Convert.ToInt32(((Label)row.FindControl("lblCandidate_id")).Text);
+            if (e.CommandName == "Edit Candidate")
+            {
+                btnSubmit.Text = "Update";
+                GetCandidate(Convert.ToInt32(CandId));
+            }
+            else if (e.CommandName == "Delete Record")
+            {
+                DeleteCandidate(CandId);
+                BindCandidateDetails();
+            }
+
         }
     }
     protected void gvCandidateList_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -246,12 +259,12 @@ public partial class admin_CandidateDetails : System.Web.UI.Page
     {
         try
         {
-        if (Session["dt"] != null)
+            if (Session["dt"] != null)
             {
                 DataTable dt = (DataTable)Session["dt"];
                 DataRow[] dr = dt.Select("FirstName LIKE '%" + Search +
-                    "' OR LastName LIKE '%" + Search +
-                   "' OR EmailID LIKE '%" + Search +
+                    "%' OR LastName LIKE '%" + Search +
+                   "%' OR EmailID LIKE '%" + Search +
                    "%'");
 
                 if (dr.Count() > 0)
@@ -265,5 +278,27 @@ public partial class admin_CandidateDetails : System.Web.UI.Page
         {
 
         }
+
+    }
+    public void DeleteCandidate(int CandidateId)
+    {
+        try
+        {
+            int result = objDALCandidate.DeleteCandidate(CandidateId);
+            if (result == 1)
+            {
+                labelError.Text = CommanClass.ShowMessage("success", "Success", "Successfully Deleted");
+            }
+            else
+            {
+                labelError.Text = CommanClass.ShowMessage("danger", "Danger", "Vacancy details not deleted,Please try again");
+            }
+        }
+        catch (Exception ex)
+        {
+            labelError.Text = CommanClass.ShowMessage("danger", "Danger", ex.Message);
+        }
+
     }
 }
+    

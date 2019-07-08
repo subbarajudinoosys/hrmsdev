@@ -38,7 +38,7 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
                 CommanClass.Get_year(DropYear);
                 if (Emp_id != null & Emp_firstname != null)
                 {
-                    lblEmpIdName.Text = "ID-" + Emp_id + " ,  Name-" + Emp_firstname;
+                    lblEmpIdName.Text = "Emp_Id-" + Emp_id + " ,  Name-" + Emp_firstname;
                     string EmployeeEduId = Request.QueryString["Emp_id"];
 
                 }
@@ -266,12 +266,14 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
                 DropEducationLevel.DataValueField = "EduLevel_Id";
                 DropEducationLevel.SelectedValue = "EduType_Id";
                 DropEducationLevel.DataBind();
+                DropEducationLevel.Items.Insert(0, new ListItem("--Select Education Level--", "-1"));
             }
             else
             {
                 DropEducationLevel.DataSource = null;
                 DropEducationLevel.DataBind();
             }
+           
         }
         catch (Exception ex)
         {
@@ -288,15 +290,18 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
         {
             DropEducationLevel.Enabled = true;
         }
+        
         DataSet ds = new DataSet();
         ds = objDALLevelType.GetLevelByType(id);
         if (ds.Tables[0].Rows.Count > 0)
         {
+            DropEducationLevel.Items.Clear();
             DropEducationLevel.DataSource = ds.Tables[0];
             DropEducationLevel.DataTextField = "EduLevel_Name";
             DropEducationLevel.DataValueField = "EduLevel_Id";
             //DropEducationLevel.SelectedValue = "EduType_Id";
             DropEducationLevel.DataBind();
+            DropEducationLevel.Items.Insert(0, new ListItem("--Select Education Level--", "-1"));
         }
         else
         {
@@ -316,8 +321,8 @@ public partial class admin_EmpEducationDetails : System.Web.UI.Page
             {
                 DataTable dt = (DataTable)Session["dt"];
                 DataRow[] dr = dt.Select("emp_id LIKE '%" + searchtext +
-                    "' OR Edu_Type LIKE '%" + searchtext +
-                   "' OR EducName LIKE '%" + searchtext +
+                    "%' OR Edu_Type LIKE '%" + searchtext +
+                   "%' OR EducName LIKE '%" + searchtext +
                    "%' OR Specialization LIKE '%" + searchtext +
                    "%'");
                 if (dr.Count() > 0)

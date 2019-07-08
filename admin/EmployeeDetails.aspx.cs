@@ -37,6 +37,7 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
         {
             BindDepratment();
             BindLocation();
+            
 
             if (!string.IsNullOrEmpty(Request.QueryString["emp_id"]))
             {
@@ -50,6 +51,11 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
                     GetEmployeeDetails(Convert.ToString(EmployeeId));
                 }
                 btnSubmit.Text = "Update";
+                imgphoto.Visible = true;
+            }
+            else
+            {
+                imgphoto.Visible = false;
             }
         }
 
@@ -334,10 +340,13 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
                 ResumeFileName = Objds.Tables[0].Rows[0]["ResumeFilePath"].ToString();
                 pdfView.Attributes["href"] = "ResumeDoc/" + ResumeFileName;
 
-
                 hf_ImageFile.Value = Objds.Tables[0].Rows[0]["ImageFilePath"].ToString();
                 ImageFileName = Objds.Tables[0].Rows[0]["ImageFilePath"].ToString();
-                lblImage.Text = Objds.Tables[0].Rows[0]["ImageUpload"].ToString();
+                imgphoto.ImageUrl = "EmployeeImages/" + ImageFileName;
+
+                
+              
+                //lblImage.Text = Objds.Tables[0].Rows[0]["ImageUpload"].ToString();
 
             }
         }

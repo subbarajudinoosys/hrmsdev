@@ -75,5 +75,13 @@ namespace DataManager
                                                    };
             return ExecuteDataSet("get_vacancy", htparams);
         }
+        public int DeleteVacancyDetails(int Vac_Id)
+        {
+            Hashtable htvd = new Hashtable{
+            {"@vacancyId",Vac_Id}
+
+            };
+            return ExecuteNonQuery("Vacancy_Delete", htvd);
+        }
     }
 }

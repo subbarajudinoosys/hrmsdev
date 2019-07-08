@@ -234,6 +234,7 @@
                                     <asp:TextBox ID="txtAdharNo" CssClass="form-control" runat="server" placeholder="Adhar No" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtAdharNo" runat="server" ID="rfvtxtAdharNo"
                                         Display="Dynamic" ErrorMessage="Enter Adhar No." Text="Enter Adhar No." ValidationGroup="emp" CssClass="ValidationColor" />
+                                   <asp:RegularExpressionValidator ID="revtxtAdharNo" runat="server" ControlToValidate="txtAdharNo" ValidationExpression="^(\d{12}|\d{16})$" ErrorMessage="Enter valid AadharNo" ForeColor="Red" ></asp:RegularExpressionValidator>
                                 </div>
                                  <div class="col-sm-1"></div>
                                 <label class="col-sm-2" for="txtPassportNo">Passport No<span class="ValidationColor">*</span></label>
@@ -303,8 +304,9 @@
                                     <asp:HiddenField ID="hfResumeFileName" runat="server" />
                                     <%--<asp:Label ID="lblResume" runat="server"></asp:Label>--%>
                                     <a id="pdfView" href="#" target="_blank" runat="server"><asp:Label ID="lblResume" runat="server"></asp:Label></a>
-                                    
-                                    <asp:RegularExpressionValidator ID="revfuResumeImage" runat="server" ErrorMessage="Only PDF files are allowed!" ValidationExpression="^.*\.(pdf|PDF)$"
+                                  
+                                    <asp:RegularExpressionValidator ID="revfuResumeImage" runat="server" ErrorMessage="Only PDF files are allowed!" ValidationExpression="([a-zA-Z0-9\s_\\.\-:])+(.doc|.docx|.pdf)$"
+
                                         ControlToValidate="fuResumeImage" ValidationGroup="emp" CssClass="ValidationColor"></asp:RegularExpressionValidator>
                                 </div>
                                 <div class="col-sm-1"></div>
@@ -316,9 +318,13 @@
                                     <asp:HiddenField ID="hf_ImageFile" runat="server" />
                                   
                                     <asp:Label ID="lblImage" runat="server"></asp:Label>
+                                      
                                     
                                     <asp:RegularExpressionValidator ID="revfuImageFile" runat="server" ErrorMessage="Only JPEG,PNG Files are allowed!" ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG)$"
                                         ControlToValidate="fuImageFile" ValidationGroup="emp" CssClass="ValidationColor"></asp:RegularExpressionValidator>
+                                </div>
+                                <div>
+                                    <asp:Image ID="imgphoto" runat="server" Height="80" Width="80" ImageAlign="Left"/>
                                 </div>
                                 <div class="col-sm-1"></div>
                                 <%--<label class="col-sm-2">Login Id</label>

@@ -5,6 +5,13 @@
 
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css" />
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <style>
+        .ValidationColor
+         {
+             color:red;
+         }
+    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:ScriptManager ID="scriptmanager" runat="server">
@@ -28,7 +35,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label class="col-sm-2">Job Title</label>
+                                <label  class="col-sm-2">Job Title<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlJobTitle" runat="server" CssClass="form-control" AppendDataBoundItems="true">
                                         <asp:ListItem Text="--Select--" Value="-1" Selected="True"></asp:ListItem>
@@ -37,9 +44,9 @@
                                         Display="Dynamic" Text="Select Job Title." ValidationGroup="vac" InitialValue="-1" ForeColor="Red" />
                                 </div>
                                 <div class="col-sm-1"></div>
-                                <label class="col-sm-2">Vacancy Name</label>
+                                <label for="txtVacancyName" class="col-sm-2">Vacancy Name<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtVacancyName" CssClass="form-control" runat="server" placeholder="Vacancy Name" />
+                                    <asp:TextBox ID="txtVacancyName" CssClass="form-control" runat="server" placeholder="Vacancy Name" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtVacancyName" runat="server" ID="rfvtxtVacancyName"
                                         Display="Dynamic" Text="Enter Vacancy Name." ValidationGroup="vac" ForeColor="Red" />
                                 </div>
@@ -47,7 +54,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label class="col-sm-2">Hiring Manager</label>
+                                <label  class="col-sm-2">Hiring Manager<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
 
                                     <asp:DropDownList ID="dropHiringManager" runat="server" CssClass="form-control" AppendDataBoundItems="true">
@@ -57,11 +64,12 @@
                                         Display="Dynamic"  Text="Select Hiring Manager." ValidationGroup="vac" InitialValue="-1" ForeColor="Red" />
                                 </div>
                                 <div class="col-sm-1"></div>
-                                <label class="col-sm-2">No Of Positions</label>
+                                <label for="txtPositions" class="col-sm-2">No Of Positions<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtPositions" CssClass="form-control" runat="server" placeholder="No Of Positions" />
+                                    <asp:TextBox ID="txtPositions" CssClass="form-control" runat="server" placeholder="No Of Positions" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtPositions" runat="server" ID="rfvtxtPositions"
-                                        Display="Dynamic"  Text="Enter No Of Positions." ValidationGroup="vac" ForeColor="Red" />
+                                        Display="Dynamic"   Text="Enter No Of Positions." ValidationGroup="vac" ForeColor="Red"  />
+                                    <asp:RegularExpressionValidator ID="revtxtPositions" runat="server" ControlToValidate="txtPositions" ValidationExpression="^\d+$" ForeColor="Red" ErrorMessage="Enter only Numbers"></asp:RegularExpressionValidator>
 
                                 </div>
                             </div>
@@ -69,18 +77,18 @@
 
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label class="col-sm-2">Description</label>
+                                <label for="txtDescription" class="col-sm-2">Description<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtDescription" CssClass="form-control" runat="server" placeholder="Description" TextMode="MultiLine" />
+                                    <asp:TextBox ID="txtDescription" CssClass="form-control" runat="server" placeholder="Description" TextMode="MultiLine" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtDescription" runat="server" ID="rfvtxtDescription"
                                         Display="Dynamic"  Text="Enter Description." ValidationGroup="vac" ForeColor="Red" />
 
                                 </div>
                                 <div class="col-sm-1"></div>
-                                <label class="col-sm-2">Active</label>
+                                <label class="col-sm-2">Active<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
 
-                                    <asp:TextBox ID="txtActivText" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <%--<asp:TextBox ID="txtActivText" CssClass="form-control" runat="server"></asp:TextBox>--%>
                                     <asp:CheckBox ID="chkActive" runat="server" OnCheckedChanged="chkActive_CheckedChanged" AutoPostBack="true" />
                                 </div>
 
@@ -188,7 +196,7 @@
                     <asp:HiddenField ID="hf_vacancyId" runat="server" Value="0" />
                     <asp:GridView ID="gvVacancy" runat="server" AllowPaging="true" Width="100%" PageSize="10"
                          AutoGenerateColumns="false"  DataKeyNames="" CssClass="table table-striped table-bordered"
-                         OnRowCommand="gvVacancy_RowCommand" OnPageIndexChanging="gvVacancy_PageIndexChanging">
+                         OnRowCommand="gvVacancy_RowCommand" OnPageIndexChanging="gvVacancy_PageIndexChanging" OnRowDataBound="gvVacancy_RowDataBound">
                         <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
                         <Columns>
                             <asp:TemplateField HeaderText="Vacancy Id">
@@ -212,6 +220,11 @@
                                     <%#Eval("fullname") %>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Status">
+                                <ItemTemplate>
+                                    <asp:Label  ID="lblActive" runat="server" Text='<%#Eval("Active")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                          
                              <asp:TemplateField HeaderText="Actions">
                                 <ItemTemplate>
@@ -220,6 +233,8 @@
                                         <td>
                                             <asp:ImageButton ID="imgEdit" ToolTip="Edit Record" runat="server" ImageUrl="~/Admin/Images/icons/icon-edit.png" Height="20" Width="20"
                                                 CommandName="Edit Record" CommandArgument='<%#Eval("vacancyId") %>' />
+                                             <asp:ImageButton ID="imgDelete" ToolTip="Delete Record" runat="server" ImageUrl="~/admin/Images/icons/icon-delete.png" Height="20" Width="20"
+                                                    CommandName="Delete Record" CommandArgument='<%#Eval("vacancyId") %>' OnClientClick="javascript:return confirm('Are you sure to delete Vacancy Details?')" />
                                         </td>
                                     </table>
                                 </ItemTemplate>

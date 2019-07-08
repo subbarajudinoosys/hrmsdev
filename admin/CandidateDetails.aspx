@@ -18,6 +18,12 @@
              }).attr('readonly', 'readonly');
          });
          </script>
+    <style>
+          .ValidationColor
+         {
+             color:red;
+         }
+    </style>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -41,16 +47,16 @@
 
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label class="col-sm-2">First Name</label>
+                                <label for="txtFirstName" class="col-sm-2">First Name<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server" placeholder="First Name" />
+                                    <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server" placeholder="First Name" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtFirstName" runat="server" ID="rfvtxtFirstName"
                                         Display="Dynamic" ErrorMessage="Enter First Name." Text="Enter First Name." ValidationGroup="cand" ForeColor="Red" />
                                 </div>
                                 <div class="col-sm-1"></div>
-                                <label class="col-sm-2">Middle Name</label>
+                                <label for="txtMiddleName" class="col-sm-2">Middle Name</label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtMiddleName" CssClass="form-control" runat="server" placeholder="Middle Name" />
+                                    <asp:TextBox ID="txtMiddleName" CssClass="form-control" runat="server" placeholder="Middle Name" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtMiddleName" runat="server" ID="rfvtxtMiddleName"
                                         Display="Dynamic" ErrorMessage="Enter Middle Name." Text="Enter Middle Name." ValidationGroup="cand" ForeColor="Red" />
                                 </div>
@@ -58,16 +64,16 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label class="col-sm-2">Last Name</label>
+                                <label for="txtLastName" class="col-sm-2">Last Name<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server" placeholder="Last Name" />
+                                    <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server" placeholder="Last Name" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtLastName" runat="server" ID="rfvtxtLastName"
                                         Display="Dynamic" ErrorMessage="Enter Last Name." Text="Enter Last Name." ValidationGroup="cand" ForeColor="Red" />
                                 </div>
                                 <div class="col-sm-1"></div>                
-                                <label class="col-sm-2">Email Id</label>
+                                <label for="txtEmailId" class="col-sm-2">Email Id<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtEmailId" CssClass="form-control" runat="server" placeholder="Email Id" />
+                                    <asp:TextBox ID="txtEmailId" CssClass="form-control" runat="server" placeholder="Email Id" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtEmailId" runat="server" ID="rfvtxtEmailId"
                                         Display="Dynamic" ErrorMessage="Enter Email Id." Text="Enter Email Id." ValidationGroup="cand" ForeColor="Red" />
                                     <asp:RegularExpressionValidator ControlToValidate="txtEmailId" runat="server"
@@ -80,9 +86,9 @@
 
                          <div class="form-group">
                             <div class="col-sm-12">
-                                <label class="col-sm-2">Contact No</label>
+                                <label for="txtContactNo" class="col-sm-2">Contact No<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtContactNo" CssClass="form-control" runat="server" placeholder="Contact No" />
+                                    <asp:TextBox ID="txtContactNo" CssClass="form-control" runat="server" placeholder="Contact No" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtContactNo" runat="server" ID="rfvtxtContactNo"
                                         Display="Dynamic" ErrorMessage="Enter Contact No." Text="Enter Contact No." ValidationGroup="cand" ForeColor="Red" />
                                     <asp:RegularExpressionValidator ControlToValidate="txtContactNo" runat="server" ForeColor="Red"
@@ -91,7 +97,7 @@
                                         Display="Dynamic"></asp:RegularExpressionValidator>
                                 </div>
                                 <div class="col-sm-1"></div>      
-                                <label class="col-sm-2">Job Vacancy</label>
+                                <label class="col-sm-2">Job Vacancy<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
 
                                     <asp:DropDownList ID="ddlJobVacancy" runat="server" CssClass="form-control" AppendDataBoundItems="true">
@@ -106,16 +112,16 @@
 
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label class="col-sm-2">KeyWords</label>
+                                <label for="txtKeyWords" class="col-sm-2">KeyWords<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtKeyWords" CssClass="form-control" runat="server" placeholder="Keywords" />
+                                    <asp:TextBox ID="txtKeyWords" CssClass="form-control" runat="server" placeholder="Keywords" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtKeyWords" runat="server" ID="rfvtxtKeyWords"
                                         Display="Dynamic" ErrorMessage="Enter KeyWords." Text="Enter KeyWords." ValidationGroup="cand" ForeColor="Red" />
                                 </div>
                                 <div class="col-sm-1"></div>
-                                <label class="col-sm-2">Comment</label>
+                                <label for="txtComment" class="col-sm-2">Comment<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtComment" CssClass="form-control" runat="server" placeholder="Comment" TextMode="MultiLine" />
+                                    <asp:TextBox ID="txtComment" CssClass="form-control" runat="server" placeholder="Comment" TextMode="MultiLine" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtComment" runat="server" ID="rfvtxtComment"
                                         Display="Dynamic" ErrorMessage="Enter Comment." Text="Enter Comment." ValidationGroup="cand" ForeColor="Red" />
                                 </div>
@@ -124,7 +130,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                              
-                                <label class="col-sm-2">Date Of Application</label>
+                                <label class="col-sm-2">Date Of Application<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
                                     <asp:TextBox ID="txtApplicationDate" CssClass="form-control" runat="server" placeholder="Date Of Application" />
                                     <span class="add-on"><i class="icon-calendar"></i></span>
@@ -132,7 +138,7 @@
                                         Display="Dynamic" ErrorMessage="Enter Date Of Application." Text="Enter Date Of Application." ValidationGroup="cand" ForeColor="Red" />
                                 </div>
                                  <div class="col-sm-1"></div>
-                                 <label class="col-sm-2">Upload Resume</label>
+                                 <label class="col-sm-2">Upload Resume<span class="ValidationColor">*</span></label>
                                 .
                                 <div class="col-sm-3">
                                     <asp:FileUpload ID="fuResumeImage" runat="server" CssClass="file-upload" />
@@ -267,6 +273,8 @@
                                         <td>
                                             <asp:ImageButton ID="imgEdit" ToolTip="Edit Record" runat="server" ImageUrl="~/Admin/Images/icons/icon-edit.png" Height="20" Width="20"
                                                 CommandName="Edit Candidate" CommandArgument='<%#Eval("CandidateId") %>' />
+                                             <asp:ImageButton ID="imgDelete" ToolTip="Delete Record" runat="server" ImageUrl="~/admin/Images/icons/icon-delete.png" Height="20" Width="20"
+                                                    CommandName="Delete Record" CommandArgument='<%#Eval("CandidateId") %>' OnClientClick="javascript:return confirm('Are you sure to delete Candidate Details?')" />
 
                                         </td>
                                     </table>
