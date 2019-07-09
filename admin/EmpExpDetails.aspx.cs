@@ -35,7 +35,7 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
             }
             if (Emp_id != null & Emp_firstname != null)
             {
-                lblEmpIdName.Text = "ID-" + Emp_id + " ,  Name-" + Emp_firstname;
+                lblEmpIdName.Text = "EmpId-" + Emp_id + " ,  Name-" + Emp_firstname;
                 string EmployeeExpId = Request.QueryString["Emp_id"];
             }
         }
@@ -217,7 +217,7 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
                 DataTable dt = (DataTable)Session["dt"];
                 DataRow[] dr=dt.Select("CompanyName LIKE '%" + searchtext + "%'");
                 //DataRow[] dr = dt.Select("CompanyName LIKE '%" + searchtext + "'%"
-                //   );
+                   //);
                 if (dr.Count() > 0)
                 {
                     gvEmpExp.DataSource = dr.CopyToDataTable();

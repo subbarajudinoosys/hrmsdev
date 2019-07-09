@@ -94,19 +94,19 @@
                             <div class="col-sm-12">
 
                                 <div class="col-sm-2">
-                                    <label class="control-label">Company Name<span class="ValidationColor">*</span></label>
+                                    <label for="txtCompanyName" class="control-label">Company Name<span class="ValidationColor">*</span></label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtCompanyName" CssClass="form-control" runat="server" placeholder="Company Name" />
+                                    <asp:TextBox ID="txtCompanyName" CssClass="form-control" runat="server" placeholder="Company Name" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtCompanyName" runat="server" ID="rfvtxtCompanyName"
                                         Display="Dynamic" ErrorMessage="Enter Company Name." Text="Enter Company Name." ValidationGroup="exp" ForeColor="Red" />
                                 </div>
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-2">
-                                    <label class="control-label">Designation<span class="ValidationColor">*</span></label>
+                                    <label for="txtEmpDesignation" class="control-label">Designation<span class="ValidationColor">*</span></label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtEmpDesignation" CssClass="form-control" runat="server" placeholder="Designation" />
+                                    <asp:TextBox ID="txtEmpDesignation" CssClass="form-control" runat="server" placeholder="Designation" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtEmpDesignation" runat="server" ID="rfvtxtEmpDesignation"
                                         Display="Dynamic" ErrorMessage="Enter Designation." Text="Enter Designation." ValidationGroup="exp" ForeColor="Red" />
                                 </div>
@@ -115,19 +115,19 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="col-sm-2">
-                                    <label class="control-label">Technology</label>
+                                    <label for="txtTechnology" class="control-label">Technology</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtTechnology" CssClass="form-control" runat="server" placeholder="Technology" />
+                                    <asp:TextBox ID="txtTechnology" CssClass="form-control" runat="server" placeholder="Technology" ClientIDMode="Static" />
                                     <%--<asp:RequiredFieldValidator ControlToValidate="txtTechnology" runat="server" ID="rfvtxtTechnology"
                                         Display="Dynamic" ErrorMessage="Enter Technology." Text="Enter Technology." ValidationGroup="exp" ForeColor="Red" />--%>
                                 </div>
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-2">
-                                    <label class="control-label">Project Titles</label>
+                                    <label for="txtProjectDetails" class="control-label">Project Titles</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtProjectDetails" CssClass="form-control" runat="server" placeholder="Project Details" TextMode="MultiLine" />
+                                    <asp:TextBox ID="txtProjectDetails" CssClass="form-control" runat="server" placeholder="Project Details" TextMode="MultiLine" ClientIDMode="Static" />
                                    <%-- <asp:RequiredFieldValidator ControlToValidate="txtProjectDetails" runat="server" ID="rfvtxtProjectDetails"
                                         Display="Dynamic" ErrorMessage="Enter Project Details." Text="Enter Project Details." ValidationGroup="exp" ForeColor="Red" />--%>
                                 </div>

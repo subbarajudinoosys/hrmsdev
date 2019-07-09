@@ -30,7 +30,7 @@ public partial class admin_EmpBankDetails : System.Web.UI.Page
         }
         if (Emp_id != null & Emp_firstname != null)
         {
-            lblempIdName.Text = "ID-" + Emp_id + " ,  Name-" + Emp_firstname;
+            lblempIdName.Text = "EmpId-" + Emp_id + " ,  Name-" + Emp_firstname;
             string EmployeeEduId = Request.QueryString["Emp_id"];
 
         }

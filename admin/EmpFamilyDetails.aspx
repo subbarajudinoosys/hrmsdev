@@ -46,8 +46,8 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <label style="margin-bottom: -10px" class="col-sm-3">Relation<span class="ValidationColor">*</span> </label>
-                                <label style="margin-bottom: -10px" class="col-sm-3">First Name<span class="ValidationColor">*</span></label>
-                                <label style="margin-bottom: -10px" class="col-sm-3">Last Name<span class="ValidationColor">*</span></label>
+                                <label for="txtRelFirstName" style="margin-bottom: -10px" class="col-sm-3">First Name<span class="ValidationColor">*</span></label>
+                                <label for="txtRelLastName" style="margin-bottom: -10px" class="col-sm-3">Last Name<span class="ValidationColor">*</span></label>
                              
                             </div>
                         </div>
@@ -66,14 +66,14 @@
                                         Display="Dynamic" ErrorMessage="Select RelationShip." Text="Select RelationShip." InitialValue="-1" ValidationGroup="family" ForeColor="Red" />
                                 </div>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtRelFirstName" CssClass="form-control" runat="server" placeholder="First Name" />
+                                    <asp:TextBox ID="txtRelFirstName" CssClass="form-control" runat="server" placeholder="First Name" ClientIDMode="Static" />
 
                                     <asp:RequiredFieldValidator ControlToValidate="txtRelFirstName" runat="server" ID="rfvtxtRelFirstName"
                                         Display="Dynamic" ErrorMessage="Enter First Name." Text="Enter First Name." ValidationGroup="family" ForeColor="Red" />
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtRelLastName" CssClass="form-control" runat="server" placeholder="Last Name" />
+                                    <asp:TextBox ID="txtRelLastName" CssClass="form-control" runat="server" placeholder="Last Name" ClientIDMode="Static" />
 
                                     <asp:RequiredFieldValidator ControlToValidate="txtRelLastName" runat="server" ID="rfvtxtRelLastName"
                                         Display="Dynamic" ErrorMessage="Enter Last Name." Text="Enter Last Name." ValidationGroup="family" ForeColor="Red" />
@@ -86,7 +86,7 @@
                           <div class="form-group">
                             <div class="col-sm-12">
                                
-                                <label style="margin-bottom: -10px" class="col-sm-3">Age</label>
+                                <label for="txtEmpAge" style="margin-bottom: -10px" class="col-sm-3">Age</label>
                                 <label style="margin-bottom: -10px" class="col-sm-3">Employment Status <span class="ValidationColor">*</span></label>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                            
 
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtEmpAge" CssClass="form-control" runat="server" placeholder="Age" />
+                                    <asp:TextBox ID="txtEmpAge" CssClass="form-control" runat="server" placeholder="Age" ClientIDMode="Static" />
                                    <%-- <asp:RequiredFieldValidator ControlToValidate="txtEmpAge" runat="server" ID="rfvtxtEmpAge"
                                         Display="Dynamic" ErrorMessage="Enter Age." Text="Enter Age." ValidationGroup="family" ForeColor="Red" />--%>
                                 </div>
