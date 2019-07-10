@@ -196,7 +196,7 @@
                     <asp:HiddenField ID="hf_S_No" runat="server" Value="0" />
                     <asp:GridView ID="gvEmpExp" runat="server" AllowPaging="true" Width="100%" PageSize="5" HeaderStyle-CssClass="gridheader"
                         AutoGenerateColumns="False" DataKeyNames="S_No" CssClass="table table-striped table-bordered"
-                        OnRowCommand="gvEmpExp_RowCommand" OnPageIndexChanging="gvEmpExp_PageIndexChanging" ShowHeaderWhenEmpty="true">
+                        OnRowCommand="gvEmpExp_RowCommand" OnPageIndexChanging="gvEmpExp_PageIndexChanging" ShowHeaderWhenEmpty="true" EmptyDataText="No records found">
                         <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
                         <Columns>
                             <asp:TemplateField HeaderText="SNo" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="gridheader">

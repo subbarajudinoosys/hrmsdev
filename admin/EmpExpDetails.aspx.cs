@@ -215,12 +215,17 @@ public partial class admin_EmpExpDetails : System.Web.UI.Page
             if (Session["dt"] != null)
             {
                 DataTable dt = (DataTable)Session["dt"];
-                DataRow[] dr=dt.Select("CompanyName LIKE '%" + searchtext + "%'");
+                DataRow[] dr = dt.Select("CompanyName LIKE '%" + searchtext + "%'");
                 //DataRow[] dr = dt.Select("CompanyName LIKE '%" + searchtext + "'%"
                    //);
                 if (dr.Count() > 0)
                 {
                     gvEmpExp.DataSource = dr.CopyToDataTable();
+                    gvEmpExp.DataBind();
+                }
+                else
+                {
+                    gvEmpExp.DataSource = null;
                     gvEmpExp.DataBind();
                 }
             }
