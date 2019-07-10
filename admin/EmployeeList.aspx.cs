@@ -127,6 +127,7 @@ public partial class admin_EmployeeList : System.Web.UI.Page
             {
                 DataTable dt = (DataTable)Session["dt"];
                 DataRow[] dr = dt.Select("emp_firstname LIKE '%" + searchtext +
+                    "%' OR emp_id LIKE '%" + searchtext +
                    "%' OR emp_lastname LIKE '%" + searchtext +
                    "%' OR Department LIKE '%" + searchtext +
                    "%' OR Designation LIKE'%" + searchtext + "%'");
