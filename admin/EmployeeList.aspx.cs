@@ -136,6 +136,11 @@ public partial class admin_EmployeeList : System.Web.UI.Page
                     gvEmployee.DataSource = dr.CopyToDataTable();
                     gvEmployee.DataBind();
                 }
+                else
+                {
+                    gvEmployee.DataSource = null;
+                    gvEmployee.DataBind();
+                }
             }
         }
         catch (Exception)

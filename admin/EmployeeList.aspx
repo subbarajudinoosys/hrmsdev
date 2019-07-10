@@ -57,7 +57,7 @@
                             <asp:HiddenField ID="hf_emp_id" Value="0" runat="server" />
                             <asp:GridView ID="gvEmployee" runat="server" AllowPaging="true" Width="100%" PageSize="5"
                                 AutoGenerateColumns="False" CssClass="table table-striped table-bordered"
-                                OnRowCommand="gvEmployee_RowCommand" OnPageIndexChanging="gvEmployee_PageIndexChanging" ShowHeaderWhenEmpty="true" EmptyDataText="No records found">
+                                OnRowCommand="gvEmployee_RowCommand" OnPageIndexChanging="gvEmployee_PageIndexChanging" ShowHeaderWhenEmpty="true" EmptyDataText="No records found" EmptyDataRowStyle-HorizontalAlign="Center">
                                 <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
                                 <%-- <RowStyle Height="20px" Font-Size="13px" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" />--%>
                                 <Columns>

@@ -186,7 +186,7 @@
 
                     <asp:GridView ID="gvFamilyDetails" runat="server" AllowPaging="true" Width="100%" PageSize="2" HeaderStyle-CssClass="gridheader"
                         AutoGenerateColumns="False" DataKeyNames="S_No" CssClass="table table-striped table-bordered"
-                        OnRowCommand="gvFamilyDetails_RowCommand" OnPageIndexChanging="gvFamilyDetails_PageIndexChanging" ShowHeaderWhenEmpty="true" EmptyDataText="No records found">
+                        OnRowCommand="gvFamilyDetails_RowCommand" OnPageIndexChanging="gvFamilyDetails_PageIndexChanging" ShowHeaderWhenEmpty="true" EmptyDataText="No records found" EmptyDataRowStyle-HorizontalAlign="Center" >
                         <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
                       
                       
