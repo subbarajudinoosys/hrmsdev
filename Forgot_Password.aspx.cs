@@ -8,6 +8,7 @@ using System.Data;
 using DataManager;
 using System.Net.Mail;
 using System.Globalization;
+using System.Configuration;
 
 public partial class Forgot_Password : System.Web.UI.Page
 {
@@ -55,7 +56,8 @@ public partial class Forgot_Password : System.Web.UI.Page
                     string Attachment = string.Empty;
                     string Password=ds.Tables[0].Rows[0][0].ToString().Trim();
                     MailCc = string.Empty;
-
+                    string Url = ConfigurationManager.AppSettings["redirectURL"];
+                    
                     MailText = "<table align='center' border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse; width: 100%; max-width: 600px;' class='content'>"
                     + "<tr>"
                     + "<td style='padding: 15px 10px 15px 10px;'>"
@@ -73,7 +75,7 @@ public partial class Forgot_Password : System.Web.UI.Page
                     + "     <b>You Credentials is </b><br/>"
                         //+ "    and One Of The Advisor We Will Contact To You."
                      + "Login Id : " + ds.Tables[0].Rows[0][1].ToString().Trim() + "<br/>" + " Password: " + objDOUty.Decrypts( Password,true)
-                     + "<br/> To change password click <a href='http://hrmsdev.dinoosystech.com/admin/ChangePassword.aspx?key='" + objDOUty.Encrypts(emp_id,true) + "'target='_blank'>here</a>"
+                     + "<br/> To change password click <a href='"+Url+"admin/ChangePassword.aspx?key='" + objDOUty.Encrypts(emp_id, true) + "'target='_blank'>here</a>"
                     + " </td>"
                  + "</tr>"
                 + " <tr>"

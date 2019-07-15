@@ -1,6 +1,7 @@
 ﻿using DataManager;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -26,11 +27,13 @@ public partial class admin_ChangePassword : System.Web.UI.Page
     {
         try
         {
-            int i = objcommon.ChangePassword(emp_id, objutility.Encrypts(txtnewpass.Text, true));
+            int i = objcommon.ChangePassword(objutility.Decrypts(emp_id, true), objutility.Encrypts(txtnewpass.Text, true));
+
             //int i = objcommon.ChangePassword();
             if (i > 0)
             {
-                Response.Write("<script language='javascript'>window.alert('Password Updated Successfully');window.location='http://localhost:30043/login.aspx';</script>");
+                string Url = ConfigurationManager.AppSettings["redirectURL"];
+                Response.Write("<script language='javascript'>window.alert('Password Updated Successfully');window.location='"+Url+"login.aspx';</script>");
             }
             else
             {
