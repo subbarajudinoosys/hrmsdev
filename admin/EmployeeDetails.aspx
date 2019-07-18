@@ -161,13 +161,14 @@
                                 <div class="col-sm-1"></div>
                                 <label class="col-sm-2" for="txtEmailId">Email Id<span class="ValidationColor">*</span></label>
                                 <div class="col-sm-3">
-                                    <asp:TextBox ID="txtEmailId" CssClass="form-control" runat="server" OnTextChanged="txtEmailId_TextChanged" placeholder="Email Id" ClientIDMode="Static" />
+                                    <asp:TextBox ID="txtEmailId" CssClass="form-control" runat="server" placeholder="Email Id" ClientIDMode="Static" />
                                     <asp:RequiredFieldValidator ControlToValidate="txtEmailId" runat="server" ID="rfvtxtEmailId"
                                         Display="Dynamic" ErrorMessage="Enter Email Id." Text="Enter Email Id." ValidationGroup="emp" CssClass="ValidationColor" />
                                     <asp:RegularExpressionValidator ControlToValidate="txtEmailId" runat="server"
                                         ID="revtxtEmailId" ValidationGroup="emp" ErrorMessage="Enter Valid Email Id."
                                         Text="Enter Valid Email Id." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                                         Display="Dynamic" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -303,9 +304,12 @@
                                     <asp:FileUpload ID="fuResumeImage" runat="server" />                                  
                                     <asp:HiddenField ID="hfResumeFileName" runat="server" />
                                     <%--<asp:Label ID="lblResume" runat="server"></asp:Label>--%>
-                                    <a id="pdfView" href="#" target="_blank" runat="server"><asp:Label ID="lblResume" runat="server"></asp:Label></a>
+                                    <a id="pdfView" href="#" target="_blank" runat="server">
+                                        <asp:Label ID="lblResume" runat="server"></asp:Label>
+
+                                    </a>
                                   
-                                    <asp:RegularExpressionValidator ID="revfuResumeImage" runat="server" ErrorMessage="Only PDF files are allowed!" ValidationExpression="([a-zA-Z0-9\s_\\.\-:])+(.doc|.docx|.pdf)$"
+                                    <asp:RegularExpressionValidator ID="revfuResumeImage" runat="server" ErrorMessage="Only PDF and word files are allowed!" ValidationExpression="([a-zA-Z0-9\s_\\.\-:])+(.doc|.docx|.pdf)$"
 
                                         ControlToValidate="fuResumeImage" ValidationGroup="emp" CssClass="ValidationColor"></asp:RegularExpressionValidator>
                                 </div>
@@ -317,9 +321,8 @@
                                    
                                     <asp:HiddenField ID="hf_ImageFile" runat="server" />
                                   
-                                    <asp:Label ID="lblImage" runat="server"></asp:Label>
+                                    <asp:Label ID="lblImage" runat="server" Visible="false"></asp:Label>
                                       
-                                    
                                     <asp:RegularExpressionValidator ID="revfuImageFile" runat="server" ErrorMessage="Only JPEG,PNG Files are allowed!" ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG)$"
                                         ControlToValidate="fuImageFile" ValidationGroup="emp" CssClass="ValidationColor"></asp:RegularExpressionValidator>
                                 </div>

@@ -13,7 +13,7 @@ using System.Configuration;
 public partial class Forgot_Password : System.Web.UI.Page
 {
     DOUtility objDOUty = new DOUtility();
-    string EmployeeId = string.Empty;
+    string emp_id = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -75,7 +75,7 @@ public partial class Forgot_Password : System.Web.UI.Page
                     + "     <b>You Credentials is </b><br/>"
                         //+ "    and One Of The Advisor We Will Contact To You."
                      + "Login Id : " + ds.Tables[0].Rows[0][1].ToString().Trim() + "<br/>" + " Password: " + objDOUty.Decrypts( Password,true)
-                     + "<br/> To change password click <a href='"+Url+"admin/ChangePassword.aspx?key='" + objDOUty.Encrypts(emp_id, true) + "'target='_blank'>here</a>"
+                     + "<br/> To change password click <a href='" + Url + "admin/ChangePassword.aspx?test=" + objDOUty.Encrypts(emp_id, true) + "'target='_blank'>here</a>"
                     + " </td>"
                  + "</tr>"
                 + " <tr>"
@@ -99,7 +99,7 @@ public partial class Forgot_Password : System.Web.UI.Page
                     SendMail(SmtpServer, SmtpPort, MailFrom, DisplayNameFrom, FromPassword, MailTo, DisplayNameTo, MailCc, "","", "", DisplayNameCc,"", Subject,MailText, Attachment,body);
 
                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "message alert", "alert('Please check your mail ');", true);
-                    
+                   txtemailId.Text = "";
 
                 }
                 else

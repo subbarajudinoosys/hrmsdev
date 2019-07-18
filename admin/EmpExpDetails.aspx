@@ -14,7 +14,7 @@
             $("#ContentPlaceHolder1_txtFromDate").datepicker({
 
                 numberOfMonths: 1,
-                dateFormat: 'yy-mm-dd',
+                dateFormat: 'dd-mm-yy',
                 changeMonth: true,
                 changeYear: true,
             }).attr('readonly', 'readonly');
@@ -23,7 +23,7 @@
             $("#ContentPlaceHolder1_txtToDate").datepicker({
 
                 numberOfMonths: 1,
-                dateFormat: 'yy-mm-dd',
+                dateFormat: 'dd-mm-yy',
                 changeMonth: true,
                 changeYear: true,
             }).attr('readonly', 'readonly');

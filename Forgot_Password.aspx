@@ -23,7 +23,7 @@
                     <div class="control-group">
                         <asp:TextBox ID="txtemailId" runat="server" CssClass="login-field"  placeholder="EMAIL ID" />
                         <label class="login-field-icon fui-user" for="login-name"></label>
-                        <div >&nbsp</div>
+                        <div>&nbsp</div>
                         <asp:Label runat="server" ID="lblerror" ForeColor="Red"></asp:Label>
                     </div>                  
 

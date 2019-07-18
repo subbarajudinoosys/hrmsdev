@@ -13,8 +13,8 @@ using System.IO;
 public partial class admin_EmployeeDetails : System.Web.UI.Page
 {
     DALCommon objcommon = new DALCommon();
-    
-    
+
+
     Employees _objEmp = new Employees();
     DOUtility objDOUti = new DOUtility();
     clsEmployee objclsEmployee = new clsEmployee();
@@ -37,7 +37,7 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
         {
             BindDepratment();
             BindLocation();
-            
+
 
             if (!string.IsNullOrEmpty(Request.QueryString["emp_id"]))
             {
@@ -81,12 +81,26 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             string strPath = System.IO.Path.GetExtension(FUName.PostedFile.FileName);
             string date = DateTime.Now.ToString("yyyyMMddhhmmssfff");
             fileName = date + strPath;
-            FUName.SaveAs(Server.MapPath("~/Admin/ResumeDoc/" + fileName));
-            lblResume.Text = fuResumeImage.FileName;
+            FUName.SaveAs(Server.MapPath("~/admin/ResumeDoc/" + fileName));
+            //lblResume.Text = fuResumeImage.FileName;
         }
         return fileName;
     }
-
+    private string GetImage(FileUpload FUImageName)
+    {
+        string fileName = string.Empty;
+        if (FUImageName.HasFile)
+        {
+            string strPath = System.IO.Path.GetExtension(FUImageName.PostedFile.FileName);
+            string date = DateTime.Now.ToString("yyyyMMddhhmmssfff");
+            fileName = date + strPath;
+            FUImageName.SaveAs(Server.MapPath("~/admin/EmployeeImages/" + fileName));
+            //lblImage.Text = fuImageFile.FileName;
+            //imgphoto.ImageUrl = "EmployeeImages/" + fuImageFile.FileName;
+            //imgphoto.Visible = true;
+        }
+        return fileName;
+    }
 
     private void InsertUpdateEmployeeDetails()
     {
@@ -98,67 +112,113 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             {
                 objclsEmployee.OpName = "UPDATE";
                 objclsEmployee.empPWD = string.Empty;
-                if (fuResumeImage.HasFile)
-                    lblResume.Text = fuResumeImage.FileName;
+                if (lblResume.Text!="" && fuResumeImage.HasFile==false)
+                {
+                    objclsEmployee.ResumeFilePath = lblResume.Text;
+                    //lblResume.Text = fuResumeImage.FileName;
+                }
                 else
-                    filepath = GetFile(fuResumeImage);
+                {
+                    if(this.fuResumeImage.FileName!="")
+                    {
+                        fuResumeImage.SaveAs(Server.MapPath("~/admin/ResumeDoc/" + this.fuResumeImage.FileName));
+                        filepath = Path.GetFileName(this.fuResumeImage.PostedFile.FileName);
+                        objclsEmployee.ResumeFilePath = "~/ResumeDoc/" + filepath;
+                    }
+                    //filepath = GetFile(fuResumeImage);
+                    else
+                    {
+                        objclsEmployee.ResumeFilePath = "";
+                    }
+                }
+      
+                 if (lblImage.Text != "" && fuImageFile.HasFile == false)
+                 {
+                     objclsEmployee.ImageFilePath = lblImage.Text;
+                 }             
+                 else
+                {
+                    if (this.fuImageFile.FileName != "")
+                    {
+                        fuImageFile.SaveAs(Server.MapPath("~/EmployeeImages/" + this.fuImageFile.FileName));
+                        Imagepath = Path.GetFileName(this.fuImageFile.PostedFile.FileName);
+                        objclsEmployee.ImageFilePath = "~/EmployeeImages/" + Imagepath;
+                    }
+                    else
+                    {
+                        objclsEmployee.ImageFilePath = "";
+                    }
+                }
 
-
-                if (fuImageFile.HasFile)
-                    lblImage.Text = fuImageFile.FileName;
-                else
-                    Imagepath = GetImage(fuImageFile);
             }
+        
             else
             {
                 objclsEmployee.empPWD = Password();
                 objclsEmployee.OpName = "INSERT";
+                DataSet ds = objcommon.ValidMail(txtEmailId.Text);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    labelError.Text = objDOUti.ShowMessage("danger", "Danger", "UserMail already exists");
+                    return;
+                }
+                if (fuResumeImage.HasFile)
+                {
+                    filepath = GetFile(fuResumeImage);
+                    objclsEmployee.ResumeUpload = lblResume.Text;// fuResumeImage.FileName;
+                    objclsEmployee.ResumeFilePath = GetFile(fuResumeImage);
+                    
+                }
+                    
+                else
+                {
+                    lblResume.Text = "";
+                }
+                   
+
+
+                if (fuImageFile.HasFile)
+                {
+                    Imagepath = GetImage(fuImageFile);
+                    objclsEmployee.ImageUpload = lblImage.Text;
+                    objclsEmployee.ImageFilePath = GetImage(fuImageFile);
+                   
+                }
+                    
+                else
+                {
+                    lblImage.Text = "";
+                }
+                   
             }
-               
-            if (fuResumeImage.HasFile)
-                lblResume.Text = fuResumeImage.FileName;
-            else
-                filepath = GetFile(fuResumeImage);
-
-
-            if (fuImageFile.HasFile)
-                lblImage.Text = fuImageFile.FileName;
-            else
-                Imagepath = GetImage(fuImageFile);
-
-
-            objclsEmployee.EmpID= txtEmployeeID.Text;
-            objclsEmployee.empFtName = txtFirstName.Text;
-            objclsEmployee.empMName = txtMiddleName.Text;
-            objclsEmployee.empLName = txtLastName.Text;
-            objclsEmployee.empJOD = txtDateOfJoining.Text;
-            objclsEmployee.empDOB = txtDateOfBirth.Text;
-            objclsEmployee.empDepartment = ddlDepartment.SelectedValue;
-            objclsEmployee.empDesignation = ddlDesignation.SelectedValue;
-            objclsEmployee.LoginId = txtEmployeeID.Text;
-            objclsEmployee.empMobile = txtMobileNo.Text;
-            objclsEmployee.empEmail = txtEmailId.Text;
+         
+                objclsEmployee.EmpID = txtEmployeeID.Text;
+                objclsEmployee.empFtName = txtFirstName.Text;
+                objclsEmployee.empMName = txtMiddleName.Text;
+                objclsEmployee.empLName = txtLastName.Text;
+                objclsEmployee.empJOD = txtDateOfJoining.Text;
+                objclsEmployee.empDOB = txtDateOfBirth.Text;
+                objclsEmployee.empDepartment = ddlDepartment.SelectedValue;
+                objclsEmployee.empDesignation = ddlDesignation.SelectedValue;
+                objclsEmployee.LoginId = txtEmployeeID.Text;
+                objclsEmployee.empMobile = txtMobileNo.Text;
+                objclsEmployee.empEmail = txtEmailId.Text;
             //objclsEmployee.empManager = txtManager.Text;
-            objclsEmployee.empStatus = Convert.ToInt32(ddlStatus.SelectedValue);
-            objclsEmployee.empPanNo = txtPanNo.Text;
-            objclsEmployee.empAdharNo = txtAdharNo.Text;
-            objclsEmployee.empAddress = txtAddress.Text;
-            objclsEmployee.emppassportno = txtPassportNo.Text;
-            objclsEmployee.emppasexpirydate = txtExpiryDate.Text;
-            objclsEmployee.ResumeUpload = lblResume.Text;// fuResumeImage.FileName;
-            objclsEmployee.ResumeFilePath = GetFile(fuResumeImage);
-            objclsEmployee.emplocation = ddlLocation.SelectedValue;
-
-            objclsEmployee.ImageUpload = lblImage.Text;
-            objclsEmployee.ImageFilePath = GetImage(fuImageFile);
-
-            objclsEmployee.CreatedBy = 0;
-            
-            int Result = _objEmp.Employee_InsertUpdate(objclsEmployee);
+                objclsEmployee.empStatus = Convert.ToInt32(ddlStatus.SelectedValue);
+                objclsEmployee.empPanNo = txtPanNo.Text;
+                objclsEmployee.empAdharNo = txtAdharNo.Text;
+                objclsEmployee.empAddress = txtAddress.Text;
+                objclsEmployee.emppassportno = txtPassportNo.Text;
+                objclsEmployee.emppasexpirydate = txtExpiryDate.Text;
+               
+                objclsEmployee.emplocation = ddlLocation.SelectedValue;
+              
+                objclsEmployee.CreatedBy = 0;
+                int Result = _objEmp.Employee_InsertUpdate(objclsEmployee);
             if (Result == 1)
             {
                 bool status = MailSending(txtEmployeeID.Text, AutoPassword, txtEmailId.Text);
-                labelError.Text = CommanClass.ShowMessage("success", "Success", "Employee created Successfully");
+                labelError.Text = CommanClass.ShowMessage("success", "Success", "Employee details updated Successfully");
                 clearcontrols();
                 Response.Redirect("EmployeeList.aspx", true);
                 Session["status"] = status;
@@ -182,14 +242,14 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
 
         try
         {
-            int PassLength = 6;
+            int PassLength = 8;
             string allowedChars = "";
 
             allowedChars = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,";
 
             allowedChars += "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,";
 
-            allowedChars += "1,2,3,4,5,6,7,8,9,0";
+            allowedChars += "1,2,3,4,5,6,7,8,9,0,!,@,#,$,%,&,?";
 
             char[] sep = { ',' };
 
@@ -236,7 +296,7 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             string FromPassword = "";
             string MailTo;
             string DisplayNameTo;
-            string MailCc = "";
+            string MailCc = "subbaraju.vetukuri@gmail.com";
             string DisplayNameCc = "";
             string MailBcc = "";
             string Subject = "Invitation";
@@ -248,10 +308,10 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
             //string name = Session["firstname"].ToString() + " " + Session["lastname"].ToString();
 
             // string leavedate = "Leave Date" + " : " + "From Date: " + fromdate + "&nbsp;&nbsp; To Date: " + todate;
-            string MailText = "URL: " + "http://hrmsdev.dinoosystech.com/login.aspx " + "<br/>" + "LoginID:  " + EmpID + "<br/>" + "Password: " + Password;
+            string MailText = "URL: " + "http://hrmsdev.dinoosystech.com/login.aspx " + "<br/>" + "LoginID:  " + EmpID + "<br/>" + "Password: " + Password + "<br/> " + "To change password please visit this URL" + "http://hrmsdev.dinoosystech.com/admin/ChangePassword.aspx";
 
             // MailCc2 = "subbaraju.vetukuri@gmail.com";
-            //MailCc3 = "budagavichandra@gmail.com";
+
 
             SmtpServer = "smtp.gmail.com";
             SmtpPort = 25;
@@ -333,22 +393,20 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
                 txtPassportNo.Text = Objds.Tables[0].Rows[0]["emp_passportno"].ToString();
                 txtExpiryDate.Text = Objds.Tables[0].Rows[0]["emp_pasexpirydate"].ToString();
                 Panel1.Visible = false;
-                lblResume.Text = Objds.Tables[0].Rows[0]["ResumeUpload"].ToString();
+                //lblResume.Text = Objds.Tables[0].Rows[0]["ResumeUpload"].ToString();
                 hfResumeFileName.Value = Objds.Tables[0].Rows[0]["ResumeFilePath"].ToString();
                 //revfuResumeImage.Enabled = false;
                 ddlLocation.SelectedIndex = ddlLocation.Items.IndexOf(ddlLocation.Items.FindByValue(Objds.Tables[0].Rows[0]["emp_location"].ToString()));
                 ResumeFileName = Objds.Tables[0].Rows[0]["ResumeFilePath"].ToString();
                 pdfView.Attributes["href"] = "ResumeDoc/" + ResumeFileName;
-
+                lblResume.Text = Objds.Tables[0].Rows[0]["ResumeFilePath"].ToString();
                 hf_ImageFile.Value = Objds.Tables[0].Rows[0]["ImageFilePath"].ToString();
                 ImageFileName = Objds.Tables[0].Rows[0]["ImageFilePath"].ToString();
                 imgphoto.ImageUrl = "EmployeeImages/" + ImageFileName;
-
-                
-              
-                //lblImage.Text = Objds.Tables[0].Rows[0]["ImageUpload"].ToString();
-
-            }
+                //imgphoto.ImageUrl = "EmployeeImages/" + fuImageFile.FileName;
+                imgphoto.Visible = true;
+                lblImage.Text = Objds.Tables[0].Rows[0]["ImageFilePath"].ToString();
+           }
         }
         catch (Exception ex)
         {
@@ -472,35 +530,25 @@ public partial class admin_EmployeeDetails : System.Web.UI.Page
     }
 
 
-    private string GetImage(FileUpload FUImageName)
-    {
-        string fileName = string.Empty;
-        if (FUImageName.HasFile)
-        {
-            string strPath = System.IO.Path.GetExtension(FUImageName.PostedFile.FileName);
-            string date = DateTime.Now.ToString("yyyyMMddhhmmssfff");
-            fileName = date + strPath;
-            FUImageName.SaveAs(Server.MapPath("~/Admin/EmployeeImages/" + fileName));
-            lblImage.Text = fuImageFile.FileName;
-        }
-        return fileName;
-    }
+   
 
-    protected void txtEmailId_TextChanged(object sender, EventArgs e)
-    {
-        //int result = objcommon.ValidMail(txtEmailId.Text);
-        //if (result > 0)
-        //{
-        //    labelError.Text = objDOUti.ShowMessage("danger", "Danger", "Mail Already exixts");
-        //}
-        DataSet ds = objcommon.ValidMail(txtEmailId.Text);
-        if(ds.Tables[0].Rows.Count>0)
-        {
-            labelError.Text = objDOUti.ShowMessage("danger", "Danger", "Mail Already exists");
-        }
-        else
-        {
+    //protected void txtEmailId_TextChanged1(object sender, EventArgs e)
+    //{
+    //    //int result = objcommon.ValidMail(txtEmailId.Text);
+    //    //if (result > 0)
+    //    //{
+    //    //    labelError.Text = objDOUti.ShowMessage("danger", "Danger", "Mail Already exixts");
+    //    //}
+    //    DataSet ds = objcommon.ValidMail(txtEmailId.Text);
+    //    if(ds.Tables[0].Rows.Count>0)
+    //    {
+    //        labelError.Text = objDOUti.ShowMessage("danger", "Danger", "Mail Already exists");
+    //    }
+    //    else
+    //    {
 
-        }
-    }
+    //    }
+
+    
 }
+

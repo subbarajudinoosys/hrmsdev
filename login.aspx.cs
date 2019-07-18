@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using DataManager;
+using System.Security.Cryptography;
+using System.Text;
+using System.IO;
 
 public partial class login : System.Web.UI.Page
 {
@@ -61,6 +64,9 @@ public partial class login : System.Web.UI.Page
         }
     }
 
+    
+}
+    
+
 
    
-}
